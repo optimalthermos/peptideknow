@@ -387,7 +387,6 @@ app.get('/categories', (req, res) => {
       <div class="card-meta">
         <span class="count">${count} peptide${count !== 1 ? 's' : ''}</span>
       </div>
-      <div class="card-preview">Includes: ${topPeptides}</div>
     </a>`;
   }).join('');
 
