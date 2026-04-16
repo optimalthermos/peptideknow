@@ -104,7 +104,7 @@
       
       tocLinks.forEach(function(l) { l.style.color = ''; l.style.fontWeight = ''; });
       if (current) {
-        current.link.style.color = '#16537e';
+        current.link.style.color = '#00d4aa';
         current.link.style.fontWeight = '600';
       }
     };
