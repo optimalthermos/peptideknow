@@ -1,20 +1,25 @@
-<section class="hero">
-  <div class="hero-inner">
-    <h1>The Peptide Encyclopedia</h1>
-    <p class="hero-subtitle">A comprehensive reference database of <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong>. Explore mechanisms of action, synergistic compounds, clinical research status, and more.</p>
-    <form action="/search" method="GET" class="hero-search" role="search">
-      <label for="hero-search-input" class="sr-only">Search peptides by name, function, or mechanism</label>
-      <input type="search" id="hero-search-input" name="q" placeholder="Search by peptide name, function, or mechanism..." autocomplete="off">
-      <button type="submit">Search Database</button>
-    </form>
-    <div class="hero-quick-links">
-      <span>Popular:</span>
-      <a href="/peptides/bpc-157">BPC-157</a>
-      <a href="/peptides/semaglutide">Semaglutide</a>
-      <a href="/peptides/tb-500">TB-500</a>
-      <a href="/peptides/epithalon">Epithalon</a>
-      <a href="/peptides/semax">Semax</a>
-      <a href="/peptides/ghk-cu">GHK-Cu</a>
+<section class="hero hero-split">
+  <div class="hero-split-inner">
+    <div class="hero-content">
+      <h1>The Peptide Encyclopedia</h1>
+      <p class="hero-subtitle">A comprehensive reference database of <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong>. Explore mechanisms of action, synergistic compounds, clinical research status, and more.</p>
+      <form action="/search" method="GET" class="hero-search" role="search">
+        <label for="hero-search-input" class="sr-only">Search peptides by name, function, or mechanism</label>
+        <input type="search" id="hero-search-input" name="q" placeholder="Search by peptide name, function, or mechanism..." autocomplete="off">
+        <button type="submit">Search Database</button>
+      </form>
+      <div class="hero-quick-links">
+        <span>Popular:</span>
+        <a href="/peptides/bpc-157">BPC-157</a>
+        <a href="/peptides/semaglutide">Semaglutide</a>
+        <a href="/peptides/tb-500">TB-500</a>
+        <a href="/peptides/epithalon">Epithalon</a>
+        <a href="/peptides/semax">Semax</a>
+        <a href="/peptides/ghk-cu">GHK-Cu</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/static/images/hero-lab.jpg" alt="Researcher examining peptide molecular structure in a modern biotech laboratory" width="960" height="540" loading="eager">
     </div>
   </div>
 </section>
@@ -63,11 +68,40 @@
   </div>
 </section>
 
-<section class="section section-alt" aria-labelledby="about-section-heading">
-  <div class="container container-narrow">
-    <h2 id="about-section-heading">About PeptideOpedia</h2>
-    <p>PeptideOpedia is a free, independent reference database designed to organize and present research-backed information on bioactive peptides. Our database covers growth hormone secretagogues, healing peptides, nootropics, antimicrobial peptides, metabolic agents, and more. Each entry includes mechanism of action data, synergistic compound cross-references, amino acid sequences, and links to primary research literature.</p>
-    <p>This resource is maintained for researchers, clinicians, students, and anyone seeking reliable, organized peptide information. All content is for educational and informational purposes only.</p>
-    <a href="/about" class="text-link">Learn more about PeptideOpedia</a>
+<section class="section section-alt" aria-labelledby="audience-heading">
+  <div class="container">
+    <h2 id="audience-heading" class="section-heading-center">Built for Researchers and Biohackers</h2>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <img src="/static/images/scientist-female.jpg" alt="Scientist analyzing peptide molecular structures in a biochemistry lab" width="960" height="540" loading="lazy">
+        <div class="audience-card-body">
+          <h3>For Researchers</h3>
+          <p>Amino acid sequences, mechanism of action pathways, clinical trial status, and links to primary literature on PubMed and PubChem. Cross-referenced for efficient navigation.</p>
+        </div>
+      </div>
+      <div class="audience-card">
+        <img src="/static/images/biohacker-athlete.jpg" alt="Biohacker reviewing peptide research data on monitor in home lab" width="960" height="540" loading="lazy">
+        <div class="audience-card-body">
+          <h3>For Biohackers</h3>
+          <p>Clear synergistic compound stacking references, researched benefits with caveats, dosage ranges from literature, and side effect profiles. All in plain language.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="about-section-heading">
+  <div class="container">
+    <div class="about-split">
+      <div class="about-split-text">
+        <h2 id="about-section-heading">About PeptideOpedia</h2>
+        <p>PeptideOpedia is a free, independent reference database designed to organize and present research-backed information on bioactive peptides. Our database covers growth hormone secretagogues, healing peptides, nootropics, antimicrobial peptides, metabolic agents, and more.</p>
+        <p>Each entry includes mechanism of action data, synergistic compound cross-references, amino acid sequences, and links to primary research literature.</p>
+        <a href="/about" class="btn-outline">Learn More</a>
+      </div>
+      <div class="about-split-image">
+        <img src="/static/images/research-team.jpg" alt="Research team collaborating on peptide molecular analysis" width="960" height="540" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>
