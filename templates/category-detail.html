@@ -1,0 +1,27 @@
+<section class="page-header">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/categories">Categories</a> <span aria-hidden="true">/</span> <span>{{CATEGORY_NAME}}</span>
+    </nav>
+    <h1>{{CATEGORY_NAME}}</h1>
+    <p class="page-subtitle">{{CATEGORY_DESCRIPTION}}</p>
+    <p class="page-count">{{PEPTIDE_COUNT}} peptides in this category</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="peptide-grid">
+      {{PEPTIDE_CARDS}}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2>Related Categories</h2>
+    <div class="related-cats">
+      {{RELATED_CATEGORIES}}
+    </div>
+  </div>
+</section>

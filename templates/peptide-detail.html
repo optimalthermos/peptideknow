@@ -1,0 +1,110 @@
+<article class="peptide-detail" itemscope itemtype="https://schema.org/MedicalWebPage">
+  <section class="page-header">
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/peptides">Peptides</a> <span aria-hidden="true">/</span> <span>{{PEPTIDE_NAME}}</span>
+      </nav>
+      <h1 itemprop="name">{{PEPTIDE_NAME}}</h1>
+      {{ALT_NAMES}}
+      <div class="tag-group">{{CATEGORY_TAGS}}</div>
+    </div>
+  </section>
+
+  <div class="detail-layout">
+    <div class="container">
+      <div class="detail-grid">
+        <div class="detail-main">
+          <section class="detail-section" id="overview">
+            <h2>Overview</h2>
+            <p itemprop="description">{{DESCRIPTION}}</p>
+          </section>
+
+          <section class="detail-section" id="mechanism">
+            <h2>Mechanism of Action</h2>
+            <p>{{MECHANISM}}</p>
+          </section>
+
+          <section class="detail-section" id="benefits">
+            <h2>Potential Benefits</h2>
+            <ul class="benefits-list">
+              {{BENEFITS_LIST}}
+            </ul>
+          </section>
+
+          <section class="detail-section" id="sequence">
+            <h2>Amino Acid Sequence</h2>
+            <code class="sequence-display">{{AMINO_ACID_SEQ}}</code>
+          </section>
+
+          <section class="detail-section" id="side-effects">
+            <h2>Side Effects &amp; Safety</h2>
+            <ul class="side-effects-list">
+              {{SIDE_EFFECTS_LIST}}
+            </ul>
+          </section>
+
+          <section class="detail-section" id="dosage">
+            <h2>Research Dosage Notes</h2>
+            <p class="dosage-disclaimer">The following reflects doses used in published research studies. This is not medical advice.</p>
+            <p>{{DOSAGE_NOTES}}</p>
+          </section>
+
+          <section class="detail-section" id="synergistic">
+            <h2>Synergistic Compounds</h2>
+            <p>The following compounds have been studied alongside {{PEPTIDE_NAME}} for potential complementary or synergistic effects:</p>
+            <div class="syn-grid">
+              {{SYNERGISTIC_LINKS}}
+            </div>
+          </section>
+
+          <section class="detail-section" id="related">
+            <h2>Related Peptides</h2>
+            <div class="related-grid">
+              {{RELATED_LINKS}}
+            </div>
+          </section>
+
+          <section class="detail-section" id="references">
+            <h2>References &amp; Further Reading</h2>
+            <ul class="references-list">
+              {{REFERENCES}}
+            </ul>
+          </section>
+        </div>
+
+        <aside class="detail-sidebar">
+          <div class="sidebar-card sticky-sidebar">
+            <h3>Quick Facts</h3>
+            <table class="quick-facts-table">
+              {{QUICK_FACTS}}
+            </table>
+            
+            <nav class="toc" aria-label="On this page">
+              <h4>On This Page</h4>
+              <ul role="list">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#mechanism">Mechanism of Action</a></li>
+                <li><a href="#benefits">Potential Benefits</a></li>
+                <li><a href="#sequence">Amino Acid Sequence</a></li>
+                <li><a href="#side-effects">Side Effects</a></li>
+                <li><a href="#dosage">Dosage Notes</a></li>
+                <li><a href="#synergistic">Synergistic Compounds</a></li>
+                <li><a href="#related">Related Peptides</a></li>
+                <li><a href="#references">References</a></li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>More Peptides in This Category</h2>
+      <div class="more-grid">
+        {{MORE_PEPTIDES}}
+      </div>
+    </div>
+  </section>
+</article>

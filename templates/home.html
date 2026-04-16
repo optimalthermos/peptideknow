@@ -1,0 +1,73 @@
+<section class="hero">
+  <div class="hero-inner">
+    <h1>The Peptide Encyclopedia</h1>
+    <p class="hero-subtitle">A comprehensive reference database of <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong>. Explore mechanisms of action, synergistic compounds, clinical research status, and more.</p>
+    <form action="/search" method="GET" class="hero-search" role="search">
+      <label for="hero-search-input" class="sr-only">Search peptides by name, function, or mechanism</label>
+      <input type="search" id="hero-search-input" name="q" placeholder="Search by peptide name, function, or mechanism..." autocomplete="off">
+      <button type="submit">Search Database</button>
+    </form>
+    <div class="hero-quick-links">
+      <span>Popular:</span>
+      <a href="/peptides/bpc-157">BPC-157</a>
+      <a href="/peptides/semaglutide">Semaglutide</a>
+      <a href="/peptides/tb-500">TB-500</a>
+      <a href="/peptides/epithalon">Epithalon</a>
+      <a href="/peptides/semax">Semax</a>
+      <a href="/peptides/ghk-cu">GHK-Cu</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="categories-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="categories-heading">Browse by Category</h2>
+      <a href="/categories" class="view-all">View all categories</a>
+    </div>
+    <div class="category-grid">
+      {{CATEGORY_CARDS}}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="featured-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="featured-heading">Featured Peptides</h2>
+      <a href="/peptides" class="view-all">Browse all peptides</a>
+    </div>
+    <div class="peptide-grid">
+      {{FEATURED_PEPTIDES}}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="recent-heading">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <h2 id="recent-heading">Recently Added</h2>
+        <div class="recent-list">
+          {{RECENT_PEPTIDES}}
+        </div>
+      </div>
+      <div>
+        <h2>All Peptides A-Z</h2>
+        <div class="az-grid">
+          {{ALL_PEPTIDES_LIST}}
+        </div>
+        <a href="/peptides" class="btn-outline">View Full Database</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="about-section-heading">
+  <div class="container container-narrow">
+    <h2 id="about-section-heading">About PeptideOpedia</h2>
+    <p>PeptideOpedia is a free, independent reference database designed to organize and present research-backed information on bioactive peptides. Our database covers growth hormone secretagogues, healing peptides, nootropics, antimicrobial peptides, metabolic agents, and more. Each entry includes mechanism of action data, synergistic compound cross-references, amino acid sequences, and links to primary research literature.</p>
+    <p>This resource is maintained for researchers, clinicians, students, and anyone seeking reliable, organized peptide information. All content is for educational and informational purposes only.</p>
+    <a href="/about" class="text-link">Learn more about PeptideOpedia</a>
+  </div>
+</section>

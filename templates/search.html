@@ -1,0 +1,21 @@
+<section class="page-header">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Search</span>
+    </nav>
+    <h1>Search Peptides</h1>
+    <form action="/search" method="GET" class="search-form" role="search">
+      <label for="search-page-input" class="sr-only">Search peptides</label>
+      <input type="search" id="search-page-input" name="q" value="{{SEARCH_QUERY}}" placeholder="Search by name, category, mechanism, or keyword..." autofocus>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="search-results">
+      {{SEARCH_RESULTS}}
+    </div>
+  </div>
+</section>

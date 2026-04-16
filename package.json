@@ -1,0 +1,19 @@
+{
+  "name": "peptideopedia",
+  "version": "1.0.0",
+  "description": "PeptideOpedia - Comprehensive Peptide Encyclopedia & Reference Database",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["peptides", "encyclopedia", "reference", "database", "research"],
+  "author": "PeptideOpedia",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
