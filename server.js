@@ -28,8 +28,8 @@ peptides.forEach(p => {
 
 // Static files
 app.use('/static', express.static(path.join(__dirname, 'public'), {
-  maxAge: '7d',
-  immutable: true
+  maxAge: process.env.NODE_ENV === 'production' ? '7d' : '0',
+  immutable: process.env.NODE_ENV === 'production'
 }));
 
 // Template engine
@@ -94,12 +94,39 @@ function faqLD(faqs) {
 
 // Homepage
 app.get('/', (req, res) => {
+  // Category image mapping
+  const catImages = {
+    'healing-recovery': 'cat-healing.jpg',
+    'cognitive-nootropic': 'cat-cognitive.jpg',
+    'muscle-growth': 'cat-muscle.jpg',
+    'anti-aging-longevity': 'cat-longevity.jpg',
+    'weight-loss-metabolic': 'cat-metabolic.jpg',
+    'skin-hair': 'cat-skin.jpg',
+    'growth-hormone-secretagogues': 'cat-muscle.jpg',
+    'immune-support': 'cat-healing.jpg',
+    'sleep': 'cat-longevity.jpg',
+    'pain-inflammation': 'cat-healing.jpg',
+    'neuroprotective': 'cat-cognitive.jpg',
+    'sexual-health': 'cat-longevity.jpg',
+    'mitochondrial': 'cat-muscle.jpg',
+    'antimicrobial': 'cat-healing.jpg',
+    'reproductive': 'cat-longevity.jpg',
+    'cardiovascular': 'cat-muscle.jpg',
+    'gastrointestinal': 'cat-metabolic.jpg',
+    'bone-mineral': 'cat-healing.jpg',
+    'antiviral': 'cat-healing.jpg'
+  };
+
   const categoryCards = categories.map(cat => {
     const count = categoryPeptides[cat.id] ? categoryPeptides[cat.id].length : 0;
+    const img = catImages[cat.id] || 'cat-healing.jpg';
     return `<a href="/categories/${cat.id}" class="category-card">
-      <h3>${cat.name}</h3>
-      <p>${cat.description}</p>
-      <span class="count">${count} peptide${count !== 1 ? 's' : ''}</span>
+      <div class="category-card-img"><img src="/static/images/${img}" alt="${cat.name}" width="400" height="300" loading="lazy"></div>
+      <div class="category-card-body">
+        <h3>${cat.name}</h3>
+        <p>${cat.description}</p>
+        <span class="count">${count} peptide${count !== 1 ? 's' : ''}</span>
+      </div>
     </a>`;
   }).join('');
 

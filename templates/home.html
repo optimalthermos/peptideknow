@@ -1,12 +1,12 @@
-<section class="hero hero-split">
-  <div class="hero-split-inner">
+<section class="hero">
+  <div class="hero-inner">
     <div class="hero-content">
       <h1>The Peptide Encyclopedia</h1>
-      <p class="hero-subtitle">A comprehensive reference database of <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong>. Explore mechanisms of action, synergistic compounds, clinical research status, and more.</p>
+      <p class="hero-subtitle">Explore <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong> — mechanisms of action, synergistic compounds, clinical research status, and more.</p>
       <form action="/search" method="GET" class="hero-search" role="search">
         <label for="hero-search-input" class="sr-only">Search peptides by name, function, or mechanism</label>
-        <input type="search" id="hero-search-input" name="q" placeholder="Search by peptide name, function, or mechanism..." autocomplete="off">
-        <button type="submit">Search Database</button>
+        <input type="search" id="hero-search-input" name="q" placeholder="Search peptides by name, function, or mechanism..." autocomplete="off">
+        <button type="submit">Search</button>
       </form>
       <div class="hero-quick-links">
         <span>Popular:</span>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="/static/images/hero-lab.jpg" alt="Researcher examining peptide molecular structure in a modern biotech laboratory" width="960" height="540" loading="eager">
+      <img src="/static/images/hero-light.jpg" alt="Researcher examining peptide vials in a modern biotech laboratory" width="960" height="540" loading="eager">
     </div>
   </div>
 </section>
@@ -28,7 +28,7 @@
   <div class="container">
     <div class="section-header">
       <h2 id="categories-heading">Browse by Category</h2>
-      <a href="/categories" class="view-all">View all categories</a>
+      <a href="/categories" class="view-all">View all categories &rarr;</a>
     </div>
     <div class="category-grid">
       {{CATEGORY_CARDS}}
@@ -40,7 +40,7 @@
   <div class="container">
     <div class="section-header">
       <h2 id="featured-heading">Featured Peptides</h2>
-      <a href="/peptides" class="view-all">Browse all peptides</a>
+      <a href="/peptides" class="view-all">Browse all peptides &rarr;</a>
     </div>
     <div class="peptide-grid">
       {{FEATURED_PEPTIDES}}
@@ -48,7 +48,30 @@
   </div>
 </section>
 
-<section class="section" aria-labelledby="recent-heading">
+<section class="section" aria-labelledby="audience-heading">
+  <div class="container">
+    <h2 id="audience-heading" class="section-heading-center">Built for Researchers &amp; Biohackers</h2>
+    <p class="section-subheading">Whether you're exploring clinical research or optimizing your own health, PeptideOpedia has the data you need.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <img src="/static/images/scientist-female.jpg" alt="Scientist analyzing peptide molecular structures in a biochemistry lab" width="960" height="540" loading="lazy">
+        <div class="audience-card-body">
+          <h3>For Researchers</h3>
+          <p>Amino acid sequences, mechanism of action pathways, clinical trial status, and links to primary literature on PubMed and PubChem.</p>
+        </div>
+      </div>
+      <div class="audience-card">
+        <img src="/static/images/biohacker-athlete.jpg" alt="Biohacker reviewing peptide research data" width="960" height="540" loading="lazy">
+        <div class="audience-card-body">
+          <h3>For Biohackers</h3>
+          <p>Synergistic compound stacking references, researched benefits with caveats, dosage ranges from literature, and side effect profiles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="recent-heading">
   <div class="container">
     <div class="two-col">
       <div>
@@ -58,33 +81,11 @@
         </div>
       </div>
       <div>
-        <h2>All Peptides A-Z</h2>
+        <h2>All Peptides A&ndash;Z</h2>
         <div class="az-grid">
           {{ALL_PEPTIDES_LIST}}
         </div>
-        <a href="/peptides" class="btn-outline">View Full Database</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt" aria-labelledby="audience-heading">
-  <div class="container">
-    <h2 id="audience-heading" class="section-heading-center">Built for Researchers and Biohackers</h2>
-    <div class="audience-grid">
-      <div class="audience-card">
-        <img src="/static/images/scientist-female.jpg" alt="Scientist analyzing peptide molecular structures in a biochemistry lab" width="960" height="540" loading="lazy">
-        <div class="audience-card-body">
-          <h3>For Researchers</h3>
-          <p>Amino acid sequences, mechanism of action pathways, clinical trial status, and links to primary literature on PubMed and PubChem. Cross-referenced for efficient navigation.</p>
-        </div>
-      </div>
-      <div class="audience-card">
-        <img src="/static/images/biohacker-athlete.jpg" alt="Biohacker reviewing peptide research data on monitor in home lab" width="960" height="540" loading="lazy">
-        <div class="audience-card-body">
-          <h3>For Biohackers</h3>
-          <p>Clear synergistic compound stacking references, researched benefits with caveats, dosage ranges from literature, and side effect profiles. All in plain language.</p>
-        </div>
+        <a href="/peptides" class="btn-primary">View Full Database</a>
       </div>
     </div>
   </div>
