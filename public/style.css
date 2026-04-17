@@ -1488,26 +1488,38 @@ a:hover { color: var(--accent-hover); }
 .quick-tool-card:hover {
   border-color: var(--accent);
   box-shadow: var(--card-shadow-hover);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   color: var(--text);
 }
-.qt-calculator { border-left: 3px solid var(--accent); }
+.qt-calculator {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg) 100%);
+  border-color: var(--accent);
+  border-width: 2px;
+}
+.qt-calculator .qt-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--accent);
+  color: #fff;
+}
+.qt-calculator h3 { font-size: 1.15rem; }
+.qt-calculator p { font-size: 0.875rem; }
 .qt-guide { border-left: 3px solid var(--border); }
 .qt-guide:hover { border-left-color: var(--accent); }
 .qt-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--accent-light);
   border-radius: var(--radius-sm);
   color: var(--accent);
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
 }
 .quick-tool-card h3 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.375rem;
 }
@@ -1515,15 +1527,23 @@ a:hover { color: var(--accent-hover); }
   font-size: 0.8125rem;
   color: var(--text-secondary);
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.6;
   flex: 1;
 }
 .qt-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--accent);
-  margin-top: 0.875rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent-light);
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
 }
+.quick-tool-card:hover .qt-cta { background: var(--accent-bg); }
 @media (max-width: 900px) {
   .quick-tools-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -1683,3 +1703,350 @@ a:hover { color: var(--accent-hover); }
   transition: color 0.15s, transform 0.15s;
 }
 .guide-full-card:hover .gf-arrow { color: var(--accent); transform: translateX(3px); }
+
+/* ========== PEPTIDE DETAIL — LINK GRIDS ========== */
+.syn-grid, .related-grid, .more-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.syn-link, .related-link, .more-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.875rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.syn-link:hover, .related-link:hover, .more-link:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+.syn-link.external {
+  color: var(--text-secondary);
+  cursor: default;
+}
+.syn-link.external:hover {
+  transform: none;
+  background: var(--bg-alt);
+  border-color: var(--border);
+}
+.none-listed {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* References list */
+.references-list {
+  padding-left: 0;
+  list-style: none;
+}
+.references-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.8125rem;
+}
+.references-list li:last-child { border-bottom: none; }
+.references-list a {
+  color: var(--accent);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+/* Benefits & side effects lists */
+.benefits-list, .side-effects-list {
+  padding-left: 1.25rem;
+}
+.benefits-list li, .side-effects-list li {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Crosslink grid — ensure visible cards on all screens */
+.crosslink-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.625rem;
+  margin: 1rem 0;
+}
+@media (max-width: 640px) {
+  .crosslink-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.crosslink-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.crosslink-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--card-shadow);
+  color: var(--text);
+}
+.crosslink-card strong {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  display: block;
+}
+.crosslink-card span {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  display: block;
+}
+
+/* Dosage disclaimer */
+.dosage-disclaimer {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  background: #fef3cd;
+  border: 1px solid #ffc107;
+  border-radius: var(--radius-sm);
+  padding: 0.625rem 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* CTA box (reconstitution section) */
+.cta-box {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+.cta-box h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.cta-links {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Dosage routes (ROA cards on detail page) */
+.dosage-routes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.route-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.875rem;
+}
+.route-card h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+  text-transform: capitalize;
+}
+.route-card p {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+.route-badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 99px;
+}
+.route-badge-high { background: #d1fae5; color: #065f46; }
+.route-badge-moderate { background: #fef3cd; color: #92400e; }
+.route-badge-low { background: #fee2e2; color: #991b1b; }
+
+/* Popularity badge */
+.popularity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.625rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Data table (dosage, reconstitution) */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dosage-table-wrap { overflow-x: auto; }
+.data-table td, .data-table th {
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.875rem;
+  text-align: left;
+}
+.data-table td:first-child, .data-table th:first-child {
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  width: 140px;
+}
+.data-table tr:last-child td { border-bottom: none; }
+
+/* Sequence display */
+.sequence-display {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8125rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.875rem;
+  word-break: break-all;
+  line-height: 1.7;
+}
+
+/* Detail section separators */
+.detail-section {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.detail-section:last-child { border-bottom: none; }
+.detail-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-light);
+}
+
+/* Sticky sidebar TOC */
+.sticky-sidebar { position: sticky; top: 80px; }
+.toc { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-light); }
+.toc h4 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+.toc ul { padding: 0; list-style: none; }
+.toc li { padding: 0.25rem 0; }
+.toc a {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.toc a:hover { color: var(--accent); }
+
+/* Detail grid layout */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .detail-grid { grid-template-columns: 1fr; }
+  .detail-sidebar { order: -1; }
+  .sticky-sidebar { position: static; }
+}
+
+/* Quick facts table */
+.quick-facts-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.quick-facts-table th, .quick-facts-table td {
+  padding: 0.5rem 0;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.quick-facts-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  width: 40%;
+}
+
+/* Sidebar card */
+.sidebar-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+.sidebar-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* Page header (detail pages) */
+.page-header {
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+}
+.page-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+.alt-names {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: center;
+}
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.625rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.tag:hover { background: var(--accent-bg); color: var(--accent); }
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+.breadcrumb a { color: var(--accent); font-weight: 500; }
+.breadcrumb span { margin: 0 0.375rem; }

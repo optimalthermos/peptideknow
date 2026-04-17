@@ -581,7 +581,16 @@ app.get('/peptides/:slug', (req, res) => {
     RELATED_LINKS: relatedLinks || '<span class="none-listed">None currently listed</span>',
     QUICK_FACTS: quickFacts.join(''),
     MORE_PEPTIDES: morePeptides,
-    REFERENCES: (p.references || []).map((ref, i) => `<li>${ref}</li>`).join(''),
+    REFERENCES: (p.references || []).map((ref, i) => {
+      if (typeof ref === 'object' && ref.url) {
+        return `<li><a href="${ref.url}" target="_blank" rel="noopener noreferrer">${ref.title || ref.url}</a></li>`;
+      }
+      if (typeof ref === 'string' && ref.startsWith('http')) {
+        const domain = ref.replace(/https?:\/\//, '').split('/')[0];
+        return `<li><a href="${ref}" target="_blank" rel="noopener noreferrer">${domain}</a></li>`;
+      }
+      return `<li>${ref}</li>`;
+    }).join(''),
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: 'active',
     NAV_ACTIVE_CATEGORIES: '',
