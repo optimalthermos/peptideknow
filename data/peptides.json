@@ -1,10 +1,10 @@
 {
   "metadata": {
     "title": "PeptideKnow Master Peptide Database",
-    "version": "1.0",
+    "version": "2.0",
     "lastUpdated": "2026",
-    "totalPeptides": 102,
-    "description": "Comprehensive reference database of therapeutic, research, and bioactive peptides for PeptideKnow.com"
+    "totalPeptides": 107,
+    "description": "Comprehensive reference database of therapeutic, research, and bioactive peptides for PeptideKnow.com. Version 2.0 includes enhanced dosage, stacking, reconstitution, synthesis, and route of administration data for the top 30 most searched peptides, plus new compound entries in SARMs, related compounds, and cognitive peptide categories."
   },
   "categories": [
     {
@@ -120,6 +120,18 @@
       "name": "Antiviral",
       "description": "Peptides that inhibit viral entry, replication, or immune evasion.",
       "color": "#2D6A4F"
+    },
+    {
+      "id": "related-compounds",
+      "name": "Related Compounds",
+      "description": "Non-peptide or next-generation compounds frequently discussed alongside peptides including GLP-1 agonists, dual/triple agonists, and metabolic agents.",
+      "color": "#8B5CF6"
+    },
+    {
+      "id": "sarms-related",
+      "name": "SARMs & Androgen Modulators",
+      "description": "Selective Androgen Receptor Modulators (SARMs) and related compounds. Included for educational comparison with peptide therapies.",
+      "color": "#EF4444"
     }
   ],
   "peptides": [
@@ -186,7 +198,80 @@
           "title": "BPC-157 Clinical Profile",
           "url": "https://deltapeptides.com/bpc-157.html"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "200-500 mcg/day",
+        "beginner": "200-250 mcg/day",
+        "intermediate": "500 mcg/day",
+        "advanced": "750-1000 mcg/day",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "Can be dosed once or twice daily. Oral administration uses higher doses (1-2 mg/day). Inject near injured tissue for localized effects when possible."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Most common research route; inject near site of injury for localized effect"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Comparable to subcutaneous; useful for muscle injuries"
+        },
+        {
+          "route": "Oral",
+          "bioavailability": "Moderate",
+          "notes": "Unique among peptides for oral stability; requires 2-5x higher dose for systemic effect; effective for GI tract issues"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Recovery Stack",
+          "compounds": [
+            "BPC-157",
+            "TB-500"
+          ],
+          "purpose": "Enhanced tissue repair and systemic recovery",
+          "notes": "BPC-157 provides local cytoprotection and angiogenesis while TB-500 drives systemic anti-inflammatory and actin remodeling. The most popular peptide healing combination."
+        },
+        {
+          "name": "Gut Healing Stack",
+          "compounds": [
+            "BPC-157",
+            "KPV",
+            "LL-37"
+          ],
+          "purpose": "GI tract repair, inflammation control, and antimicrobial support",
+          "notes": "Orally administered BPC-157 combined with KPV and LL-37 targets intestinal permeability, IBD-like symptoms, and mucosal integrity."
+        },
+        {
+          "name": "Tendon & Ligament Stack",
+          "compounds": [
+            "BPC-157",
+            "TB-500",
+            "GHK-Cu"
+          ],
+          "purpose": "Accelerated tendon, ligament, and connective tissue repair",
+          "notes": "GHK-Cu adds collagen synthesis and TGF-β regulation; all three work on different but complementary repair pathways."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28-30 days refrigerated; do not freeze reconstituted solution"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS) using Fmoc chemistry",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C, protect from light and moisture; stable for 24+ months"
+      },
+      "popularity_score": 10
     },
     {
       "name": "TB-500",
@@ -246,7 +331,75 @@
           "title": "Thymosin Beta-4 Tissue Repair - Core Peptides",
           "url": "https://www.corepeptides.com/thymosin-beta-4-tb-500-and-tissue-repair/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "2-5 mg/week",
+        "beginner": "2 mg/week",
+        "intermediate": "2.5-4 mg/week",
+        "advanced": "5-7 mg/week",
+        "cycle_length": "4-8 weeks loading, then maintenance",
+        "cycle_off": "4-8 weeks",
+        "notes": "Often used in a loading phase (2x/week) for 4 weeks followed by a maintenance phase (once/week). Doses are in mg, not mcg, due to the larger peptide size."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Standard route; well tolerated; inject into abdominal fat or near injury site"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Alternative to subcutaneous; may achieve faster onset for deep muscle injuries"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Ultimate Recovery Stack",
+          "compounds": [
+            "TB-500",
+            "BPC-157"
+          ],
+          "purpose": "Synergistic tissue repair across all tissue types",
+          "notes": "The most popular peptide combination; TB-500 handles systemic inflammation and actin remodeling while BPC-157 provides targeted cytoprotection and vascular repair."
+        },
+        {
+          "name": "Cardiac Protection Stack",
+          "compounds": [
+            "TB-500",
+            "SS-31",
+            "MOTS-c"
+          ],
+          "purpose": "Cardioprotection and mitochondrial function support",
+          "notes": "TB-500's proven cardioprotective effects in post-MI models combined with mitochondrial-targeting peptides."
+        },
+        {
+          "name": "Athletic Performance Stack",
+          "compounds": [
+            "TB-500",
+            "IGF-1 LR3",
+            "CJC-1295"
+          ],
+          "purpose": "Injury prevention, muscle growth, and recovery optimization",
+          "notes": "TB-500 supports connective tissue health while GH axis peptides drive anabolism and recovery."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28-30 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS) for the active fragment; or recombinant expression for full-length Thymosin Beta-4",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; stable 24+ months; protect from repeated freeze-thaw cycles"
+      },
+      "popularity_score": 9
     },
     {
       "name": "CJC-1295",
@@ -304,7 +457,75 @@
           "title": "Ipamorelin and CJC-1295 Blend Pharmacological Insights",
           "url": "https://biotechpeptides.com/2025/09/02/pharmacological-and-metabolic-insights-into-the-ipamorelin-cjc-1295-blend/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "100-300 mcg/dose, 1-3x/week",
+        "beginner": "100 mcg 2x/week",
+        "intermediate": "200 mcg 2-3x/week",
+        "advanced": "300 mcg 3x/week",
+        "cycle_length": "8-12 weeks",
+        "cycle_off": "4-8 weeks",
+        "notes": "CJC-1295 with DAC is typically dosed 1-2x/week due to extended half-life. Without DAC (Modified GRF 1-29), dose daily or before sleep. Combine with a GHRP for synergistic GH release (GHRH+GHRP is the gold standard stack)."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Standard route; consistent absorption; inject into abdominal subcutaneous fat"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Faster peak but similar total exposure; less commonly used for CJC-1295"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "GH Optimization Stack",
+          "compounds": [
+            "CJC-1295",
+            "Ipamorelin"
+          ],
+          "purpose": "Maximized GH pulse amplitude with selective, clean release profile",
+          "notes": "The most popular GHRH+GHRP combination; CJC-1295 provides GH-releasing pulse amplitude while Ipamorelin selectively triggers release without cortisol/prolactin elevation."
+        },
+        {
+          "name": "Triple GH Stack",
+          "compounds": [
+            "CJC-1295",
+            "Ipamorelin",
+            "GHRP-2"
+          ],
+          "purpose": "Aggressive GH stimulation for advanced users",
+          "notes": "Adding GHRP-2 further amplifies GH pulse; may increase appetite and slight cortisol elevation. For experienced users only."
+        },
+        {
+          "name": "Body Recomposition Stack",
+          "compounds": [
+            "CJC-1295",
+            "Ipamorelin",
+            "AOD-9604"
+          ],
+          "purpose": "GH stimulation combined with targeted fat metabolism",
+          "notes": "AOD-9604 provides direct lipolytic activity while the GHRH/GHRP combination drives anabolic and recovery benefits."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg",
+          "5mg"
+        ],
+        "recommended_bac_water": "1-2ml per 2mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated; stable lyophilized for 24+ months at -20°C"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS) with post-synthesis maleimidopropionic acid (Mpa) DAC conjugation for albumin binding",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light; minimize freeze-thaw cycles once reconstituted"
+      },
+      "popularity_score": 9
     },
     {
       "name": "Ipamorelin",
@@ -358,7 +579,76 @@
           "title": "Ipamorelin and CJC-1295 Blend",
           "url": "https://biotechpeptides.com/2025/09/02/pharmacological-and-metabolic-insights-into-the-ipamorelin-cjc-1295-blend/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "200-300 mcg/dose, 1-3x/day",
+        "beginner": "100-200 mcg once daily at bedtime",
+        "intermediate": "200-300 mcg twice daily (AM + bedtime)",
+        "advanced": "300 mcg 3x/day (morning, pre-workout, bedtime)",
+        "cycle_length": "8-12 weeks",
+        "cycle_off": "4-8 weeks",
+        "notes": "Dosed 30-60 minutes before sleep to amplify natural nocturnal GH pulse. Fasted state enhances response. Avoid dosing after high-fat meals."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary route; ~2-hour half-life; consistent GH pulse induction"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Faster onset; comparable total GH response; less commonly used"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "GH Optimization Stack",
+          "compounds": [
+            "Ipamorelin",
+            "CJC-1295"
+          ],
+          "purpose": "Synergistic pulsatile GH release with extended duration",
+          "notes": "Gold-standard peptide stack; Ipamorelin's selectivity minimizes side effects while CJC-1295 provides prolonged GH elevation."
+        },
+        {
+          "name": "Sleep and Recovery Stack",
+          "compounds": [
+            "Ipamorelin",
+            "DSIP",
+            "Sermorelin"
+          ],
+          "purpose": "Optimized sleep-phase GH release and sleep quality improvement",
+          "notes": "Bedtime dosing of all three capitalizes on slow-wave sleep GH pulses; DSIP improves sleep architecture."
+        },
+        {
+          "name": "Anti-Aging Stack",
+          "compounds": [
+            "Ipamorelin",
+            "CJC-1295",
+            "Epithalon",
+            "GHK-Cu"
+          ],
+          "purpose": "Comprehensive anti-aging through GH axis, telomere support, and cellular repair",
+          "notes": "Each compound targets a different longevity pathway; suitable for long-term wellness protocols under medical supervision."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg",
+          "5mg"
+        ],
+        "recommended_bac_water": "1-2ml per 2mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28-30 days refrigerated; lyophilized stable 24+ months at -20°C"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS) using Fmoc chemistry; incorporates non-natural amino acids (Aib, D-2-Nal)",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from moisture and light"
+      },
+      "popularity_score": 9
     },
     {
       "name": "GHRP-6",
@@ -413,7 +703,65 @@
           "title": "CJC-1295 & Ipamorelin & GHRP-2 Blend Research",
           "url": "https://biotechpeptides.com/2024/12/03/cjc-1295-ipamorelin-ghrp-2-blend-research-into-growth-hormone-secretion/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "100-300 mcg/dose, 2-3x/day",
+        "beginner": "100 mcg once daily at bedtime",
+        "intermediate": "200 mcg 2x/day",
+        "advanced": "300 mcg 3x/day",
+        "cycle_length": "6-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "GHRP-6 causes significant appetite stimulation — often dosed 15-30 min before meals for bulking protocols. Less recommended for cutting phases. Fasted state improves GH response but conflicts with appetite-driven eating."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary route; potent appetite stimulation within 20-30 minutes of injection is expected"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Occasionally used; similar GH response; faster onset"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Bulking GH Stack",
+          "compounds": [
+            "GHRP-6",
+            "CJC-1295"
+          ],
+          "purpose": "GH-driven muscle growth with strong appetite stimulation for caloric surplus",
+          "notes": "GHRP-6's appetite-stimulating effect supports caloric surplus in bulking protocols; combined with CJC-1295 for sustained GH elevation."
+        },
+        {
+          "name": "Healing + GH Stack",
+          "compounds": [
+            "GHRP-6",
+            "BPC-157",
+            "TB-500"
+          ],
+          "purpose": "Injury recovery with enhanced GH-mediated anabolism",
+          "notes": "GHRP-6 adds GH-axis support to the classic BPC-157/TB-500 healing stack; best for injuries during bulking phases."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); derived from met-enkephalin structural modification with D-Trp and D-Phe substitutions",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light and moisture"
+      },
+      "popularity_score": 7
     },
     {
       "name": "GHRP-2",
@@ -462,7 +810,64 @@
           "title": "CJC-1295, Ipamorelin & GHRP-2 Blend Research",
           "url": "https://biotechpeptides.com/2024/12/03/cjc-1295-ipamorelin-ghrp-2-blend-research-into-growth-hormone-secretion/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "100-300 mcg/dose, 2-3x/day",
+        "beginner": "100 mcg once daily at bedtime",
+        "intermediate": "200 mcg twice daily",
+        "advanced": "300 mcg 2-3x/day (morning, pre-workout, bedtime)",
+        "cycle_length": "6-8 weeks",
+        "cycle_off": "4 weeks (to prevent tachyphylaxis)",
+        "notes": "GHRP-2 is more potent than GHRP-6 but also stimulates cortisol and ACTH. Fasted state required for maximal GH response. Doses above 300 mcg do not increase GH output proportionally."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary route; inject fasted for maximal GH response; avoid dosing within 2 hours of carbohydrate or fat-containing meals"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Faster peak concentration; may enhance immediate post-workout GH response"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Potent GH Stack",
+          "compounds": [
+            "GHRP-2",
+            "CJC-1295"
+          ],
+          "purpose": "Maximum GH pulse amplitude for muscle growth",
+          "notes": "GHRP-2 combined with CJC-1295 can produce 54x normal pulsatile GH secretion in some studies; powerful but may moderately increase cortisol."
+        },
+        {
+          "name": "Diagnostic GH Protocol",
+          "compounds": [
+            "GHRP-2",
+            "GHRH"
+          ],
+          "purpose": "Clinical GH secretory capacity assessment",
+          "notes": "GHRP-2 (Pralmorelin) is approved in Japan for GH deficiency diagnosis; combined with exogenous GHRH for definitive pituitary GH reserve assessment."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); incorporates D-amino acids (D-Ala, D-2-Nal, D-Phe) for protease resistance",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from UV light"
+      },
+      "popularity_score": 7
     },
     {
       "name": "Sermorelin",
@@ -517,7 +922,66 @@
           "title": "Sermorelin vs Ipamorelin - Hone Health",
           "url": "https://honehealth.com/edge/sermorelin-vs-ipamorelin/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "200-500 mcg/day",
+        "beginner": "200-250 mcg at bedtime",
+        "intermediate": "500 mcg at bedtime",
+        "advanced": "500 mcg twice daily (bedtime + AM fasted)",
+        "cycle_length": "3-6 months continuous",
+        "cycle_off": "1-2 months; may rotate with CJC-1295",
+        "notes": "Best dosed at bedtime on an empty stomach to amplify the physiological nocturnal GH pulse. Short half-life (~11 min) preserves natural pulsatility. Often prescribed in physician-supervised anti-aging protocols."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Standard clinical and research route; bedtime dosing recommended"
+        },
+        {
+          "route": "Sublingual",
+          "bioavailability": "Moderate",
+          "notes": "Compounded sublingual preparations available; lower bioavailability than injection but needle-free alternative for some patients"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Classic GHRH+GHRP Stack",
+          "compounds": [
+            "Sermorelin",
+            "Ipamorelin"
+          ],
+          "purpose": "Physiological GH pulse optimization",
+          "notes": "Sermorelin provides the GHRH signal while Ipamorelin amplifies the pituitary response; similar to CJC-1295/Ipamorelin but with shorter, more physiological action."
+        },
+        {
+          "name": "Anti-Aging Foundation Stack",
+          "compounds": [
+            "Sermorelin",
+            "Epithalon",
+            "GHK-Cu"
+          ],
+          "purpose": "GH axis restoration with telomere and tissue repair support",
+          "notes": "Well-tolerated, physician-prescribed anti-aging stack suitable for long-term use."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "3mg",
+          "6mg",
+          "9mg"
+        ],
+        "recommended_bac_water": "1ml per 3mg vial (yields 3000 mcg/ml)",
+        "storage": "Refrigerate at 2-8°C after reconstitution; discard unused portion after 30 days",
+        "shelf_life": "30 days refrigerated; lyophilized stable at -20°C for 24+ months"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); 29-amino acid sequence corresponding to GHRH 1-29",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light; avoid repeated temperature cycling"
+      },
+      "popularity_score": 8
     },
     {
       "name": "Tesamorelin",
@@ -571,7 +1035,59 @@
           "title": "Tesamorelin vs Sermorelin - Hone Health",
           "url": "https://honehealth.com/edge/sermorelin-vs-ipamorelin/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "1-2 mg/day",
+        "beginner": "1 mg/day at bedtime",
+        "intermediate": "2 mg/day at bedtime (FDA-approved dose)",
+        "advanced": "2 mg/day combined with Ipamorelin",
+        "cycle_length": "Ongoing for approved indication; 12-26 weeks for off-label use",
+        "cycle_off": "Off-label users typically cycle 12-24 weeks on, 8-12 weeks off",
+        "notes": "FDA-approved at 2 mg/day subcutaneously at bedtime for HIV-associated lipodystrophy. Effects on visceral adipose tissue apparent at 26 weeks. IGF-1 elevation occurs within 2 weeks. Rotate injection sites."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Only approved route; once-daily injection at bedtime; abdominal subcutaneous tissue preferred; rotate injection sites"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "FDA-Approved Metabolic Stack",
+          "compounds": [
+            "Tesamorelin",
+            "Ipamorelin"
+          ],
+          "purpose": "Enhanced GH axis stimulation combining GHRH analog with selective GHRP",
+          "notes": "Off-label combination used in anti-aging clinics; GHRH+GHRP synergy amplifies GH pulse beyond either alone."
+        },
+        {
+          "name": "Cognitive and Metabolic Stack",
+          "compounds": [
+            "Tesamorelin",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Metabolic improvement with cognitive support",
+          "notes": "Tesamorelin's emerging evidence for mild cognitive impairment combined with NAD+ for mitochondrial and neurovascular health."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "1mg (Egrifta SV)",
+          "2mg (Egrifta)"
+        ],
+        "recommended_bac_water": "Supplied with diluent (sterile water for injection); reconstitute per package insert",
+        "storage": "Refrigerate reconstituted solution at 2-8°C; use within 24 hours of reconstitution",
+        "shelf_life": "24 hours post-reconstitution; lyophilized vials: 24 months at 2-8°C"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS) with trans-3-hexenoic acid N-terminal conjugation for DPP-IV protease resistance",
+        "form": "Lyophilized powder for reconstitution",
+        "purity_standard": "Pharmaceutical grade ≥99%",
+        "storage_conditions": "Store lyophilized vials at 2-8°C; do not freeze; protect from light"
+      },
+      "popularity_score": 7
     },
     {
       "name": "Hexarelin",
@@ -682,7 +1198,69 @@
           "title": "PT-141 FDA Approval 2019 - Medical Specialists",
           "url": "https://www.medicalspecialistsmn.com/post/pt-141-sexual-wellness"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "0.5-2 mg/dose as needed",
+        "beginner": "0.5-1 mg (30-60 min before sexual activity)",
+        "intermediate": "1-1.75 mg as needed",
+        "advanced": "2 mg as needed (FDA-approved max dose)",
+        "cycle_length": "As needed; not intended for continuous daily use",
+        "cycle_off": "No formal cycling required; use as needed",
+        "notes": "FDA-approved as Vyleesi at 1.75 mg subcutaneous. Duration of action 6-12 hours; onset 45-90 minutes. Avoid use more than once per 24 hours. Nausea is dose-dependent — start low and titrate. Taking with anti-nausea medication can help."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "FDA-approved route; inject 30-90 minutes before sexual activity; abdomen preferred"
+        },
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Nasal spray formulation (research use); variable bioavailability; faster onset but shorter duration than injection"
+        },
+        {
+          "route": "Sublingual",
+          "bioavailability": "Low",
+          "notes": "Experimental; lowest bioavailability; not commonly used"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Male Sexual Enhancement Stack",
+          "compounds": [
+            "PT-141",
+            "Kisspeptin",
+            "Oxytocin"
+          ],
+          "purpose": "Enhanced sexual desire, arousal, and emotional bonding",
+          "notes": "PT-141 drives central melanocortin arousal; Kisspeptin amplifies LH/testosterone release; Oxytocin enhances intimacy and orgasm intensity."
+        },
+        {
+          "name": "Female Libido Stack",
+          "compounds": [
+            "PT-141",
+            "Oxytocin"
+          ],
+          "purpose": "Hypoactive sexual desire disorder (HSDD) management",
+          "notes": "PT-141 is FDA-approved for HSDD in premenopausal women; Oxytocin nasal spray complements arousal with bonding effects."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 10mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution; Vyleesi auto-injector stored at room temperature",
+        "shelf_life": "28 days refrigerated after reconstitution"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); cyclic heptapeptide analog of α-MSH with lactam bridge between Asp and Lys residues",
+        "form": "Lyophilized powder or pre-filled auto-injector (Vyleesi)",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; Vyleesi stored at room temperature 20-25°C"
+      },
+      "popularity_score": 8
     },
     {
       "name": "Melanotan II",
@@ -736,7 +1314,63 @@
           "title": "Melanotan II Systemic Toxicity Case Report - PubMed",
           "url": "https://pubmed.ncbi.nlm.nih.gov/23121206/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "0.25-1 mg/dose",
+        "beginner": "0.25 mg initial dose; then 0.5 mg every other day",
+        "intermediate": "0.5-0.75 mg every 1-3 days for maintenance",
+        "advanced": "1 mg every 1-3 days",
+        "cycle_length": "4-6 weeks loading, then maintenance as desired",
+        "cycle_off": "Variable; tanning effects persist for weeks after cessation due to melanin accumulation",
+        "notes": "Start with 0.25 mg test dose to gauge nausea response. Nausea is dose-dependent and subsides after initial doses. Takes 2-4 weeks for tanning effects. Requires UV exposure for maximal melanin stimulation. Aphrodisiac effects occur at lower doses and earlier than tanning."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary route; half-life ~30 minutes; consistent dosing maintains melanocyte stimulation"
+        },
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Intranasal spray available; lower bioavailability; useful at lower doses for sexual arousal effects"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Tanning and Sexual Health Stack",
+          "compounds": [
+            "Melanotan II",
+            "PT-141"
+          ],
+          "purpose": "Tanning optimization and sexual arousal enhancement",
+          "notes": "Both are melanocortin receptor agonists; can be combined but may amplify side effects (nausea, facial flushing); start at lower doses of each when combining."
+        },
+        {
+          "name": "Appetite Control Stack",
+          "compounds": [
+            "Melanotan II",
+            "AOD-9604"
+          ],
+          "purpose": "Combined appetite suppression and lipolysis for body composition",
+          "notes": "Melanotan II reduces appetite via central MC4R; AOD-9604 activates peripheral fat cell lipolysis; complementary body composition effects."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 10mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution; protect from light (photosensitive)",
+        "shelf_life": "28 days refrigerated; protect from light exposure as peptide is light-sensitive"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); cyclic lactam analog of α-MSH; cyclization via Asp-Lys lactam bridge for protease resistance",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light; light sensitivity is a primary storage concern"
+      },
+      "popularity_score": 7
     },
     {
       "name": "AOD-9604",
@@ -791,7 +1425,65 @@
           "title": "AOD-9604 Body Fat Metabolism - Tide Labs",
           "url": "https://tidelabs.co.uk/blogs/articles/aod-9604-gh-frag-176-191-research-on-body-fat-metabolism"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "300-500 mcg/day",
+        "beginner": "300 mcg/day",
+        "intermediate": "500 mcg/day",
+        "advanced": "500-1000 mcg/day split into two doses",
+        "cycle_length": "4-12 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "Best dosed in a fasted state or 2-3 hours post-meal to avoid insulin interference with lipolytic signaling. Morning or pre-cardio dosing is common. Does not significantly impact GH or IGF-1 levels at standard doses."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary route; consistent fat-targeting lipolytic effects; inject into abdominal subcutaneous fat"
+        },
+        {
+          "route": "Oral",
+          "bioavailability": "Low",
+          "notes": "Oral trials conducted in human safety studies; lower bioavailability but studied in Phase IIb trials for obesity treatment"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Fat Loss Stack",
+          "compounds": [
+            "AOD-9604",
+            "CJC-1295",
+            "Ipamorelin"
+          ],
+          "purpose": "Targeted lipolysis combined with GH-driven fat metabolism and anabolism",
+          "notes": "AOD-9604 provides direct lipolysis activation while GH axis peptides drive broader metabolic improvements and muscle preservation."
+        },
+        {
+          "name": "Body Recomposition Stack",
+          "compounds": [
+            "AOD-9604",
+            "Semaglutide"
+          ],
+          "purpose": "Dual-pathway fat loss through GH fragment lipolysis and GLP-1 appetite suppression",
+          "notes": "Complementary mechanisms; AOD-9604 targets lipid metabolism; Semaglutide reduces caloric intake via central satiety."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg",
+          "5mg"
+        ],
+        "recommended_bac_water": "1-2ml per 2mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); 15-amino acid C-terminal fragment of human GH (hGH 176-191) with Tyr replacement at position 1",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light and moisture"
+      },
+      "popularity_score": 7
     },
     {
       "name": "Fragment 176-191",
@@ -893,7 +1585,70 @@
           "title": "Epithalon Longevity - Pulse & Remedy",
           "url": "https://pulseandremedy.com/anti-aging/epithalon-the-peptide-linked-to-longevity-and-cellular-renewal/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "5-10 mg/day intensive; 2-3 mg/day maintenance",
+        "beginner": "2 mg/day for 10 days",
+        "intermediate": "5 mg/day for 10-20 days",
+        "advanced": "5-10 mg/day for 20 days, 1-2x/year",
+        "cycle_length": "10-20 day courses, 1-2 times per year",
+        "cycle_off": "6 months between intensive courses",
+        "notes": "Khavinson's original research used 10-day courses twice yearly. Many longevity protocols use a 10-day intensive course every 6 months. Effects may persist for several months after a course due to telomerase activation downstream effects."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary research route; most consistent and well-characterized bioavailability"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Alternative to subcutaneous; comparable effects"
+        },
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Nasal spray form available; lower systemic bioavailability but convenient for non-injection users"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Longevity Protocol Stack",
+          "compounds": [
+            "Epithalon",
+            "GHK-Cu",
+            "Sermorelin",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Comprehensive anti-aging combining telomerase activation, tissue repair, GH optimization, and cellular energy",
+          "notes": "Epithalon courses can be combined with ongoing GHK-Cu and NAD+ supplementation; Sermorelin provides GH axis support."
+        },
+        {
+          "name": "Immune + Anti-Aging Stack",
+          "compounds": [
+            "Epithalon",
+            "Thymosin Alpha-1"
+          ],
+          "purpose": "Thymic regeneration and immune optimization with telomere support",
+          "notes": "Both originate from Khavinson's research; Thymosin Alpha-1 restores T-cell immunity while Epithalon targets neuroendocrine-immune aging."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 10mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated; lyophilized stable at -20°C for 24+ months"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); tetrapeptide Ala-Glu-Asp-Gly derived from bovine pineal gland extract",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light"
+      },
+      "popularity_score": 8
     },
     {
       "name": "Thymosin Alpha-1",
@@ -952,7 +1707,74 @@
           "title": "Thymalfasin in Sepsis Trial - BMJ",
           "url": "https://www.bmj.com/content/388/bmj-2024-082583"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "1.6-3.2 mg twice weekly",
+        "beginner": "0.8-1.6 mg twice weekly",
+        "intermediate": "1.6 mg twice weekly (standard clinical dose)",
+        "advanced": "3.2-6.4 mg twice weekly (intensive immune protocols)",
+        "cycle_length": "4-6 weeks intensive; longer for chronic conditions",
+        "cycle_off": "2-4 weeks; maintenance dosing 1x/week may be used long-term",
+        "notes": "Zadaxin (pharmaceutical TA1) is dosed at 1.6 mg subcutaneously twice weekly. For immune enhancement in healthy individuals, shorter 4-6 week cycles are typical. Approved in 35+ countries for hepatitis B/C and as cancer adjuvant."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Approved and standard route; slow absorption provides sustained T-cell stimulation"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Used in some protocols; comparable efficacy to subcutaneous"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Immune Optimization Stack",
+          "compounds": [
+            "Thymosin Alpha-1",
+            "LL-37",
+            "Selank"
+          ],
+          "purpose": "Comprehensive immune support, innate defense, and stress-related immune suppression reversal",
+          "notes": "TA1 drives adaptive T-cell immunity; LL-37 provides innate antimicrobial defense; Selank normalizes anxiety-induced immune dysregulation."
+        },
+        {
+          "name": "Longevity Immune Stack",
+          "compounds": [
+            "Thymosin Alpha-1",
+            "Epithalon"
+          ],
+          "purpose": "Thymic regeneration and immune restoration for age-related immune decline",
+          "notes": "Both derived from Khavinson's research; complementary targets in thymus-dependent aging."
+        },
+        {
+          "name": "Oncology Support Stack",
+          "compounds": [
+            "Thymosin Alpha-1",
+            "Humanin"
+          ],
+          "purpose": "Immune support during cancer treatment and cellular survival protection",
+          "notes": "TA1's proven cancer adjuvant activity combined with Humanin's anti-apoptotic effects."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "1.6mg (Zadaxin standard)",
+          "10mg (research)"
+        ],
+        "recommended_bac_water": "1ml per 1.6mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "Zadaxin: use immediately after reconstitution; research vials: 28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); 28-amino acid N-terminal fragment of prothymosin alpha",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% (research); pharmaceutical grade ≥99% (Zadaxin)",
+        "storage_conditions": "Store lyophilized at 2-8°C (Zadaxin) or -20°C (research)"
+      },
+      "popularity_score": 8
     },
     {
       "name": "GHK-Cu",
@@ -1012,7 +1834,80 @@
           "title": "GHK-Cu Anti-Aging Skincare - Infiniwell",
           "url": "https://infiniwell.com/blogs/iw-blog/ghk-cu-and-science-behind-skin-aging"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "1-2 mg/day injectable; topical concentrations 0.1-2%",
+        "beginner": "0.5-1 mg/day subcutaneously or topically",
+        "intermediate": "1-2 mg/day subcutaneously",
+        "advanced": "2-3 mg/day; combine injectable and topical formulations",
+        "cycle_length": "4-12 weeks injectable; topical can be used indefinitely",
+        "cycle_off": "4-6 weeks off injectable; topical use can be continuous",
+        "notes": "Injectable GHK-Cu is used for systemic anti-aging and wound healing. Topical formulations are well-established for skin rejuvenation and hair loss. Topical bioavailability enhanced with iontophoresis or microneedling."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Systemic anti-aging, wound healing, and collagen stimulation effects"
+        },
+        {
+          "route": "Topical",
+          "bioavailability": "Low",
+          "notes": "Effective for local skin rejuvenation, wrinkle reduction, and hair loss; penetration enhanced by appropriate formulation base"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Less common; used for deeper tissue targeting in some protocols"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Skin Rejuvenation Stack",
+          "compounds": [
+            "GHK-Cu",
+            "Epithalon",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Comprehensive anti-aging at cellular and tissue level",
+          "notes": "GHK-Cu stimulates collagen; Epithalon targets telomere maintenance; NAD+ addresses mitochondrial aging. A well-rounded longevity protocol."
+        },
+        {
+          "name": "Wound Healing Stack",
+          "compounds": [
+            "GHK-Cu",
+            "BPC-157",
+            "TB-500"
+          ],
+          "purpose": "Maximum tissue repair acceleration",
+          "notes": "GHK-Cu contributes collagen remodeling and TGF-β regulation while BPC-157 and TB-500 drive vascular and cellular repair mechanisms."
+        },
+        {
+          "name": "Hair Restoration Stack",
+          "compounds": [
+            "GHK-Cu",
+            "KPV"
+          ],
+          "purpose": "Hair follicle stimulation and scalp inflammation control",
+          "notes": "Topical application; GHK-Cu activates follicle cycling and extends anagen phase; KPV reduces scalp inflammation."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "50mg/100mg (topical powder)",
+          "2mg/5mg (injectable)"
+        ],
+        "recommended_bac_water": "1-2ml per 2mg injectable vial",
+        "storage": "Refrigerate reconstituted injectable at 2-8°C; topical formulations at room temperature",
+        "shelf_life": "28 days refrigerated (injectable); 6-12 months (topical formulations)"
+      },
+      "synthesis_info": {
+        "method": "Chemical synthesis of tripeptide (Gly-His-Lys) followed by copper chelation; endogenously present in human plasma",
+        "form": "Lyophilized powder (injectable) or cream/serum (topical)",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store powder at -20°C protected from light; copper complex stable at physiological pH"
+      },
+      "popularity_score": 8
     },
     {
       "name": "Selank",
@@ -1070,7 +1965,63 @@
           "title": "Cognitive Enhancement Peptides - PWC",
           "url": "https://phillywellnesscenter.com/cognitive-enhancement-peptides-beginners-guidetest/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "250-750 mcg/day intranasally",
+        "beginner": "250 mcg/day (125 mcg each nostril)",
+        "intermediate": "500 mcg/day",
+        "advanced": "750 mcg/day",
+        "cycle_length": "2-4 weeks",
+        "cycle_off": "2-4 weeks; well-tolerated for longer courses in Russian clinical practice",
+        "notes": "Primarily used as intranasal spray. Anxiolytic effects are apparent within hours; cognitive benefits accumulate over days to weeks. Does not produce dependence or tolerance based on available research."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Standard route; rapid CNS delivery via olfactory pathway; 125-250 mcg per nostril"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Higher bioavailability; used in research protocols when systemic effects are targeted"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Anxiety + Cognition Stack",
+          "compounds": [
+            "Selank",
+            "Semax"
+          ],
+          "purpose": "Combined anxiolysis and cognitive enhancement",
+          "notes": "Selank reduces anxiety and balances potential overstimulating effects of Semax while Semax drives BDNF upregulation and focus. Complementary mechanisms."
+        },
+        {
+          "name": "Immune + Anxiety Stack",
+          "compounds": [
+            "Selank",
+            "Thymosin Alpha-1"
+          ],
+          "purpose": "Stress-related immune suppression reversal and anxiolysis",
+          "notes": "Selank normalizes IL-6 expression and anxiety; Thymosin Alpha-1 restores immune function compromised by chronic stress."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg"
+        ],
+        "recommended_bac_water": "Intranasal solution typically pre-formulated; injectable: 1-2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C",
+        "shelf_life": "30 days refrigerated after reconstitution"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); Thr-Lys-Pro-Arg-Pro-Gly-Pro heptapeptide based on Tuftsin with Pro-Gly-Pro stabilizing extension",
+        "form": "Lyophilized powder or intranasal solution",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light"
+      },
+      "popularity_score": 7
     },
     {
       "name": "Semax",
@@ -1128,7 +2079,71 @@
           "title": "Cognitive Enhancement Peptides",
           "url": "https://phillywellnesscenter.com/cognitive-enhancement-peptides-beginners-guidetest/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "200-1000 mcg/day",
+        "beginner": "200-300 mcg/day intranasally",
+        "intermediate": "500-600 mcg/day",
+        "advanced": "750-1000 mcg/day",
+        "cycle_length": "2-4 weeks; suited for acute cognitive tasks",
+        "cycle_off": "2-4 weeks",
+        "notes": "Administered intranasally (most common) or by injection. Nasal: 2-3 drops per nostril of appropriate concentration. BDNF-releasing properties suggest benefits accumulate over days. Often used in 2-4 week courses for cognitive enhancement or post-stroke neuroprotection."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Most common and convenient route; rapid CNS access via olfactory pathway; 2-3 drops per nostril"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Higher systemic bioavailability; used in neurological treatment protocols in Russia"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Used clinically in Russia and Eastern Europe for stroke rehabilitation"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Cognitive Enhancement Stack",
+          "compounds": [
+            "Semax",
+            "Selank",
+            "Dihexa"
+          ],
+          "purpose": "Multi-pathway nootropic combining BDNF upregulation, anxiolysis, and synaptogenesis",
+          "notes": "Semax raises BDNF; Selank reduces anxiety without sedation; Dihexa drives new synapse formation. Comprehensive stack for cognitive performance."
+        },
+        {
+          "name": "Neurological Recovery Stack",
+          "compounds": [
+            "Semax",
+            "Cerebrolysin",
+            "Epithalon"
+          ],
+          "purpose": "Post-neurological injury rehabilitation support",
+          "notes": "Used in Eastern European clinical practice; Semax and Cerebrolysin have demonstrated post-stroke neuroprotective benefits; Epithalon adds anti-aging support."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "3mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "0.5-1ml per 3mg vial for injectable; nasal solution typically pre-formulated",
+        "storage": "Refrigerate nasal formulation at 2-8°C; injectable at 2-8°C after reconstitution",
+        "shelf_life": "30 days refrigerated after reconstitution"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); Met-Glu-His-Phe-Pro-Gly-Pro heptapeptide derived from ACTH 4-7 fragment with Pro-Gly-Pro stabilizing extension",
+        "form": "Lyophilized powder or intranasal solution",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; nasal formulations at 2-8°C"
+      },
+      "popularity_score": 7
     },
     {
       "name": "DSIP",
@@ -1178,7 +2193,70 @@
           "title": "DSIP Effect on Mitochondria - ScienceDirect",
           "url": "https://www.sciencedirect.com/science/article/abs/pii/S0196978103000408"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "100-250 mcg/day",
+        "beginner": "100 mcg before sleep",
+        "intermediate": "200 mcg before sleep",
+        "advanced": "250-500 mcg before sleep",
+        "cycle_length": "2-4 weeks",
+        "cycle_off": "2-4 weeks",
+        "notes": "Administered 30-60 minutes before desired sleep onset. Effects may accumulate over multiple doses. DSIP is endogenously released during sleep onset; exogenous administration reinforces this signaling cascade."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary route; administer 30-60 minutes before sleep; abdominal or thigh injection"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Alternative to subcutaneous; potentially faster onset for sleep induction"
+        },
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Intranasal delivery studied for CNS access; practical alternative for non-injection users"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Sleep Optimization Stack",
+          "compounds": [
+            "DSIP",
+            "Epithalon",
+            "Ipamorelin"
+          ],
+          "purpose": "Deep sleep enhancement, anti-aging, and GH release during sleep",
+          "notes": "DSIP improves sleep architecture; Epithalon (pineal-derived) supports circadian rhythm; Ipamorelin amplifies nocturnal GH pulse. All timed to bedtime."
+        },
+        {
+          "name": "Stress and Sleep Stack",
+          "compounds": [
+            "DSIP",
+            "Selank"
+          ],
+          "purpose": "Anxiety reduction and sleep quality improvement for stress-related insomnia",
+          "notes": "Selank's anxiolytic effect facilitates sleep onset while DSIP deepens slow-wave sleep."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg",
+          "5mg"
+        ],
+        "recommended_bac_water": "1ml per 2mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); nonapeptide Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu; originally isolated from rabbit cerebrospinal fluid",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light; sensitive to oxidation"
+      },
+      "popularity_score": 6
     },
     {
       "name": "Kisspeptin",
@@ -1237,7 +2315,65 @@
           "title": "Kisspeptin Metabolic and Reproductive Target - PMC",
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11006622/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "100-300 mcg subcutaneous (Kisspeptin-10)",
+        "beginner": "100 mcg subcutaneously",
+        "intermediate": "150-200 mcg subcutaneously",
+        "advanced": "300 mcg subcutaneously or clinical IV infusion protocol",
+        "cycle_length": "4-8 weeks; some use intermittent (2-3x/week)",
+        "cycle_off": "4 weeks",
+        "notes": "Kisspeptin-54 and Kisspeptin-10 (C-terminal decapeptide) are both used; Kisspeptin-10 is more commonly available and studied. Pulsatile dosing preserves LH sensitivity. Continuous high-dose administration can paradoxically suppress GnRH via receptor desensitization."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Preferred research route; produces pulsatile LH and FSH surges; half-life ~29 minutes for Kisspeptin-54"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Alternative to subcutaneous; comparable LH stimulation profile"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "HPG Axis Optimization Stack",
+          "compounds": [
+            "Kisspeptin",
+            "PT-141"
+          ],
+          "purpose": "Testosterone axis stimulation and central sexual arousal",
+          "notes": "Kisspeptin drives upstream GnRH pulsatility and LH/testosterone elevation; PT-141 activates melanocortin pathways; complementary mechanisms."
+        },
+        {
+          "name": "Fertility Support Stack",
+          "compounds": [
+            "Kisspeptin",
+            "Gonadorelin"
+          ],
+          "purpose": "Hypothalamic-pituitary-gonadal axis stimulation for testosterone and fertility restoration",
+          "notes": "Used off-label in post-TRT recovery; Kisspeptin reactivates hypothalamic GnRH pulse generation; Gonadorelin provides direct GnRH receptor stimulation."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg",
+          "5mg (Kisspeptin-10)",
+          "10mg (Kisspeptin-54)"
+        ],
+        "recommended_bac_water": "1-2ml per 2mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); Kisspeptin-10 is the C-terminal decapeptide of the KiSS-1 gene product",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from moisture and light"
+      },
+      "popularity_score": 6
     },
     {
       "name": "Follistatin-344",
@@ -1296,7 +2432,66 @@
           "title": "Follistatin-344 Profile - Peptide Works",
           "url": "https://peptide-works.com/follistatin-344/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "50-200 mcg/dose, 1-3x/week",
+        "beginner": "50-100 mcg twice weekly",
+        "intermediate": "100-200 mcg twice weekly",
+        "advanced": "200-300 mcg 3x/week (research protocols only)",
+        "cycle_length": "4-6 weeks maximum",
+        "cycle_off": "8-12 weeks minimum",
+        "notes": "The biologically active isoform that inhibits myostatin and activin A/B. Injection into target muscle groups is commonly practiced for localized growth. Extended cycles risk muscle imbalances. Medical supervision essential."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Local injection into target muscle produces localized muscle growth response; most common research approach"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Systemic distribution; affects all muscle groups equally; less localized than IM"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Myostatin Inhibition Stack",
+          "compounds": [
+            "Follistatin-344",
+            "ACE-031",
+            "IGF-1 LR3"
+          ],
+          "purpose": "Multi-pathway myostatin/activin inhibition for maximum muscle development",
+          "notes": "Follistatin-344 binds and neutralizes myostatin and activin; ACE-031 acts as a decoy receptor; IGF-1 LR3 simultaneously drives anabolic signaling."
+        },
+        {
+          "name": "Performance Enhancement Stack",
+          "compounds": [
+            "Follistatin-344",
+            "CJC-1295",
+            "Ipamorelin"
+          ],
+          "purpose": "Myostatin inhibition with GH axis activation for superior muscle growth",
+          "notes": "Complementary anabolic pathways; GH axis peptides drive nutrient partitioning and protein synthesis; Follistatin removes the myostatin brake on muscle growth."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "1mg",
+          "2mg"
+        ],
+        "recommended_bac_water": "1-2ml per 1mg vial; some protocols use 0.6% acetic acid",
+        "storage": "Refrigerate at 2-8°C after reconstitution; extremely sensitive to heat and agitation",
+        "shelf_life": "14-21 days refrigerated; lyophilized at -20°C for long-term storage"
+      },
+      "synthesis_info": {
+        "method": "Recombinant DNA technology in mammalian (CHO or HEK293) expression systems; glycosylated 315-residue protein; not suitable for SPPS",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥95% by SDS-PAGE",
+        "storage_conditions": "Store lyophilized at -80°C for maximum stability; -20°C short-term; extremely sensitive to repeated freeze-thaw"
+      },
+      "popularity_score": 7
     },
     {
       "name": "IGF-1 LR3",
@@ -1353,7 +2548,66 @@
           "title": "IGF-1 LR3 and Muscle Development - Core Peptides",
           "url": "https://www.corepeptides.com/igf-1-lr3-and-muscle-development/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "40-120 mcg/day",
+        "beginner": "40-50 mcg/day post-workout",
+        "intermediate": "80-100 mcg/day (single or split dose)",
+        "advanced": "100-150 mcg/day (experienced users with medical monitoring)",
+        "cycle_length": "4-6 weeks maximum",
+        "cycle_off": "4-6 weeks minimum between cycles",
+        "notes": "Extended half-life (20-30 hours vs 15 min for native IGF-1) allows once-daily dosing. Best dosed immediately post-workout. Hypoglycemia risk — always have fast-acting carbohydrates available. Mandatory cycle breaks for IGF-1 receptor sensitivity recovery."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Standard research route; local fat injection may increase local muscle uptake"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Direct muscle injection post-workout; potentially better local IGF-1R activation in target muscle"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Muscle Growth Stack",
+          "compounds": [
+            "IGF-1 LR3",
+            "MK-677 (Ibutamoren)",
+            "CJC-1295"
+          ],
+          "purpose": "Multi-point anabolic axis activation for maximum muscle growth",
+          "notes": "IGF-1 LR3 acts downstream of GH; MK-677 and CJC-1295 elevate endogenous GH and IGF-1 upstream; covers the full GH/IGF-1 axis."
+        },
+        {
+          "name": "Performance + Recovery Stack",
+          "compounds": [
+            "IGF-1 LR3",
+            "BPC-157",
+            "TB-500"
+          ],
+          "purpose": "Anabolic environment with accelerated tissue repair for athletes",
+          "notes": "IGF-1 LR3 drives anabolic signaling; BPC-157 and TB-500 prevent and repair training-related injuries."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "1mg",
+          "2mg"
+        ],
+        "recommended_bac_water": "1-2ml per 1mg vial; use 0.6% acetic acid if recommended for stability",
+        "storage": "Refrigerate at 2-8°C after reconstitution; highly sensitive to temperature",
+        "shelf_life": "14-21 days refrigerated; acetic acid diluent may extend to 28 days"
+      },
+      "synthesis_info": {
+        "method": "Recombinant DNA technology in E. coli or mammalian expression systems; Arg3 substitution and 13-amino acid Glu-rich N-terminal extension reduces IGFBP binding",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by SDS-PAGE and HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; extremely sensitive to degradation; mix by gentle inversion only; never vortex"
+      },
+      "popularity_score": 8
     },
     {
       "name": "MGF",
@@ -1516,7 +2770,66 @@
           "title": "Mitochondrial Protein Interaction Landscape of SS-31 - PNAS",
           "url": "https://www.pnas.org/doi/10.1073/pnas.2002250117"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "1-5 mg/day",
+        "beginner": "1 mg/day subcutaneously",
+        "intermediate": "2-3 mg/day",
+        "advanced": "5 mg/day; clinical trials used 0.05-0.25 mg/kg/hour IV infusion",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "SS-31 (Elamipretide) has been tested in human clinical trials for heart failure and primary mitochondrial myopathy. IV infusion is used clinically; subcutaneous is more practical for research purposes. Parenteral administration required."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Practical route for research; rapid tissue distribution to mitochondria-rich organs (heart, skeletal muscle, brain)"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Alternative; used in some clinical protocols"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Mitochondrial Cardio Stack",
+          "compounds": [
+            "SS-31",
+            "MOTS-c",
+            "Humanin"
+          ],
+          "purpose": "Comprehensive cardiac and mitochondrial protection",
+          "notes": "SS-31 preserves mitochondrial cristae structure and cardiolipin integrity; MOTS-c and Humanin provide metabolic and survival signaling. Powerful cardiometabolic combination."
+        },
+        {
+          "name": "Aging Mitochondria Stack",
+          "compounds": [
+            "SS-31",
+            "NAD+ Peptide Complex",
+            "GHK-Cu"
+          ],
+          "purpose": "Age-related mitochondrial decline reversal and tissue repair",
+          "notes": "SS-31 targets the mitochondrial inner membrane; NAD+ restores sirtuin activity; GHK-Cu drives extracellular matrix renewal."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); tetrapeptide H-D-Arg-Dmt-Lys-Phe-NH2 with 2',6'-dimethyltyrosine (Dmt) modification for mitochondrial membrane targeting",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light"
+      },
+      "popularity_score": 7
     },
     {
       "name": "MOTS-c",
@@ -1575,7 +2888,67 @@
           "title": "MOTS-c Expression with Aging - Aging",
           "url": "https://www.aging-us.com/article/102944/text"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "5-10 mg/week",
+        "beginner": "5 mg once weekly",
+        "intermediate": "5-10 mg twice weekly",
+        "advanced": "10 mg 2-3x/week",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "MOTS-c is mitochondria-derived and endogenously increases with exercise. Exogenous administration mimics exercise-induced metabolic adaptation. Best combined with physical exercise for synergistic metabolic benefits."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary research route; systemic delivery for metabolic and exercise-mimetic effects"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Alternative; may be preferred for direct muscle metabolic targeting"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Mitochondrial Health Stack",
+          "compounds": [
+            "MOTS-c",
+            "SS-31",
+            "Humanin",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Comprehensive mitochondrial optimization, energy production, and cellular survival",
+          "notes": "MOTS-c activates AMPK and biogenesis; SS-31 protects cardiolipin; Humanin reduces apoptosis; NAD+ provides substrate for sirtuins and PARP."
+        },
+        {
+          "name": "Metabolic + Longevity Stack",
+          "compounds": [
+            "MOTS-c",
+            "Epithalon",
+            "GHK-Cu"
+          ],
+          "purpose": "Exercise-mimetic metabolic benefits with anti-aging tissue repair",
+          "notes": "Suitable for older adults seeking metabolic improvement and longevity support without high-intensity exercise capacity."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); 16-amino acid mitochondrial peptide encoded by the 12S rRNA gene of mitochondrial DNA",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light and moisture; susceptible to aggregation"
+      },
+      "popularity_score": 7
     },
     {
       "name": "Humanin",
@@ -1633,7 +3006,66 @@
           "title": "Humanin as Regulator of Lifespan - Aging",
           "url": "https://www.aging-us.com/article/103534"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "2-10 mg/week",
+        "beginner": "2 mg once or twice weekly",
+        "intermediate": "5 mg twice weekly",
+        "advanced": "10 mg twice weekly; HNG (S14G-Humanin) analog effective at lower doses",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "HNG (S14G-Humanin), the more potent analog, is active at approximately 100-1000x lower concentrations than native Humanin. Research protocols are extrapolated from preclinical data. Often combined with other mitochondrial peptides."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary research route; systemic cytoprotective and anti-apoptotic effects"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Alternative; comparable systemic distribution"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Mitochondrial Longevity Stack",
+          "compounds": [
+            "Humanin",
+            "MOTS-c",
+            "SS-31"
+          ],
+          "purpose": "Mitochondria-targeted cytoprotection, energy optimization, and cellular aging reduction",
+          "notes": "Humanin reduces apoptosis, MOTS-c drives biogenesis and metabolism, SS-31 protects cristae integrity. Complementary mitochondrial targets."
+        },
+        {
+          "name": "Neuroprotection Stack",
+          "compounds": [
+            "Humanin",
+            "Semax",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Multi-target neuroprotection against Alzheimer's pathology and neurodegeneration",
+          "notes": "Humanin directly inhibits Aβ cytotoxicity; Semax provides BDNF-driven neuroprotection; NAD+ supports neuronal mitochondrial function."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); 21-amino acid peptide encoded by the 16S rRNA gene of human mitochondrial DNA",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from repeated freeze-thaw cycles"
+      },
+      "popularity_score": 6
     },
     {
       "name": "5-Amino-1MQ",
@@ -1645,7 +3077,8 @@
       "categories": [
         "weight-loss-metabolic",
         "mitochondrial",
-        "anti-aging-longevity"
+        "anti-aging-longevity",
+        "related-compounds"
       ],
       "description": "5-Amino-1MQ is a small-molecule methylquinolinium derivative that functions as a selective inhibitor of nicotinamide N-methyltransferase (NNMT), an enzyme that consumes NAD+ precursors and regulates cellular energy metabolism. While technically a small molecule rather than a classical peptide, it is often discussed alongside peptide therapies due to its metabolic effects. By blocking NNMT, it prevents wasteful methylation of nicotinamide, preserving NAD+ availability and activating longevity-associated pathways.",
       "mechanismOfAction": "5-Amino-1MQ inhibits NNMT, the enzyme that methylates nicotinamide (a NAD+ breakdown product) using S-adenosylmethionine (SAM). NNMT overactivity in aging and obesity drains both NAD+ precursors and methyl groups. Inhibition leads to: 1.2-1.6 fold increase in cellular NAD+ in adipocytes; SIRT1 activation (the 'longevity gene') through greater NAD+ availability; white-to-brown adipose tissue conversion (beige adipogenesis) via histone methylation changes; AMPK-related pathway activation mimicking caloric restriction; and improved mitochondrial efficiency and muscle endurance in aged mice.",
@@ -1686,7 +3119,59 @@
           "title": "5-Amino-1MQ for Metabolic Research - Geviti",
           "url": "https://www.gogeviti.com/blog/5-amino-1mq-a-peptide-for-enhanced-energy--longevity"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "50-200 mg/day oral",
+        "beginner": "50 mg/day",
+        "intermediate": "100-150 mg/day",
+        "advanced": "200 mg/day",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "5-Amino-1MQ is an oral small molecule NNMT inhibitor. Very early-stage experimental compound with limited human data. Dosing is extrapolated from preclinical models. Weight-based dosing from mouse studies suggests ~50 mg/day as human starting dose equivalent."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "Moderate",
+          "notes": "Oral administration used in preclinical studies; human bioavailability not formally characterized"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Metabolic Fat Loss Stack",
+          "compounds": [
+            "5-Amino-1MQ",
+            "Semaglutide"
+          ],
+          "purpose": "NNMT inhibition combined with GLP-1 appetite suppression for comprehensive fat loss",
+          "notes": "5-Amino-1MQ targets fat cell NAD+ metabolism and NNMT; Semaglutide addresses central appetite regulation. Different but complementary mechanisms."
+        },
+        {
+          "name": "Mitochondrial + Fat Loss Stack",
+          "compounds": [
+            "5-Amino-1MQ",
+            "MOTS-c",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "NNMT inhibition, AMPK activation, and NAD+ restoration for metabolic optimization",
+          "notes": "5-Amino-1MQ inhibits NNMT, freeing up methyl donor capacity and raising NAD+; MOTS-c and NAD+ further amplify these mitochondrial and metabolic effects."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "N/A — oral capsules or powder"
+        ],
+        "recommended_bac_water": "N/A — oral formulation",
+        "storage": "Store at room temperature 15-25°C; protect from moisture and light",
+        "shelf_life": "24 months sealed"
+      },
+      "synthesis_info": {
+        "method": "Chemical synthesis; methylquinolinium derivative; NNMT (nicotinamide N-methyltransferase) inhibitor",
+        "form": "Oral capsule or powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "15-25°C in airtight container; protect from light"
+      },
+      "popularity_score": 5
     },
     {
       "name": "Dihexa",
@@ -1748,7 +3233,71 @@
           "title": "Dihexa Cognitive Function - Your Health Magazine",
           "url": "https://yourhealthmagazine.net/article/epigenetics/unlocking-the-potential-of-dihexa-peptide-for-enhanced-cognitive-function/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "10-20 mg/day (oral or topical); 1-5 mg/day subcutaneous",
+        "beginner": "10 mg/day oral or topical",
+        "intermediate": "15-20 mg/day oral",
+        "advanced": "20 mg/day oral; or 2-5 mg/day subcutaneous",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4-8 weeks",
+        "notes": "Dihexa is 10 million times more potent than BDNF in activating the HGF/MET signaling pathway for synaptogenesis. Very small doses are biologically active. Topical formulation (in DMSO) achieves CNS delivery. Oral bioavailability reasonable for a peptide due to small size and resistance to proteolysis."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "Moderate",
+          "notes": "Oral administration achieves meaningful CNS levels due to lipophilicity and small size"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Higher bioavailability; more consistent CNS delivery for research applications"
+        },
+        {
+          "route": "Topical",
+          "bioavailability": "Moderate",
+          "notes": "Topical application in DMSO carrier achieves transdermal and CNS delivery; used in some research protocols"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Cognitive Enhancement Stack",
+          "compounds": [
+            "Dihexa",
+            "Semax",
+            "Selank"
+          ],
+          "purpose": "Multi-pathway nootropic combining synaptogenesis, BDNF upregulation, and anxiolysis",
+          "notes": "Dihexa drives new synapse formation via HGF/MET; Semax raises BDNF directly; Selank provides anxiolytic and immune-modulating support."
+        },
+        {
+          "name": "Neurodegeneration Prevention Stack",
+          "compounds": [
+            "Dihexa",
+            "Humanin",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Synaptogenesis combined with neuronal survival and mitochondrial support",
+          "notes": "Dihexa rebuilds synaptic connections; Humanin prevents neuronal apoptosis; NAD+ maintains neuronal energetics. Comprehensive neuroprotection stack."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 5mg vial; DMSO-based topical also common",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated; stable lyophilized at -20°C"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); N-hexanoic acid angiotensin IV analog; lipophilic modification improves BBB penetration",
+        "form": "Lyophilized powder or topical DMSO solution",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; DMSO solutions at 2-8°C"
+      },
+      "popularity_score": 6
     },
     {
       "name": "Cerebrolysin",
@@ -1804,7 +3353,67 @@
           "title": "Cerebrolysin Complete Guide 2026 - Robertson Wellness",
           "url": "https://rwacenter.com/blog/cerebrolysin-the-powerful-neuropeptide-for-cognitive-enhancement-and-brain-recovery/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "5-30 ml/day IV (clinical); 5-10 ml/day IM (research)",
+        "beginner": "5 ml/day IM for 10 days",
+        "intermediate": "10 ml/day IM or IV for 10-20 days",
+        "advanced": "20-30 ml/day IV for 20-28 days (clinical stroke protocol)",
+        "cycle_length": "10-28 day courses",
+        "cycle_off": "4-8 weeks between courses",
+        "notes": "Cerebrolysin is a neuropeptide complex (not a single peptide) containing multiple neurotrophic peptide fragments. Clinical trials used 10-30 ml/day IV. IM dosing at 5-10 ml is practical for outpatient research protocols. Courses of 10-28 days are standard, followed by rest periods."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Practical research and off-label route; 5-10 ml per injection; approved IM route in many countries"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Alternative to IM; used in some research protocols; volume limitations may restrict dose per injection"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Neurological Recovery Stack",
+          "compounds": [
+            "Cerebrolysin",
+            "Semax",
+            "Epithalon"
+          ],
+          "purpose": "Comprehensive neuroprotection and neurorehabilitation",
+          "notes": "Cerebrolysin provides neurotrophic factor complex; Semax raises BDNF; Epithalon adds anti-aging and neuroendocrine support. Used in Eastern European post-stroke protocols."
+        },
+        {
+          "name": "Cognitive Enhancement Stack",
+          "compounds": [
+            "Cerebrolysin",
+            "Dihexa",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Neurotrophic support, synaptogenesis, and neuronal energy restoration",
+          "notes": "Cerebrolysin provides the neurotrophic complex; Dihexa drives new synaptic connections; NAD+ supports mitochondrial function in neurons."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5ml/vial",
+          "10ml/vial",
+          "20ml/vial"
+        ],
+        "recommended_bac_water": "N/A — supplied as ready-to-use solution; dilute in saline for IV infusion",
+        "storage": "Refrigerate at 2-8°C; do not freeze; protect from light",
+        "shelf_life": "36 months unopened; use immediately once ampule opened"
+      },
+      "synthesis_info": {
+        "method": "Standardized enzymatic hydrolysis of purified porcine brain proteins (20% bioactive peptides by weight, 80% amino acids); not synthetically produced",
+        "form": "Ready-to-use injection solution",
+        "purity_standard": "Standardized to 10 mg peptides per ml; molecular weight <10,000 Da",
+        "storage_conditions": "2-8°C; do not freeze; protect from light; sterile solution"
+      },
+      "popularity_score": 6
     },
     {
       "name": "P21",
@@ -2141,7 +3750,66 @@
           "title": "Human Antimicrobial Peptide LL-37 - Antibiotics PMC",
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8227053/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "10-50 mcg/day topical; 100-200 mcg/day injectable (research)",
+        "beginner": "25 mcg/day topically or 100 mcg/day subcutaneously",
+        "intermediate": "50 mcg/day topically or 150 mcg/day subcutaneously",
+        "advanced": "100-200 mcg/day subcutaneously; higher topical concentrations",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "Primarily studied as a topical antimicrobial and wound healing agent. Injectable LL-37 is experimental. High systemic doses could cause off-target membrane disruption effects; use caution with injectable forms."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Topical",
+          "bioavailability": "Low",
+          "notes": "Primary therapeutic route for skin infections and wound healing; direct local antimicrobial activity; limited systemic absorption"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Research use; systemic anti-inflammatory and immune-modulating effects; experimental dosing only"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Wound Healing + Antimicrobial Stack",
+          "compounds": [
+            "LL-37",
+            "BPC-157",
+            "GHK-Cu"
+          ],
+          "purpose": "Infection-free accelerated wound closure",
+          "notes": "LL-37 provides antimicrobial protection while BPC-157 drives angiogenesis and GHK-Cu stimulates collagen matrix remodeling."
+        },
+        {
+          "name": "Immune Defense Stack",
+          "compounds": [
+            "LL-37",
+            "Thymosin Alpha-1",
+            "KPV"
+          ],
+          "purpose": "Multi-layer innate and adaptive immune enhancement",
+          "notes": "LL-37 handles pathogen defense; Thymosin Alpha-1 drives adaptive T-cell function; KPV provides anti-inflammatory modulation."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg",
+          "5mg"
+        ],
+        "recommended_bac_water": "1-2ml per 2mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution; topical formulations at room temperature",
+        "shelf_life": "14-28 days refrigerated (injectable)"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); 37-amino acid cathelicidin-derived antimicrobial peptide",
+        "form": "Lyophilized powder (injectable) or topical formulation",
+        "purity_standard": "≥95% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; susceptible to aggregation at high concentrations"
+      },
+      "popularity_score": 6
     },
     {
       "name": "Thymulin",
@@ -2255,7 +3923,75 @@
           "title": "Comparative Effectiveness Tirzepatide vs Semaglutide - PMC",
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12924827/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "0.25-2.4 mg/week (subcutaneous); 3-14 mg/day (oral)",
+        "beginner": "0.25 mg/week for 4 weeks (titration start)",
+        "intermediate": "0.5-1 mg/week",
+        "advanced": "1.7-2.4 mg/week (FDA-approved obesity dose)",
+        "cycle_length": "Ongoing; no defined off-cycle for therapeutic use",
+        "cycle_off": "Discontinuation results in weight regain; not intended for cycling",
+        "notes": "FDA-approved titration: 0.25 mg/week → 0.5 mg (wk 5) → 1 mg (wk 9) → 1.7 mg (wk 13) → 2.4 mg (wk 17). Oral semaglutide taken on empty stomach with ≤4 oz water."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Once-weekly injection into abdomen, thigh, or upper arm; preferred route; ~89% bioavailability"
+        },
+        {
+          "route": "Oral",
+          "bioavailability": "Low",
+          "notes": "Oral Rybelsus uses SNAC absorption enhancer; bioavailability ~10% with SNAC; must be taken fasting with minimal water"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Lean Mass Preservation Stack",
+          "compounds": [
+            "Semaglutide",
+            "Tesamorelin",
+            "Ipamorelin"
+          ],
+          "purpose": "GLP-1-driven weight loss with GH-mediated lean mass preservation",
+          "notes": "GH secretagogues help offset the lean muscle mass loss that can accompany significant GLP-1-driven weight reduction."
+        },
+        {
+          "name": "Cardiometabolic Stack",
+          "compounds": [
+            "Semaglutide",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Cardiovascular risk reduction and cellular energy restoration",
+          "notes": "Semaglutide's proven CV benefits combined with NAD+ supplementation for comprehensive metabolic health."
+        },
+        {
+          "name": "Gut Health Stack",
+          "compounds": [
+            "Semaglutide",
+            "BPC-157"
+          ],
+          "purpose": "GLP-1 agonism with GI cytoprotection to reduce GI side effects",
+          "notes": "BPC-157 may help manage GI discomfort common with GLP-1 agonist initiation through its gut-protective properties."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg/1.5ml",
+          "4mg/3ml pen device",
+          "Oral 3mg, 7mg, 14mg tablets"
+        ],
+        "recommended_bac_water": "N/A — supplied as pre-mixed solution in auto-injector pens",
+        "storage": "Refrigerate unused pens at 2-8°C; in-use pens may be stored at room temperature up to 30°C for 56 days",
+        "shelf_life": "18-24 months unopened; 56 days after first use"
+      },
+      "synthesis_info": {
+        "method": "Recombinant DNA technology in Saccharomyces cerevisiae, followed by chemical modification with C18 fatty diacid attachment for albumin binding",
+        "form": "Solution for injection (pre-filled pen) or oral tablet with SNAC enhancer",
+        "purity_standard": "Pharmaceutical grade ≥99% (innovator); research compound ≥98%",
+        "storage_conditions": "2-8°C refrigeration; protect from freezing and direct sunlight"
+      },
+      "popularity_score": 10
     },
     {
       "name": "Tirzepatide",
@@ -2309,7 +4045,59 @@
           "title": "Semaglutide vs Tirzepatide Weight Loss - JAMA",
           "url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2821080"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "2.5-15 mg/week",
+        "beginner": "2.5 mg/week for 4 weeks",
+        "intermediate": "5-10 mg/week",
+        "advanced": "12.5-15 mg/week (FDA-approved max for obesity)",
+        "cycle_length": "Ongoing therapeutic; titrate up every 4 weeks as tolerated",
+        "cycle_off": "Not designed for cycling; weight regain occurs after discontinuation",
+        "notes": "FDA titration for Zepbound: 2.5 mg/week → 5 mg (wk 5) → 7.5 mg (wk 9) → 10 mg (wk 13) → 12.5 mg (wk 17) → 15 mg (wk 21). GI side effects typically diminish after titration period."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Once-weekly subcutaneous injection; ~80% absolute bioavailability; single-dose auto-injector pen"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Lean Mass Preservation Stack",
+          "compounds": [
+            "Tirzepatide",
+            "CJC-1295",
+            "Ipamorelin"
+          ],
+          "purpose": "Aggressive fat loss while preserving lean muscle mass",
+          "notes": "GH secretagogues help offset the lean mass loss that can accompany significant GLP-1/GIP-driven weight reduction."
+        },
+        {
+          "name": "Metabolic Syndrome Stack",
+          "compounds": [
+            "Tirzepatide",
+            "SS-31"
+          ],
+          "purpose": "Comprehensive metabolic correction with mitochondrial support",
+          "notes": "SS-31 addresses mitochondrial dysfunction associated with metabolic syndrome while Tirzepatide corrects insulin signaling and adiposity."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2.5mg, 5mg, 7.5mg, 10mg, 12.5mg, 15mg auto-injector pens"
+        ],
+        "recommended_bac_water": "N/A — supplied as pre-mixed solution",
+        "storage": "Refrigerate at 2-8°C; may store at room temperature (≤30°C) up to 21 days",
+        "shelf_life": "24 months unopened; 21 days after removal from refrigeration"
+      },
+      "synthesis_info": {
+        "method": "Recombinant production with C20 fatty diacid conjugation via γGlu-2xOEG linker for half-life extension and GIP/GLP-1 dual agonism",
+        "form": "Solution for injection in pre-filled auto-injector pen",
+        "purity_standard": "Pharmaceutical grade ≥99% (innovator); research compound ≥98%",
+        "storage_conditions": "2-8°C; do not freeze; protect from light"
+      },
+      "popularity_score": 10
     },
     {
       "name": "Retatrutide",
@@ -2319,7 +4107,8 @@
         "Triple G agonist"
       ],
       "categories": [
-        "weight-loss-metabolic"
+        "weight-loss-metabolic",
+        "related-compounds"
       ],
       "description": "Retatrutide is an investigational first-in-class triple agonist targeting GLP-1, GIP, and glucagon receptors simultaneously. Developed by Eli Lilly, it has demonstrated the most impressive weight loss data of any peptide to date — up to 28.7% body weight reduction in the Phase III TRIUMPH-4 trial at 68 weeks. The addition of glucagon receptor agonism (beyond GLP-1 and GIP) targets the liver directly (which lacks GLP-1/GIP receptors but is rich in glucagon receptors), potentially providing unique benefits for NASH/MAFLD treatment through improved hepatic fat oxidation and antifibrotic effects.",
       "mechanismOfAction": "Retatrutide activates three receptors: (1) GLP-1R for appetite suppression and incretin insulin secretion; (2) GIP-R for enhanced metabolic effects and reduced GI side effects; (3) Glucagon-R for hepatic effects including enhanced fatty acid oxidation, improved mitochondrial function in liver, improved bile acid profiles, and direct antifibrotic activity. The glucagon component reduces respiratory quotient more strongly than dual agonists, indicating superior fat oxidation. Studies show strongest effects on body weight, food intake, and metabolic markers compared to semaglutide and tirzepatide.",
@@ -2364,7 +4153,59 @@
           "title": "Investigators New Data on Retatrutide - ADA Meeting News",
           "url": "https://www.adameetingnews.org/investigators-to-share-new-data-on-retatrutide-triple-therapy/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "1-12 mg/week (Phase II range)",
+        "beginner": "1 mg/week (titration start)",
+        "intermediate": "4-8 mg/week",
+        "advanced": "8-12 mg/week (Phase II maximum doses)",
+        "cycle_length": "Ongoing therapeutic; weekly dose titration",
+        "cycle_off": "Not designed for cycling; weight regain after discontinuation",
+        "notes": "Phase II used 1 mg/week start, titrated to 2 mg (wk 5), 4 mg (wk 9), then optional up to 8 or 12 mg. Triple agonist mechanism (GLP-1/GIP/glucagon) may produce superior weight loss vs dual agonists."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Once-weekly subcutaneous injection; standard route in all clinical trials"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Lean Mass Preservation Stack",
+          "compounds": [
+            "Retatrutide",
+            "CJC-1295",
+            "Ipamorelin"
+          ],
+          "purpose": "Triple agonist-driven weight loss with GH-mediated muscle preservation",
+          "notes": "Retatrutide's glucagon component risks lean mass loss; GH secretagogues help offset this while adding recovery and metabolic benefits."
+        },
+        {
+          "name": "Comprehensive Metabolic Stack",
+          "compounds": [
+            "Retatrutide",
+            "SS-31"
+          ],
+          "purpose": "Systemic metabolic reset with mitochondrial support",
+          "notes": "Retatrutide addresses the hormonal/receptor level of metabolic disease; SS-31 targets the mitochondrial dysfunction underlying metabolic syndrome."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "Pre-filled pen device (clinical trial)"
+        ],
+        "recommended_bac_water": "N/A for clinical formulation; research vials use 1-2ml BAC water",
+        "storage": "Refrigerate at 2-8°C",
+        "shelf_life": "24 months unopened"
+      },
+      "synthesis_info": {
+        "method": "Recombinant production with fatty acid/linker conjugation enabling triple GLP-1/GIP/glucagon receptor agonism",
+        "form": "Solution for injection in pre-filled pen (clinical); lyophilized powder (research)",
+        "purity_standard": "Pharmaceutical grade ≥99%",
+        "storage_conditions": "2-8°C; do not freeze; protect from light"
+      },
+      "popularity_score": 8
     },
     {
       "name": "Kisspeptin-10",
@@ -2662,7 +4503,70 @@
         "Intranasal: nasal irritation"
       ],
       "dosageNotes": "Obstetric: IV infusion per clinical protocol. Research intranasal: 16-40 IU (8-20 puffs). Short half-life (~3-5 minutes plasma) requires intranasal or IV delivery.",
-      "references": []
+      "references": [],
+      "dosage": {
+        "typical_range": "10-40 IU nasal; 1-3 IU subcutaneous",
+        "beginner": "10-20 IU intranasal as needed",
+        "intermediate": "24-40 IU intranasal daily",
+        "advanced": "40 IU intranasal; 3-5 IU subcutaneous for enhanced effect",
+        "cycle_length": "As needed or 4-8 week structured courses",
+        "cycle_off": "2-4 weeks if used daily; receptor downregulation possible with continuous use",
+        "notes": "Intranasal oxytocin is the most studied non-invasive route for CNS effects (social behavior, anxiety, bonding). IV oxytocin used clinically for labor induction (10-40 mIU/min). Subcutaneous research doses extrapolated from clinical data."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Primary route for neuropsychiatric and behavioral effects; 40 IU studied in behavioral research; onset within minutes"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Used in research for peripheral effects; higher systemic bioavailability than intranasal"
+        },
+        {
+          "route": "Intramuscular Injection",
+          "bioavailability": "High",
+          "notes": "Clinical use for postpartum hemorrhage; less common in research protocols"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Sexual Health and Bonding Stack",
+          "compounds": [
+            "Oxytocin",
+            "PT-141",
+            "Kisspeptin"
+          ],
+          "purpose": "Enhanced sexual function, arousal, and emotional bonding",
+          "notes": "Oxytocin deepens emotional connection and enhances orgasm intensity; PT-141 drives central sexual arousal; Kisspeptin elevates LH and testosterone."
+        },
+        {
+          "name": "Anti-Anxiety Stack",
+          "compounds": [
+            "Oxytocin",
+            "Selank"
+          ],
+          "purpose": "Social anxiety reduction and emotional regulation",
+          "notes": "Oxytocin reduces amygdala reactivity to social threats; Selank provides anxiolytic support through GABAergic modulation; complementary mechanisms for social anxiety."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "10 IU/ml nasal spray",
+          "10 IU/ml injectable solution"
+        ],
+        "recommended_bac_water": "Typically supplied pre-formulated in sterile saline",
+        "storage": "Refrigerate at 2-8°C; protect from light",
+        "shelf_life": "Typically 24 months unopened; follow manufacturer guidance for opened vials"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); nonapeptide with cyclic disulfide bridge between Cys1-Cys6",
+        "form": "Solution for injection or nasal spray",
+        "purity_standard": "Pharmaceutical grade ≥99% (clinical); ≥98% (research)",
+        "storage_conditions": "2-8°C refrigeration; avoid freezing; protect from light"
+      },
+      "popularity_score": 7
     },
     {
       "name": "Substance P",
@@ -2744,7 +4648,65 @@
         "Minimal adverse effects reported"
       ],
       "dosageNotes": "Oral or subcutaneous research protocols. Preclinical: 100-400 mcg/kg. Oral bioavailability advantage unique among anti-inflammatory peptides.",
-      "references": []
+      "references": [],
+      "dosage": {
+        "typical_range": "100-500 mcg/day",
+        "beginner": "100-200 mcg/day oral or subcutaneous",
+        "intermediate": "300-500 mcg/day",
+        "advanced": "500-1000 mcg/day for inflammatory bowel conditions",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "Oral KPV is effective for GI inflammation due to local intestinal action. Subcutaneous dosing for systemic anti-inflammatory effects. Lower doses effective for IBD-like conditions; higher doses for acute inflammation management."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "Moderate",
+          "notes": "Effective for GI tract inflammation; tripeptide size allows some survival through proteolytic degradation"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Systemic anti-inflammatory effects; consistent bioavailability for skin and immune applications"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "IBD and Gut Stack",
+          "compounds": [
+            "KPV",
+            "BPC-157",
+            "LL-37"
+          ],
+          "purpose": "Intestinal inflammation control, mucosal repair, and antimicrobial protection",
+          "notes": "All three can be orally administered to target the GI tract; complementary anti-inflammatory and healing mechanisms."
+        },
+        {
+          "name": "Skin Inflammation Stack",
+          "compounds": [
+            "KPV",
+            "GHK-Cu"
+          ],
+          "purpose": "Psoriasis, eczema, and inflammatory skin condition management",
+          "notes": "KPV reduces NF-κB-driven skin inflammation; GHK-Cu promotes tissue repair and anti-inflammatory collagen remodeling."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28-30 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); tripeptide Lys-Pro-Val; C-terminal fragment of alpha-melanocyte-stimulating hormone (α-MSH)",
+        "form": "Lyophilized powder or oral capsule",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; tripeptide is relatively stable compared to larger peptides"
+      },
+      "popularity_score": 6
     },
     {
       "name": "Thymogen",
@@ -2878,7 +4840,69 @@
           "title": "NAD+ Therapy and 5-Amino-1MQ - HyperCharge",
           "url": "https://www.hyperchargehealth.com/blog/unlocking-youthful-vitality-the-power-of-nad-therapy-combined-with-5-amino-1mq-for-anti-aging"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "250-1000 mg/day oral precursors; 100-1000 mg IV NAD+",
+        "beginner": "250-500 mg NMN or NR orally daily",
+        "intermediate": "500-1000 mg NMN daily; or 250-500 mg IV weekly",
+        "advanced": "1000 mg IV NAD+ 1-3x/week; high-dose NMN/NR orally",
+        "cycle_length": "Continuous oral; IV typically 4-8 week courses",
+        "cycle_off": "IV courses: 4-8 weeks off; oral precursors may be continued indefinitely",
+        "notes": "IV NAD+ provides the most direct cellular repletion. IV administration often causes mild flushing, chest tightness, or nausea during infusion — slow administration rate resolves this. NAD+ levels naturally decline ~50% by age 50."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "Moderate",
+          "notes": "NMN and NR are oral precursors that raise cellular NAD+; convenient and cost-effective vs IV; NMN may convert to NR in gut prior to absorption"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Direct NAD+ injection; increasingly used as alternative to IV infusion; practical and cost-effective for home use"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Mitochondrial Longevity Stack",
+          "compounds": [
+            "NAD+ Peptide Complex",
+            "MOTS-c",
+            "SS-31",
+            "Humanin"
+          ],
+          "purpose": "Complete mitochondrial optimization for longevity and metabolic health",
+          "notes": "NAD+ provides cofactor substrate for sirtuins and PARP; MOTS-c drives AMPK/biogenesis; SS-31 protects cristae; Humanin prevents apoptosis."
+        },
+        {
+          "name": "Anti-Aging Foundation Stack",
+          "compounds": [
+            "NAD+ Peptide Complex",
+            "Epithalon",
+            "GHK-Cu",
+            "Sermorelin"
+          ],
+          "purpose": "Comprehensive anti-aging targeting cellular, epigenetic, and tissue aging",
+          "notes": "One of the most complete longevity stacks; addresses multiple hallmarks of aging simultaneously."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "500mg/50ml IV solution",
+          "100mg injectable vials",
+          "250mg/500mg oral capsules"
+        ],
+        "recommended_bac_water": "IV solutions in saline; injectable vials use sterile water",
+        "storage": "Refrigerate IV/injectable formulations at 2-8°C; oral capsules at room temperature",
+        "shelf_life": "24 months sealed; follow manufacturer guidance for opened formulations"
+      },
+      "synthesis_info": {
+        "method": "Enzymatic synthesis (NAD+) or fermentation-derived NMN/NR precursors; chemical synthesis also used for research grade",
+        "form": "Lyophilized powder, IV solution, or oral capsule",
+        "purity_standard": "≥99% pharmaceutical grade; ≥98% research grade",
+        "storage_conditions": "Store at 2-8°C protected from light; NAD+ is hygroscopic — airtight container essential"
+      },
+      "popularity_score": 8
     },
     {
       "name": "Somatostatin",
@@ -2974,7 +4998,65 @@
           "title": "KPV Anti-Inflammatory Tripeptide - PMC",
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5748534/"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "100-500 mcg/day",
+        "beginner": "100-200 mcg/day oral or subcutaneous",
+        "intermediate": "300-500 mcg/day",
+        "advanced": "500-1000 mcg/day for inflammatory bowel conditions",
+        "cycle_length": "4-8 weeks",
+        "cycle_off": "4 weeks",
+        "notes": "Oral KPV is effective for GI inflammation due to local intestinal action. Subcutaneous dosing for systemic anti-inflammatory effects. Lower doses effective for IBD-like conditions; higher doses for acute inflammation management."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "Moderate",
+          "notes": "Effective for GI tract inflammation; tripeptide size allows some survival through proteolytic degradation"
+        },
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Systemic anti-inflammatory effects; consistent bioavailability for skin and immune applications"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "IBD and Gut Stack",
+          "compounds": [
+            "KPV",
+            "BPC-157",
+            "LL-37"
+          ],
+          "purpose": "Intestinal inflammation control, mucosal repair, and antimicrobial protection",
+          "notes": "All three can be orally administered to target the GI tract; complementary anti-inflammatory and healing mechanisms."
+        },
+        {
+          "name": "Skin Inflammation Stack",
+          "compounds": [
+            "KPV",
+            "GHK-Cu"
+          ],
+          "purpose": "Psoriasis, eczema, and inflammatory skin condition management",
+          "notes": "KPV reduces NF-κB-driven skin inflammation; GHK-Cu promotes tissue repair and anti-inflammatory collagen remodeling."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "5mg",
+          "10mg"
+        ],
+        "recommended_bac_water": "1-2ml per 5mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28-30 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); tripeptide Lys-Pro-Val; C-terminal fragment of alpha-melanocyte-stimulating hormone (α-MSH)",
+        "form": "Lyophilized powder or oral capsule",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; tripeptide is relatively stable compared to larger peptides"
+      },
+      "popularity_score": 6
     },
     {
       "name": "PACAP (Pituitary Adenylate Cyclase-Activating Polypeptide)",
@@ -3812,7 +5894,68 @@
           "title": "Ibutamoren MK677 PubChem CID 9918434",
           "url": "https://pubchem.ncbi.nlm.nih.gov/compound/9918434"
         }
-      ]
+      ],
+      "dosage": {
+        "typical_range": "10-25 mg/day orally",
+        "beginner": "10 mg/day at bedtime",
+        "intermediate": "15-20 mg/day at bedtime",
+        "advanced": "25 mg/day",
+        "cycle_length": "3-6 months; some use year-round at lower doses",
+        "cycle_off": "1-2 months; 10 mg/day maintenance sometimes used continuously",
+        "notes": "MK-677 is a non-peptide GH secretagogue taken orally. Half-life ~24 hours allows once-daily dosing. Bedtime dosing aligns GH pulse with natural nocturnal release. Significant appetite stimulation and possible insulin resistance at higher doses."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "Moderate",
+          "notes": "~60-80% bioavailability; convenient once-daily oral dosing; consistent plasma levels with daily use; food does not significantly affect absorption"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "GH Axis Stack (Oral-Friendly)",
+          "compounds": [
+            "MK-677 (Ibutamoren)",
+            "CJC-1295"
+          ],
+          "purpose": "Enhanced GH/IGF-1 elevation combining injectable GHRH with oral GHS mimetic",
+          "notes": "MK-677 provides oral GHS activity while CJC-1295 amplifies the GHRH component; suitable for users who prefer to minimize injections."
+        },
+        {
+          "name": "Mass Building Stack",
+          "compounds": [
+            "MK-677 (Ibutamoren)",
+            "IGF-1 LR3"
+          ],
+          "purpose": "Maximized anabolic environment through GH and IGF-1 pathway activation",
+          "notes": "MK-677 elevates endogenous GH/IGF-1 while exogenous IGF-1 LR3 bypasses the GH receptor step for direct tissue growth signaling."
+        },
+        {
+          "name": "Recovery and Anti-Aging Stack",
+          "compounds": [
+            "MK-677 (Ibutamoren)",
+            "BPC-157",
+            "Epithalon"
+          ],
+          "purpose": "GH optimization, tissue repair, and longevity support",
+          "notes": "Practical stack for older adults seeking accessible GH support with added healing and anti-aging peptides."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "N/A — available as oral capsules/tablets (10mg, 25mg)"
+        ],
+        "recommended_bac_water": "N/A — oral formulation",
+        "storage": "Store capsules/powder at room temperature 15-25°C; protect from moisture",
+        "shelf_life": "24-36 months sealed; 6-12 months after opening"
+      },
+      "synthesis_info": {
+        "method": "Chemical synthesis; non-peptide small molecule (spiroindoline derivative); a peptide mimetic GHS-R1a agonist, not a true peptide",
+        "form": "Oral capsules or powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store at 15-25°C in airtight container; protect from humidity and light"
+      },
+      "popularity_score": 9
     },
     {
       "name": "Carnosine",
@@ -5449,6 +7592,525 @@
         {
           "title": "HIV Fusion Inhibitor Mechanism - Nat Rev Drug Discov",
           "url": "https://www.nature.com/articles/nrd1928"
+        }
+      ]
+    },
+    {
+      "name": "Survodutide",
+      "slug": "survodutide",
+      "alternativeNames": [
+        "BI 456906",
+        "GLP-1/Glucagon Dual Agonist"
+      ],
+      "categories": [
+        "related-compounds",
+        "weight-loss-metabolic"
+      ],
+      "description": "Survodutide (BI 456906) is an investigational dual agonist of GLP-1 (glucagon-like peptide-1) and glucagon receptors, developed by Boehringer Ingelheim. Unlike GLP-1/GIP dual agonists (tirzepatide), survodutide combines GLP-1-driven satiety and insulin secretion with glucagon-driven hepatic fat oxidation and energy expenditure. This mechanism is particularly relevant to non-alcoholic steatohepatitis (NASH) and metabolic-associated steatotic liver disease (MASLD), where glucagon receptor activation reduces hepatic lipid accumulation.",
+      "mechanismOfAction": "Survodutide co-activates GLP-1 receptors (reducing appetite, slowing gastric emptying, stimulating insulin secretion) and glucagon receptors (increasing hepatic fat oxidation, thermogenesis, and energy expenditure). The glucagon component uniquely reduces hepatic steatosis by promoting fatty acid β-oxidation and decreasing de novo lipogenesis. GLP-1 activity counteracts glucagon's hyperglycemic potential, maintaining glycemic balance while allowing glucagon-driven metabolic benefits.",
+      "benefits": [
+        "Significant body weight reduction (Phase II: up to 18.7% at 48 weeks)",
+        "Reduction in hepatic fat content (NASH/MASLD indication)",
+        "Improved lipid profiles with glucagon-driven hepatic fat oxidation",
+        "Dual mechanism addresses both appetite and energy expenditure",
+        "Potential superiority to pure GLP-1 agonists for liver fat reduction"
+      ],
+      "researchStatus": "Phase II trials completed for obesity and NASH (2023-2024). Phase III trials initiated. Not FDA-approved. Developed by Boehringer Ingelheim.",
+      "aminoAcidSequence": "Proprietary sequence; dual GLP-1/glucagon receptor agonist peptide",
+      "molecularWeight": "Approximately 4.5-5 kDa",
+      "synergisticCompounds": [
+        "Semaglutide",
+        "Tirzepatide"
+      ],
+      "relatedPeptides": [
+        "Semaglutide",
+        "Tirzepatide",
+        "Retatrutide"
+      ],
+      "sideEffects": [
+        "Nausea (most common, dose-dependent)",
+        "Vomiting and diarrhea",
+        "Decreased appetite",
+        "Potential for hepatotoxicity monitoring required (glucagon component)",
+        "Hypoglycemia risk lower than pure glucagon agonists due to GLP-1 counterbalance"
+      ],
+      "dosageNotes": "Phase II trials used doses from 0.6 to 4.8 mg once weekly subcutaneous. Clinical dosing not yet established for approved indications.",
+      "dosage": {
+        "typical_range": "0.6-4.8 mg/week (Phase II range)",
+        "beginner": "0.6 mg/week titration start",
+        "intermediate": "1.2-2.4 mg/week",
+        "advanced": "3.6-4.8 mg/week (Phase II maximum doses)",
+        "cycle_length": "Ongoing therapeutic use; titration-based",
+        "cycle_off": "Not designed for cycling",
+        "notes": "Dosing based on Phase II clinical trial protocols; final approved dosing not yet established. Expect slow titration to manage GI side effects."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Once-weekly subcutaneous injection; standard route in all clinical trials"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "MASLD/NASH Protocol",
+          "compounds": [
+            "Survodutide",
+            "NAD+ Peptide Complex"
+          ],
+          "purpose": "Hepatic fat reduction and mitochondrial liver health support",
+          "notes": "Survodutide's glucagon component reduces hepatic fat; NAD+ targets mitochondrial dysfunction associated with NASH."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "Pre-filled pen device (clinical trial); research vials 1-5mg"
+        ],
+        "recommended_bac_water": "N/A for clinical formulation; research vials use 1-2ml BAC water",
+        "storage": "Refrigerate at 2-8°C",
+        "shelf_life": "24 months unopened per manufacturer"
+      },
+      "synthesis_info": {
+        "method": "Recombinant DNA technology or chemical synthesis with fatty acid conjugation for half-life extension",
+        "form": "Solution for injection (pre-filled pen in clinical setting)",
+        "purity_standard": "Pharmaceutical grade ≥99%",
+        "storage_conditions": "2-8°C; do not freeze; protect from light"
+      },
+      "popularity_score": 6,
+      "references": [
+        {
+          "title": "Survodutide - Boehringer Ingelheim Pipeline",
+          "url": "https://www.boehringer-ingelheim.com/human-health/metabolic-diseases"
+        },
+        {
+          "title": "GLP-1/Glucagon Dual Agonists for NASH - PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38024697/"
+        }
+      ]
+    },
+    {
+      "name": "Ostarine (MK-2866)",
+      "slug": "ostarine-mk-2866",
+      "alternativeNames": [
+        "MK-2866",
+        "Enobosarm",
+        "GTx-024",
+        "S-22"
+      ],
+      "categories": [
+        "sarms-related",
+        "muscle-growth"
+      ],
+      "description": "Ostarine (MK-2866, Enobosarm) is one of the most extensively studied Selective Androgen Receptor Modulators (SARMs). Developed by GTx Inc. (now Onconova) and Merck, it was investigated in Phase II/III clinical trials for cancer cachexia, muscle wasting in patients with non-small cell lung cancer, and stress urinary incontinence. Ostarine is the benchmark SARM for comparison in the research community due to its substantial clinical dataset and relatively well-characterized safety profile. It selectively activates androgen receptors in muscle and bone tissue while producing fewer androgenic effects in the prostate and skin compared to anabolic steroids.",
+      "mechanismOfAction": "Ostarine binds to androgen receptors (AR) with high affinity and selectivity. Unlike testosterone, it produces a tissue-selective conformational change in the AR that activates muscle and bone anabolic pathways while having reduced activity in androgenic tissues (prostate, skin, scalp). This tissue selectivity is mediated by differential recruitment of coactivator proteins. Ostarine activates PI3K/Akt/mTOR signaling in skeletal muscle, driving protein synthesis, nitrogen retention, and satellite cell activation. Bone anabolic effects occur through osteoblast AR stimulation.",
+      "benefits": [
+        "Significant lean muscle mass preservation and modest gains (1-3 kg in clinical trials)",
+        "Bone mineral density improvement",
+        "Reduced muscle wasting in cancer and chronic disease models",
+        "Improved physical function in older adults with sarcopenia",
+        "Lower androgenic side effect profile vs. anabolic steroids",
+        "Oral bioavailability (~99%)"
+      ],
+      "researchStatus": "Phase II and Phase III clinical trials completed for cancer cachexia and stress urinary incontinence. Not FDA-approved. Banned by WADA. Widely used as a research compound.",
+      "aminoAcidSequence": "N/A — non-peptide small molecule SARM (nonsteroidal)",
+      "molecularWeight": "389.33 g/mol",
+      "casNumber": "841205-47-8",
+      "sequenceLength": "N/A — small molecule",
+      "synergisticCompounds": [
+        "Cardarine (GW-501516)",
+        "Ipamorelin",
+        "MK-677 (Ibutamoren)"
+      ],
+      "relatedPeptides": [
+        "RAD-140 (Testolone)",
+        "Cardarine (GW-501516)",
+        "MK-677 (Ibutamoren)"
+      ],
+      "sideEffects": [
+        "Mild testosterone suppression (dose-dependent; generally mild at ≤25 mg/day)",
+        "Possible lipid profile changes (LDL increase, HDL decrease)",
+        "Liver enzyme elevation possible at higher doses",
+        "Visual disturbances reported anecdotally (mechanism unclear)",
+        "Not androgenic at standard doses but suppression requires PCT consideration"
+      ],
+      "dosageNotes": "Clinical trials used 1-3 mg/day for muscle wasting; research/bodybuilding protocols use 10-25 mg/day. Half-life ~24 hours; once-daily oral dosing.",
+      "dosage": {
+        "typical_range": "10-25 mg/day",
+        "beginner": "10 mg/day",
+        "intermediate": "15-20 mg/day",
+        "advanced": "25 mg/day",
+        "cycle_length": "6-8 weeks",
+        "cycle_off": "4-8 weeks (post-cycle therapy may be advisable at higher doses)",
+        "notes": "Clinical dose for muscle wasting was 1-3 mg; research/performance doses are 10-25 mg. Once-daily oral administration. Post-cycle support recommended after cycles >8 weeks or doses >25 mg."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "High",
+          "notes": "Excellent oral bioavailability (~99%); no first-pass liver toxicity seen at standard doses; half-life ~24 hours"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Recomposition Stack",
+          "compounds": [
+            "Ostarine (MK-2866)",
+            "Cardarine (GW-501516)"
+          ],
+          "purpose": "Muscle preservation with enhanced fat oxidation and endurance",
+          "notes": "Ostarine maintains lean mass while Cardarine drives PPAR-δ-mediated fat oxidation and endurance improvements."
+        },
+        {
+          "name": "SARM + GH Stack",
+          "compounds": [
+            "Ostarine (MK-2866)",
+            "MK-677 (Ibutamoren)",
+            "Ipamorelin"
+          ],
+          "purpose": "Anabolic environment with GH axis support for muscle growth",
+          "notes": "Ostarine provides direct AR-mediated muscle anabolism while GH secretagogues support recovery, sleep, and IGF-1 elevation."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "N/A — oral capsules or liquid suspension (10-25mg/ml)"
+        ],
+        "recommended_bac_water": "N/A — oral formulation",
+        "storage": "Store at room temperature 15-25°C; protect from moisture and light",
+        "shelf_life": "24-36 months sealed"
+      },
+      "synthesis_info": {
+        "method": "Multi-step chemical synthesis; nonsteroidal benzamide-derived SARM; cyanoGroup at para position is key pharmacophore",
+        "form": "Oral capsule or liquid suspension",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "15-25°C in airtight container; protect from light and humidity"
+      },
+      "popularity_score": 8,
+      "references": [
+        {
+          "title": "Ostarine (MK-2866) Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Enobosarm"
+        },
+        {
+          "title": "Enobosarm Phase III Cancer Cachexia Trial - NEJM",
+          "url": "https://www.nejm.org/doi/10.1056/NEJMoa1310184"
+        }
+      ]
+    },
+    {
+      "name": "RAD-140 (Testolone)",
+      "slug": "rad-140-testolone",
+      "alternativeNames": [
+        "Testolone",
+        "RAD140"
+      ],
+      "categories": [
+        "sarms-related",
+        "muscle-growth"
+      ],
+      "description": "RAD-140 (Testolone) is a potent, orally bioavailable nonsteroidal SARM developed by Radius Health. It demonstrates one of the highest anabolic-to-androgenic ratios (90:1) of any known androgen receptor modulator, meaning it produces strong muscle anabolic effects while displaying minimal androgenic activity at the prostate in preclinical models. RAD-140 is also being investigated for neuroprotective properties and potential application in breast cancer treatment through its AR-agonist/ER-antagonist activity.",
+      "mechanismOfAction": "RAD-140 binds to the androgen receptor (AR) with high affinity (Ki ~7 nM) and acts as a full agonist in muscle and bone tissue. The compound produces a distinct AR conformation that recruits anabolic coactivators preferentially over androgenic coactivators, achieving tissue selectivity. In the brain, RAD-140 activates AR-mediated neuroprotective pathways and has demonstrated apoptosis inhibition in neurons via stimulation of MAPK signaling and BDNF expression. Additionally, RAD-140 may act as an estrogen receptor (ER) antagonist in breast cancer cells expressing both AR and ER.",
+      "benefits": [
+        "High anabolic potency with 90:1 anabolic:androgenic ratio in preclinical studies",
+        "Significant lean muscle mass increases in primate studies",
+        "Neuroprotective effects and BDNF upregulation",
+        "Potential activity against AR+/ER+ breast cancer",
+        "No conversion to estrogen or DHT (non-steroidal)",
+        "Oral bioavailability with once-daily dosing"
+      ],
+      "researchStatus": "Phase I clinical trials ongoing for breast cancer. Preclinical data in primates shows significant muscle anabolism. Not FDA-approved. Banned by WADA.",
+      "aminoAcidSequence": "N/A — non-peptide small molecule SARM",
+      "molecularWeight": "393.83 g/mol",
+      "casNumber": "1182367-47-0",
+      "sequenceLength": "N/A — small molecule",
+      "synergisticCompounds": [
+        "MK-677 (Ibutamoren)",
+        "Cardarine (GW-501516)",
+        "Ipamorelin"
+      ],
+      "relatedPeptides": [
+        "Ostarine (MK-2866)",
+        "Cardarine (GW-501516)",
+        "Follistatin-344"
+      ],
+      "sideEffects": [
+        "Significant testosterone suppression (more pronounced than Ostarine)",
+        "Post-cycle therapy (PCT) strongly recommended",
+        "Possible hair loss (DHT-independent mechanism via AR activation in follicles)",
+        "Potential liver toxicity (case reports at high doses/long duration)",
+        "Aggression and mood changes reported at high doses"
+      ],
+      "dosageNotes": "Research protocols use 10-20 mg/day orally. Half-life ~60 hours (long). Once-daily dosing sufficient.",
+      "dosage": {
+        "typical_range": "10-20 mg/day",
+        "beginner": "10 mg/day",
+        "intermediate": "15 mg/day",
+        "advanced": "20 mg/day (some research protocols up to 30 mg but not recommended)",
+        "cycle_length": "6-8 weeks",
+        "cycle_off": "8-12 weeks; post-cycle therapy required after most cycles",
+        "notes": "Long half-life (~60 hours) means steady-state is achieved within 2 weeks. More suppressive than Ostarine — post-cycle therapy with SERMs or peptides that support HPG axis (Kisspeptin, Gonadorelin) is strongly advisable."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "High",
+          "notes": "Good oral bioavailability; half-life ~60 hours allows once-daily dosing; no injection required"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Strength and Mass Stack",
+          "compounds": [
+            "RAD-140 (Testolone)",
+            "MK-677 (Ibutamoren)"
+          ],
+          "purpose": "AR-driven muscle anabolism with GH/IGF-1 axis support",
+          "notes": "RAD-140 provides direct AR-mediated muscle growth; MK-677 adds GH elevation, appetite, and recovery support. Popular oral-only research stack."
+        },
+        {
+          "name": "Lean Gains Stack",
+          "compounds": [
+            "RAD-140 (Testolone)",
+            "Cardarine (GW-501516)",
+            "Ostarine (MK-2866)"
+          ],
+          "purpose": "Potent anabolic effect with fat oxidation and injury protection",
+          "notes": "RAD-140 builds muscle; Cardarine improves endurance and fat burning; Ostarine provides connective tissue and joint support."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "N/A — oral capsules or liquid suspension (10-20mg/ml)"
+        ],
+        "recommended_bac_water": "N/A — oral formulation",
+        "storage": "Store at room temperature 15-25°C; protect from light and moisture",
+        "shelf_life": "24-36 months sealed"
+      },
+      "synthesis_info": {
+        "method": "Multi-step chemical synthesis; triazine-based nonsteroidal SARM compound",
+        "form": "Oral capsule or liquid suspension",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "15-25°C in airtight container; protect from light"
+      },
+      "popularity_score": 8,
+      "references": [
+        {
+          "title": "RAD-140 Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/RAD140"
+        },
+        {
+          "title": "RAD140 Neuroprotection and AR Agonism - PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24428527/"
+        }
+      ]
+    },
+    {
+      "name": "Cardarine (GW-501516)",
+      "slug": "cardarine-gw-501516",
+      "alternativeNames": [
+        "GW-501516",
+        "GW1516",
+        "GSK-516",
+        "Endurobol"
+      ],
+      "categories": [
+        "sarms-related",
+        "weight-loss-metabolic"
+      ],
+      "description": "Cardarine (GW-501516) is a PPARδ (peroxisome proliferator-activated receptor delta) agonist, not a SARM in the strict sense, but it is commonly grouped with SARMs in research and performance communities. Originally co-developed by GlaxoSmithKline and Ligand Pharmaceuticals, Cardarine's clinical development was terminated in 2007 when toxicology studies revealed dose-dependent carcinogenic potential in multiple organ tissues in rodent models after 2-year exposure. Despite this, GW-501516 continues to be researched and used due to its dramatic effects on fat oxidation and endurance capacity.",
+      "mechanismOfAction": "GW-501516 binds to and activates PPARδ receptors, transcription factors that regulate genes involved in fatty acid metabolism, mitochondrial biogenesis, and energy expenditure. Activation shifts muscle fuel utilization from glucose to fatty acids, increasing fat oxidation and improving mitochondrial function. PPARδ activation also upregulates GLUT4 expression (improving insulin sensitivity), stimulates slow-twitch oxidative muscle fiber development, and activates AMPK signaling — producing effects similar to endurance exercise training without the physical effort.",
+      "benefits": [
+        "Dramatic endurance improvement (60% increase in running distance in animal models)",
+        "Enhanced fat oxidation and weight loss without catabolism",
+        "Improved insulin sensitivity and glucose metabolism",
+        "Mitochondrial biogenesis in skeletal muscle",
+        "Shift toward oxidative muscle fiber type",
+        "Potential HDL cholesterol improvement"
+      ],
+      "researchStatus": "Clinical development discontinued by GSK in 2007 due to carcinogenicity in rodent studies. No human clinical trial completion for performance indications. Research use continues. Not approved for any indication. Banned by WADA.",
+      "aminoAcidSequence": "N/A — non-peptide small molecule PPARδ agonist",
+      "molecularWeight": "453.51 g/mol",
+      "casNumber": "317318-70-0",
+      "sequenceLength": "N/A — small molecule",
+      "synergisticCompounds": [
+        "Ostarine (MK-2866)",
+        "MOTS-c",
+        "SR9009 (Stenabolic)"
+      ],
+      "relatedPeptides": [
+        "Ostarine (MK-2866)",
+        "RAD-140 (Testolone)",
+        "MOTS-c"
+      ],
+      "sideEffects": [
+        "CRITICAL: Carcinogenicity shown in rodent studies after chronic exposure",
+        "Cancer risk in humans not established but theoretical based on rodent data",
+        "Potential hepatotoxicity at high doses",
+        "No androgenic suppression (not AR-mediated)",
+        "GI discomfort at high doses",
+        "The carcinogenicity concern led to discontinuation of clinical development"
+      ],
+      "dosageNotes": "Research doses: 10-20 mg/day orally. Half-life ~16-24 hours. NOTE: chronic carcinogenicity concerns from rodent data; research use only with full informed awareness of risks.",
+      "dosage": {
+        "typical_range": "10-20 mg/day",
+        "beginner": "10 mg/day",
+        "intermediate": "15-20 mg/day",
+        "advanced": "20 mg/day maximum; higher doses increase carcinogenicity concern",
+        "cycle_length": "4-8 weeks maximum (shorter cycles recommended given carcinogenicity data)",
+        "cycle_off": "8-12 weeks minimum",
+        "notes": "IMPORTANT: Carcinogenic potential in rodent models led to clinical discontinuation. Research use only. Shorter cycles are advisable given the carcinogenicity findings in chronic rodent exposures. Not recommended for long-term use."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Oral",
+          "bioavailability": "High",
+          "notes": "Good oral bioavailability; half-life ~16-24 hours; once-daily dosing; no injection required"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Endurance and Fat Loss Stack",
+          "compounds": [
+            "Cardarine (GW-501516)",
+            "Ostarine (MK-2866)"
+          ],
+          "purpose": "Maximal fat oxidation with muscle preservation during a cut",
+          "notes": "Cardarine dramatically improves fat burning and endurance; Ostarine maintains lean mass and provides some joint protection during caloric deficit."
+        },
+        {
+          "name": "Metabolic Optimization Stack",
+          "compounds": [
+            "Cardarine (GW-501516)",
+            "MOTS-c"
+          ],
+          "purpose": "PPAR-δ and AMPK-driven metabolic enhancement",
+          "notes": "Both activate overlapping pathways for mitochondrial biogenesis and fat oxidation; complementary mechanisms for metabolic enhancement."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "N/A — oral capsules or liquid suspension (10-20mg/ml)"
+        ],
+        "recommended_bac_water": "N/A — oral formulation",
+        "storage": "Store at room temperature 15-25°C; protect from light and moisture",
+        "shelf_life": "24-36 months sealed"
+      },
+      "synthesis_info": {
+        "method": "Multi-step chemical synthesis; phenoxyacetic acid-derived PPARδ agonist",
+        "form": "Oral capsule or liquid suspension",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "15-25°C in airtight container; protect from light"
+      },
+      "popularity_score": 7,
+      "references": [
+        {
+          "title": "Cardarine (GW-501516) Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/GW501516"
+        },
+        {
+          "title": "PPARdelta Agonism in Skeletal Muscle - Cell Metabolism",
+          "url": "https://www.cell.com/cell-metabolism/fulltext/S1550-4131(08)00261-0"
+        }
+      ]
+    },
+    {
+      "name": "PE-22-28",
+      "slug": "pe-22-28",
+      "alternativeNames": [
+        "Spadin analog",
+        "Antidepressant peptide PE-22-28"
+      ],
+      "categories": [
+        "cognitive-nootropic",
+        "neuroprotective"
+      ],
+      "description": "PE-22-28 is a synthetic pentapeptide analog of spadin, a naturally occurring peptide derived from the pro-region of the NTSR3/sortilin receptor. Spadin was identified as an endogenous blocker of TREK-1 (TWIK-related potassium channel-1) channels, which are implicated in the mechanism of action of antidepressants. PE-22-28 is a modified, more stable version of spadin with improved pharmacokinetic properties. It has demonstrated rapid antidepressant-like effects and neuroplasticity-promoting properties in preclinical models, with an onset of action measured in hours rather than the weeks required by traditional antidepressants.",
+      "mechanismOfAction": "PE-22-28 acts as a TREK-1 channel blocker. TREK-1 is a two-pore domain potassium channel that maintains neuronal hyperpolarization; its blockade leads to increased neuronal excitability in serotonergic and dopaminergic circuits. Additionally, PE-22-28 activates the mTOR pathway and CREB transcription factor phosphorylation, promoting BDNF expression and synaptogenesis. It has been shown to increase serotonergic and dopaminergic tone in the prefrontal cortex, hippocampus, and raphe nuclei. Crucially, effects appear within hours in preclinical models rather than requiring weeks of treatment.",
+      "benefits": [
+        "Rapid antidepressant-like effects within hours of administration",
+        "TREK-1 blockade improving serotonergic and dopaminergic tone",
+        "Neuroplasticity and synaptogenesis via BDNF upregulation",
+        "mTOR pathway activation supporting neuronal growth",
+        "Potential advantage over traditional antidepressants (faster onset, fewer side effects in preclinical models)",
+        "Anxiety reduction in preclinical models"
+      ],
+      "researchStatus": "Preclinical only (in vitro and rodent models). No human clinical trials yet completed. Emerging research peptide with significant interest for treatment-resistant depression.",
+      "aminoAcidSequence": "Ala-Pro-Leu-Pro-Arg (pentapeptide; specific sequence proprietary/research variant of spadin)",
+      "molecularWeight": "Approximately 540-600 Da",
+      "synergisticCompounds": [
+        "Semax",
+        "Selank",
+        "Dihexa"
+      ],
+      "relatedPeptides": [
+        "Selank",
+        "Semax",
+        "Dihexa"
+      ],
+      "sideEffects": [
+        "Human safety profile not established (no completed clinical trials)",
+        "Theoretical: serotonin syndrome risk if combined with serotonergic drugs",
+        "Potential dopaminergic modulation effects",
+        "No known serious adverse events in rodent studies at research doses"
+      ],
+      "dosageNotes": "No established human dosing. Research doses extrapolated from rodent studies (~1-10 mg/kg). Typical starting points in human research protocols are highly speculative.",
+      "dosage": {
+        "typical_range": "100-500 mcg/day (speculative; based on rodent data extrapolation)",
+        "beginner": "100 mcg/day",
+        "intermediate": "200-300 mcg/day",
+        "advanced": "400-500 mcg/day",
+        "cycle_length": "2-4 weeks",
+        "cycle_off": "2-4 weeks; human dosing and cycling protocols are not established",
+        "notes": "Human dosing is entirely speculative — no clinical trials completed. All protocols are extrapolations from preclinical data. Exercise maximum caution; this is an early-stage research peptide."
+      },
+      "routes_of_administration": [
+        {
+          "route": "Subcutaneous Injection",
+          "bioavailability": "High",
+          "notes": "Primary research route based on preclinical studies; consistent CNS delivery"
+        },
+        {
+          "route": "Nasal",
+          "bioavailability": "Moderate",
+          "notes": "Potential route for rapid CNS delivery; not yet characterized in published research"
+        }
+      ],
+      "stacking": [
+        {
+          "name": "Mood and Cognition Stack",
+          "compounds": [
+            "PE-22-28",
+            "Semax",
+            "Selank"
+          ],
+          "purpose": "Complementary antidepressant, BDNF-upregulating, and anxiolytic peptide combination",
+          "notes": "PE-22-28 provides TREK-1 blockade and dopaminergic support; Semax adds BDNF and cognitive enhancement; Selank provides anxiolysis. All are nootropic peptides with CNS-targeting mechanisms."
+        }
+      ],
+      "reconstitution": {
+        "typical_vial_sizes": [
+          "2mg",
+          "5mg"
+        ],
+        "recommended_bac_water": "1ml per 2mg vial",
+        "storage": "Refrigerate at 2-8°C after reconstitution",
+        "shelf_life": "28 days refrigerated"
+      },
+      "synthesis_info": {
+        "method": "Solid-phase peptide synthesis (SPPS); pentapeptide analog of spadin derived from sortilin propeptide",
+        "form": "Lyophilized powder",
+        "purity_standard": "≥98% by HPLC",
+        "storage_conditions": "Store lyophilized at -20°C; protect from light and moisture"
+      },
+      "popularity_score": 4,
+      "references": [
+        {
+          "title": "Spadin and PE-22-28 Antidepressant Activity - PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32080126/"
+        },
+        {
+          "title": "TREK-1 Blocker Antidepressant Peptides - Nature Communications",
+          "url": "https://www.nature.com/articles/s41467-021-27160-4"
         }
       ]
     }

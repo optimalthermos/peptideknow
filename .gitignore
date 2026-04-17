@@ -2,3 +2,6 @@ node_modules/
 .env
 .DS_Store
 *.log
+static-out/
+expand-data.js
+node_modules/

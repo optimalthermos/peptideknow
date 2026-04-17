@@ -204,7 +204,9 @@ app.get('/', (req, res) => {
     NAV_ACTIVE_HOME: 'active',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: '',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   });
 
   res.send(html);
@@ -262,7 +264,9 @@ app.get('/peptides', (req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: 'active',
     NAV_ACTIVE_CATEGORIES: '',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   });
 
   res.send(html);
@@ -284,7 +288,9 @@ app.get('/peptides/:slug', (req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: '',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   }));
 
   const catLinks = (p.categories || []).map(c => {
@@ -331,6 +337,135 @@ app.get('/peptides/:slug', (req, res) => {
   if (p.casNumber) quickFacts.push(`<tr><th>CAS Number</th><td>${p.casNumber}</td></tr>`);
   if (p.pubChemCID) quickFacts.push(`<tr><th>PubChem CID</th><td><a href="https://pubchem.ncbi.nlm.nih.gov/compound/${p.pubChemCID}" target="_blank" rel="noopener noreferrer">${p.pubChemCID}</a></td></tr>`);
   if (p.researchStatus) quickFacts.push(`<tr><th>Research Status</th><td>${p.researchStatus}</td></tr>`);
+  if (p.compoundType) quickFacts.push(`<tr><th>Compound Type</th><td>${p.compoundType}</td></tr>`);
+
+  // Popularity badge
+  const popScore = p.popularity_score || p.popularity || 0;
+  let popularityBadge = '';
+  if (popScore >= 8) popularityBadge = '<span class="popularity-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Popular</span>';
+
+  // === RICH DOSAGE SECTION ===
+  let dosageSection = '';
+  let tocDosage = '';
+  const d = p.dosage;
+  if (d && (d.typical_range || d.beginner || d.standard)) {
+    tocDosage = '<li><a href="#dosage">Dosage Protocols</a></li>';
+    let rows = '';
+    if (d.typical_range || d.standard) rows += `<tr><td>Typical Range</td><td><strong>${d.typical_range || d.standard}</strong></td></tr>`;
+    if (d.beginner) rows += `<tr><td>Beginner</td><td>${d.beginner}</td></tr>`;
+    if (d.intermediate) rows += `<tr><td>Intermediate</td><td>${d.intermediate}</td></tr>`;
+    if (d.advanced) rows += `<tr><td>Advanced</td><td>${d.advanced}</td></tr>`;
+    if (d.bodyWeight || d.body_weight) rows += `<tr><td>Body Weight</td><td>${d.bodyWeight || d.body_weight}</td></tr>`;
+    if (d.cycle_length || d.cycleDuration) rows += `<tr><td>Cycle Duration</td><td>${d.cycle_length || d.cycleDuration}</td></tr>`;
+    if (d.cycle_off) rows += `<tr><td>Cycle Off</td><td>${d.cycle_off}</td></tr>`;
+    const notes = d.notes ? `<p class="dosage-note">${d.notes}</p>` : '';
+    dosageSection = `<section class="detail-section" id="dosage">
+      <h2>Dosage Protocols</h2>
+      <p class="dosage-disclaimer">The following reflects doses used in published research studies. This is not medical advice. Consult a qualified healthcare professional.</p>
+      <div class="dosage-table-wrap"><table class="data-table"><tbody>${rows}</tbody></table></div>
+      ${notes}
+      <p class="crosslink-inline"><a href="/tools/calculator">Use our Reconstitution Calculator</a> to determine exact syringe units for your protocol.</p>
+    </section>`;
+  } else {
+    tocDosage = '<li><a href="#dosage">Dosage Notes</a></li>';
+    dosageSection = `<section class="detail-section" id="dosage">
+      <h2>Research Dosage Notes</h2>
+      <p class="dosage-disclaimer">The following reflects doses used in published research studies. This is not medical advice.</p>
+      <p>${p.dosageNotes || 'Consult published research literature for study-specific protocols.'}</p>
+    </section>`;
+  }
+
+  // === ROA SECTION ===
+  let roaSection = '';
+  let tocRoa = '';
+  const roa = p.routes_of_administration || p.routesOfAdministration;
+  if (roa && roa.length > 0) {
+    tocRoa = '<li><a href="#roa">Administration Routes</a></li>';
+    let roaCards = '';
+    if (typeof roa[0] === 'object') {
+      roaCards = roa.map(r => {
+        const badge = r.bioavailability ? `<span class="route-badge route-badge-${r.bioavailability.toLowerCase() === 'high' ? 'high' : r.bioavailability.toLowerCase() === 'moderate' ? 'moderate' : 'low'}">${r.bioavailability}</span>` : '';
+        return `<div class="route-card">
+          <h5>${r.route} ${badge}</h5>
+          <p>${r.notes || ''}</p>
+        </div>`;
+      }).join('');
+    } else {
+      roaCards = roa.map(r => `<div class="route-card"><h5>${r}</h5></div>`).join('');
+    }
+    roaSection = `<section class="detail-section" id="roa">
+      <h2>Routes of Administration</h2>
+      <div class="dosage-routes">${roaCards}</div>
+      <p class="crosslink-inline"><a href="/guides/routes-of-administration">Read our full Routes of Administration Guide</a> for detailed comparison of all delivery methods.</p>
+    </section>`;
+  }
+
+  // === STACKING SECTION ===
+  let stackingSection = '';
+  let tocStacking = '';
+  const stacks = p.stacking || p.stackingProtocols;
+  if (stacks && stacks.length > 0) {
+    tocStacking = '<li><a href="#stacking">Stacking Protocols</a></li>';
+    const stackCards = stacks.map(s => {
+      const compounds = (s.compounds || s.companions || []).map(c => {
+        const match = peptides.find(pp => pp.name === c || pp.name.includes(c));
+        return match ? `<a href="/peptides/${match.slug}" class="stack-compound-link">${c}</a>` : `<span class="stack-compound-tag">${c}</span>`;
+      }).join('');
+      return `<div class="stack-card">
+        <h4>${s.name}</h4>
+        <p class="stack-purpose">${s.purpose || ''}</p>
+        <div class="stack-compounds">${compounds}</div>
+        <p class="stack-notes">${s.notes || ''}</p>
+      </div>`;
+    }).join('');
+    stackingSection = `<section class="detail-section stacking-section" id="stacking">
+      <h2>Stacking Protocols</h2>
+      <p>Popular research stacks involving ${p.name}:</p>
+      ${stackCards}
+      <p class="crosslink-inline"><a href="/guides/stacking">Explore our complete Peptide Stacking Guide</a> for more combinations and safety considerations.</p>
+    </section>`;
+  }
+
+  // === RECONSTITUTION SECTION ===
+  let reconSection = '';
+  let tocRecon = '';
+  const recon = p.reconstitution;
+  if (recon) {
+    tocRecon = '<li><a href="#reconstitution">Reconstitution</a></li>';
+    let reconRows = '';
+    const vialSizes = recon.typical_vial_sizes || recon.typicalVialSize;
+    if (vialSizes) reconRows += `<tr><th>Typical Vial Size</th><td>${Array.isArray(vialSizes) ? vialSizes.join(', ') : vialSizes}</td></tr>`;
+    const bac = recon.recommended_bac_water || recon.recommendedWater;
+    if (bac) reconRows += `<tr><th>BAC Water</th><td>${bac}</td></tr>`;
+    if (recon.concentration) reconRows += `<tr><th>Concentration</th><td>${recon.concentration}</td></tr>`;
+    const storage = recon.storage || recon.storageTemp;
+    if (storage) reconRows += `<tr><th>Storage</th><td>${storage}</td></tr>`;
+    const shelf = recon.shelf_life || recon.shelfLife;
+    if (shelf) reconRows += `<tr><th>Shelf Life</th><td>${shelf}</td></tr>`;
+    const reconNotes = recon.notes ? `<p class="recon-note">${recon.notes}</p>` : '';
+    reconSection = `<section class="detail-section" id="reconstitution">
+      <h2>Reconstitution</h2>
+      <table class="data-table">${reconRows}</table>
+      ${reconNotes}
+      <div class="cta-box">
+        <h4>Need exact syringe measurements?</h4>
+        <div class="cta-links">
+          <a href="/tools/calculator" class="btn-primary">Open Calculator</a>
+          <a href="/guides/reconstitution" class="btn-outline">Full Guide</a>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  // === GUIDE CROSSLINKS ===
+  const guideCrosslinks = [
+    `<a href="/guides/beginners" class="crosslink-card"><strong>Beginner's Guide</strong><span>New to peptides? Start here</span></a>`,
+    `<a href="/guides/stacking" class="crosslink-card"><strong>Stacking Guide</strong><span>Synergistic combinations</span></a>`,
+    `<a href="/guides/routes-of-administration" class="crosslink-card"><strong>Administration Routes</strong><span>SubQ, IM, oral, nasal & more</span></a>`,
+    `<a href="/tools/calculator" class="crosslink-card"><strong>Reconstitution Calculator</strong><span>Calculate exact dosing</span></a>`,
+    `<a href="/guides/peptides-vs-sarms" class="crosslink-card"><strong>Peptides vs SARMs</strong><span>Full comparison</span></a>`,
+    `<a href="/guides/synthesis" class="crosslink-card"><strong>How Peptides Are Made</strong><span>SPPS, purification & QC</span></a>`
+  ].join('');
 
   // FAQ for this peptide
   const faqs = [
@@ -338,6 +473,9 @@ app.get('/peptides/:slug', (req, res) => {
     { q: `What are the potential benefits of ${p.name}?`, a: (p.benefits || []).join('. ') },
     { q: `What compounds work synergistically with ${p.name}?`, a: (p.synergisticCompounds || []).length > 0 ? `${p.name} has been studied alongside ${p.synergisticCompounds.join(', ')} for potential synergistic effects.` : `Research on synergistic compounds for ${p.name} is ongoing.` }
   ];
+  if (d && (d.typical_range || d.standard)) {
+    faqs.push({ q: `What is the typical dosage for ${p.name}?`, a: `Research protocols typically use ${d.typical_range || d.standard}. ${d.notes || ''}` });
+  }
 
   const bcLD = breadcrumbLD([
     { name: 'Home', url: '/' },
@@ -395,7 +533,16 @@ app.get('/peptides/:slug', (req, res) => {
     BENEFITS_LIST: benefitsList,
     SIDE_EFFECTS_LIST: sideEffectsList,
     AMINO_ACID_SEQ: p.aminoAcidSequence || 'Not yet characterized',
-    DOSAGE_NOTES: p.dosageNotes || 'Consult published research literature for study-specific protocols.',
+    POPULARITY_BADGE: popularityBadge,
+    DOSAGE_SECTION: dosageSection,
+    ROA_SECTION: roaSection,
+    STACKING_SECTION: stackingSection,
+    RECONSTITUTION_SECTION: reconSection,
+    TOC_DOSAGE: tocDosage,
+    TOC_ROA: tocRoa,
+    TOC_STACKING: tocStacking,
+    TOC_RECONSTITUTION: tocRecon,
+    GUIDE_CROSSLINKS: guideCrosslinks,
     SYNERGISTIC_LINKS: synLinks || '<span class="none-listed">None currently listed</span>',
     RELATED_LINKS: relatedLinks || '<span class="none-listed">None currently listed</span>',
     QUICK_FACTS: quickFacts.join(''),
@@ -404,7 +551,9 @@ app.get('/peptides/:slug', (req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: 'active',
     NAV_ACTIVE_CATEGORIES: '',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   });
 
   res.send(html);
@@ -446,7 +595,9 @@ app.get('/categories', (req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: 'active',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   });
 
   res.send(html);
@@ -460,7 +611,9 @@ app.get('/categories/:id', (req, res) => {
     META_DESCRIPTION: 'The requested page was not found.',
     CANONICAL: '', OG_TITLE: '', OG_DESCRIPTION: '', OG_URL: '', OG_IMAGE: '',
     EXTRA_HEAD: '<meta name="robots" content="noindex">', JSON_LD: '',
-    NAV_ACTIVE_HOME: '', NAV_ACTIVE_PEPTIDES: '', NAV_ACTIVE_CATEGORIES: '', NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_HOME: '', NAV_ACTIVE_PEPTIDES: '', NAV_ACTIVE_CATEGORIES: '', NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   }));
 
   const catPeptides = categoryPeptides[cat.id] || [];
@@ -511,7 +664,9 @@ app.get('/categories/:id', (req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: 'active',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   });
 
   res.send(html);
@@ -562,7 +717,9 @@ app.get('/search', (req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: '',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   });
 
   res.send(html);
@@ -590,7 +747,9 @@ app.get('/about', (req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: '',
-    NAV_ACTIVE_ABOUT: 'active'
+    NAV_ACTIVE_ABOUT: 'active',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   });
 
   res.send(html);
@@ -606,6 +765,14 @@ app.get('/sitemap.xml', (req, res) => {
   <url><loc>${base}/categories</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>${base}/search</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>${base}/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>${base}/guides</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>${base}/guides/beginners</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/stacking</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/routes-of-administration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/reconstitution</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/synthesis</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>${base}/guides/peptides-vs-sarms</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/tools/calculator</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
 `;
 
   categories.forEach(cat => {
@@ -664,6 +831,226 @@ app.get('/api/peptides', (req, res) => {
   res.json(results);
 });
 
+// ============ GUIDE & TOOL HELPER FUNCTIONS ============
+
+function renderGuide(templateName, vars) {
+  const defaults = {
+    NAV_ACTIVE_HOME: '',
+    NAV_ACTIVE_PEPTIDES: '',
+    NAV_ACTIVE_CATEGORIES: '',
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: '',
+    NAV_ACTIVE_GUIDES: 'active',
+    NAV_ACTIVE_CALCULATOR: '',
+    EXTRA_HEAD: '',
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png'
+  };
+  return render(templateName, { ...defaults, ...vars });
+}
+
+function renderTool(templateName, vars) {
+  const defaults = {
+    NAV_ACTIVE_HOME: '',
+    NAV_ACTIVE_PEPTIDES: '',
+    NAV_ACTIVE_CATEGORIES: '',
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: 'active',
+    EXTRA_HEAD: '',
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png'
+  };
+  return render(templateName, { ...defaults, ...vars });
+}
+
+// ============ GUIDE ROUTES ============
+
+// Guides index
+app.get('/guides', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Guides' }
+  ]);
+  const html = renderGuide('guides-index', {
+    TITLE: 'Peptide Guides — Dosing, Stacking, Reconstitution & More | PeptideKnow',
+    META_DESCRIPTION: 'Comprehensive peptide guides covering reconstitution, stacking protocols, routes of administration, synthesis, and how peptides compare to SARMs. Start here if you are new to peptides.',
+    CANONICAL: 'https://www.peptideknow.com/guides',
+    OG_TITLE: 'Peptide Guides | PeptideKnow',
+    OG_DESCRIPTION: 'Complete guides to peptide reconstitution, stacking, administration routes, synthesis, and more.',
+    OG_URL: 'https://www.peptideknow.com/guides',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>`
+  });
+  res.send(html);
+});
+
+// Beginner's Guide
+app.get('/guides/beginners', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Guides', url: '/guides' },
+    { name: "Beginner's Guide" }
+  ]);
+  const faqs = [
+    { q: 'What are peptides?', a: 'Peptides are short chains of amino acids (2-50 residues) that act as signaling molecules in the body, regulating processes like growth, healing, immune function, and metabolism.' },
+    { q: 'Are peptides the same as steroids?', a: 'No. Peptides are amino acid chains that work through natural receptor pathways. Steroids are synthetic hormones with a fundamentally different mechanism and risk profile.' },
+    { q: 'How are peptides administered?', a: 'The most common route is subcutaneous injection. Other routes include intramuscular injection, intranasal spray, oral capsules, sublingual tablets, and topical creams.' },
+    { q: 'What is the most popular beginner peptide?', a: 'BPC-157 is widely considered the most beginner-friendly peptide due to its favorable safety profile and versatile healing properties.' }
+  ];
+  const html = renderGuide('beginners-guide', {
+    TITLE: "Beginner's Guide to Peptides — What They Are & How to Start | PeptideKnow",
+    META_DESCRIPTION: 'New to peptides? Our comprehensive beginner guide covers what peptides are, how they work, popular starter peptides like BPC-157 and TB-500, reconstitution basics, and safety considerations.',
+    CANONICAL: 'https://www.peptideknow.com/guides/beginners',
+    OG_TITLE: "Beginner's Guide to Peptides | PeptideKnow",
+    OG_DESCRIPTION: 'Everything you need to know to get started with research peptides.',
+    OG_URL: 'https://www.peptideknow.com/guides/beginners',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+  });
+  res.send(html);
+});
+
+// Stacking Guide
+app.get('/guides/stacking', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Guides', url: '/guides' },
+    { name: 'Stacking Guide' }
+  ]);
+  const faqs = [
+    { q: 'What is peptide stacking?', a: 'Peptide stacking is the practice of combining two or more peptides in a protocol to leverage synergistic effects. For example, combining BPC-157 with TB-500 for enhanced tissue healing.' },
+    { q: 'Can you mix peptides in the same syringe?', a: 'Some peptides can be combined in the same syringe for convenience, but always verify compatibility first. Certain peptides may degrade when mixed.' },
+    { q: 'What is the best beginner peptide stack?', a: 'The BPC-157 + TB-500 "Wolverine" healing stack is widely considered the best starter stack due to its synergistic tissue repair effects and favorable safety profile.' }
+  ];
+  const html = renderGuide('stacking-guide', {
+    TITLE: 'Peptide Stacking Guide — Synergistic Protocols & Combinations | PeptideKnow',
+    META_DESCRIPTION: 'Learn how to stack peptides for maximum synergy. Covers popular stacks like BPC-157 + TB-500 (Wolverine), GH optimization, gut healing, cognitive enhancement, and metabolic reset protocols.',
+    CANONICAL: 'https://www.peptideknow.com/guides/stacking',
+    OG_TITLE: 'Peptide Stacking Guide | PeptideKnow',
+    OG_DESCRIPTION: 'Synergistic peptide combinations: healing, GH, cognitive, metabolic stacks.',
+    OG_URL: 'https://www.peptideknow.com/guides/stacking',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+  });
+  res.send(html);
+});
+
+// Routes of Administration
+app.get('/guides/routes-of-administration', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Guides', url: '/guides' },
+    { name: 'Routes of Administration' }
+  ]);
+  const faqs = [
+    { q: 'What is the best way to take peptides?', a: 'Subcutaneous injection is the most common and bioavailable route for most peptides. However, some peptides like BPC-157 can be taken orally, and others like Semax work well intranasally.' },
+    { q: 'Are oral peptides effective?', a: 'Oral bioavailability is generally lower due to digestive degradation. However, certain peptides like BPC-157 and some GLP-1 agonists have demonstrated oral effectiveness with modified formulations.' },
+    { q: 'Do peptide nasal sprays work?', a: 'Intranasal administration bypasses the blood-brain barrier for certain peptides, making it highly effective for nootropic peptides like Semax, Selank, and Dihexa.' }
+  ];
+  const html = renderGuide('roa-guide', {
+    TITLE: 'Routes of Peptide Administration — SubQ, IM, Oral, Nasal & More | PeptideKnow',
+    META_DESCRIPTION: 'Complete guide to peptide administration routes: subcutaneous injection, intramuscular, oral, sublingual, intranasal, and topical. Compare bioavailability, onset times, and best use cases.',
+    CANONICAL: 'https://www.peptideknow.com/guides/routes-of-administration',
+    OG_TITLE: 'Routes of Peptide Administration | PeptideKnow',
+    OG_DESCRIPTION: 'Compare all peptide administration routes: SubQ, IM, oral, nasal, sublingual, topical.',
+    OG_URL: 'https://www.peptideknow.com/guides/routes-of-administration',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+  });
+  res.send(html);
+});
+
+// Reconstitution Guide
+app.get('/guides/reconstitution', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Guides', url: '/guides' },
+    { name: 'Reconstitution Guide' }
+  ]);
+  const faqs = [
+    { q: 'What is peptide reconstitution?', a: 'Reconstitution is the process of dissolving lyophilized (freeze-dried) peptide powder with bacteriostatic water to create an injectable solution.' },
+    { q: 'How much bacteriostatic water should I use?', a: 'The amount depends on the peptide quantity and desired concentration. Use our reconstitution calculator for exact measurements. A common standard is 1-2 mL per 5mg vial.' },
+    { q: 'How long does reconstituted peptide last?', a: 'Reconstituted peptides typically remain stable for 3-4 weeks when stored properly at 2-8°C (refrigerated). Never freeze reconstituted peptides.' }
+  ];
+  const html = renderGuide('reconstitution-guide', {
+    TITLE: 'How to Reconstitute Peptides — Step-by-Step Guide | PeptideKnow',
+    META_DESCRIPTION: 'Step-by-step peptide reconstitution guide with bacteriostatic water. Learn proper technique, storage, dosing calculations, and common mistakes to avoid.',
+    CANONICAL: 'https://www.peptideknow.com/guides/reconstitution',
+    OG_TITLE: 'Peptide Reconstitution Guide | PeptideKnow',
+    OG_DESCRIPTION: 'Step-by-step guide to reconstituting peptides with bacteriostatic water.',
+    OG_URL: 'https://www.peptideknow.com/guides/reconstitution',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+  });
+  res.send(html);
+});
+
+// Synthesis Guide
+app.get('/guides/synthesis', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Guides', url: '/guides' },
+    { name: 'How Peptides Are Made' }
+  ]);
+  const html = renderGuide('synthesis-guide', {
+    TITLE: 'How Peptides Are Made — SPPS, Recombinant DNA & Purification | PeptideKnow',
+    META_DESCRIPTION: 'Learn how peptides are manufactured through solid-phase peptide synthesis (SPPS), recombinant DNA technology, HPLC purification, and lyophilization. Understand purity grades and quality control.',
+    CANONICAL: 'https://www.peptideknow.com/guides/synthesis',
+    OG_TITLE: 'How Peptides Are Made | PeptideKnow',
+    OG_DESCRIPTION: 'From SPPS to lyophilization: the science behind peptide manufacturing.',
+    OG_URL: 'https://www.peptideknow.com/guides/synthesis',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>`
+  });
+  res.send(html);
+});
+
+// Peptides vs SARMs
+app.get('/guides/peptides-vs-sarms', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Guides', url: '/guides' },
+    { name: 'Peptides vs SARMs' }
+  ]);
+  const faqs = [
+    { q: 'Are peptides safer than SARMs?', a: 'Generally, peptides work through natural receptor signaling and have a more favorable side-effect profile. SARMs directly modulate androgen receptors and carry risks of hormonal suppression and liver strain.' },
+    { q: 'Can you take peptides and SARMs together?', a: 'Some researchers combine them, but this requires careful consideration of interactions. Consult published literature and a qualified healthcare professional.' },
+    { q: 'Do SARMs require PCT?', a: 'Yes, most SARMs suppress natural testosterone production and require post-cycle therapy (PCT). Most peptides do not require PCT.' }
+  ];
+  const html = renderGuide('peptides-vs-sarms', {
+    TITLE: 'Peptides vs SARMs — Key Differences, Safety & Comparison | PeptideKnow',
+    META_DESCRIPTION: 'Peptides vs SARMs: comprehensive comparison of mechanisms, safety profiles, legal status, side effects, and use cases. Understand which is better for your research goals.',
+    CANONICAL: 'https://www.peptideknow.com/guides/peptides-vs-sarms',
+    OG_TITLE: 'Peptides vs SARMs Comparison | PeptideKnow',
+    OG_DESCRIPTION: 'Detailed comparison: mechanisms, safety, legal status, and use cases.',
+    OG_URL: 'https://www.peptideknow.com/guides/peptides-vs-sarms',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+  });
+  res.send(html);
+});
+
+// ============ TOOL ROUTES ============
+
+// Reconstitution Calculator
+app.get('/tools/calculator', (req, res) => {
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'Tools' },
+    { name: 'Reconstitution Calculator' }
+  ]);
+  const faqs = [
+    { q: 'How do I calculate peptide reconstitution?', a: 'Divide the peptide amount (in mg) by the volume of bacteriostatic water (in mL) to get concentration. Then use the desired dose to calculate how many units to draw on your syringe.' },
+    { q: 'What syringe should I use for peptides?', a: 'Insulin syringes (U-100, 1mL) are standard for subcutaneous peptide injections. They provide precise measurement in units (100 units = 1 mL).' },
+    { q: 'What is bacteriostatic water?', a: 'Bacteriostatic water is sterile water containing 0.9% benzyl alcohol as a preservative, allowing multiple uses from the same vial for up to 28 days.' }
+  ];
+  const html = renderTool('calculator', {
+    TITLE: 'Peptide Reconstitution Calculator — Dosing & Syringe Guide | PeptideKnow',
+    META_DESCRIPTION: 'Free peptide reconstitution calculator. Enter peptide amount and water volume to get exact syringe units. Supports 20+ peptides with preset doses, body-weight calculations, and visual syringe guide.',
+    CANONICAL: 'https://www.peptideknow.com/tools/calculator',
+    OG_TITLE: 'Peptide Reconstitution Calculator | PeptideKnow',
+    OG_DESCRIPTION: 'Calculate exact dosing and syringe units for any peptide reconstitution.',
+    OG_URL: 'https://www.peptideknow.com/tools/calculator',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+  });
+  res.send(html);
+});
+
 // 404 catch-all
 app.use((req, res) => {
   res.status(404).send(render('404', {
@@ -679,7 +1066,9 @@ app.use((req, res) => {
     NAV_ACTIVE_HOME: '',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: '',
-    NAV_ACTIVE_ABOUT: ''
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: ''
   }));
 });
 

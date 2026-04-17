@@ -1,0 +1,277 @@
+<section class="page-header">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/tools">Tools</a> <span aria-hidden="true">/</span> <span>Reconstitution Calculator</span>
+    </nav>
+    <h1>Peptide Reconstitution Calculator</h1>
+    <p class="page-subtitle">Calculate exact bacteriostatic water volumes, concentrations, and syringe units for precise peptide dosing. Supports body-weight-based dosing.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="calc-layout">
+      <div class="calc-main">
+        <div class="calc-card">
+          <h2>Step 1: Peptide Information</h2>
+          <div class="calc-form">
+            <div class="form-group">
+              <label for="peptide-select">Select Peptide (Optional)</label>
+              <select id="peptide-select">
+                <option value="">— Custom / Not Listed —</option>
+              </select>
+              <small>Selecting a peptide auto-fills typical dosing ranges</small>
+            </div>
+            <div class="form-group">
+              <label for="vial-amount">Peptide Vial Amount (mg)</label>
+              <input type="number" id="vial-amount" placeholder="e.g., 5" min="0.1" step="0.1" value="5">
+            </div>
+            <div class="form-group">
+              <label for="bac-water">Bacteriostatic Water Volume (mL)</label>
+              <input type="number" id="bac-water" placeholder="e.g., 2" min="0.1" step="0.1" value="2">
+            </div>
+          </div>
+
+          <h2>Step 2: Desired Dose</h2>
+          <div class="calc-form">
+            <div class="form-group">
+              <label for="desired-dose">Desired Dose per Injection (mcg)</label>
+              <input type="number" id="desired-dose" placeholder="e.g., 250" min="1" step="1" value="250">
+            </div>
+            <div class="form-group">
+              <label for="syringe-size">Syringe Size</label>
+              <select id="syringe-size">
+                <option value="100">1 mL (100 units)</option>
+                <option value="50">0.5 mL (50 units)</option>
+                <option value="30">0.3 mL (30 units)</option>
+              </select>
+            </div>
+          </div>
+
+          <h2>Step 3: Body Weight Adjustment (Optional)</h2>
+          <div class="calc-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="body-weight">Body Weight</label>
+                <input type="number" id="body-weight" placeholder="e.g., 180" min="1" step="1">
+              </div>
+              <div class="form-group">
+                <label for="weight-unit">Unit</label>
+                <select id="weight-unit">
+                  <option value="lbs">lbs</option>
+                  <option value="kg">kg</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="dose-per-kg">Dose per kg (mcg/kg)</label>
+                <input type="number" id="dose-per-kg" placeholder="e.g., 5" min="0.1" step="0.1">
+              </div>
+            </div>
+            <button type="button" class="btn-secondary" id="calc-by-weight">Calculate Dose by Weight</button>
+          </div>
+
+          <button type="button" class="btn-primary btn-lg" id="calculate-btn">Calculate</button>
+        </div>
+
+        <!-- Results -->
+        <div class="calc-results" id="calc-results" hidden>
+          <h2>Your Results</h2>
+          <div class="results-grid">
+            <div class="result-card result-primary">
+              <span class="result-label">Concentration</span>
+              <span class="result-value" id="result-concentration">—</span>
+              <span class="result-unit">mcg per mL</span>
+            </div>
+            <div class="result-card result-primary">
+              <span class="result-label">Volume to Draw</span>
+              <span class="result-value" id="result-volume">—</span>
+              <span class="result-unit">mL per dose</span>
+            </div>
+            <div class="result-card result-highlight">
+              <span class="result-label">Syringe Units</span>
+              <span class="result-value" id="result-units">—</span>
+              <span class="result-unit">units on insulin syringe</span>
+            </div>
+            <div class="result-card">
+              <span class="result-label">Doses per Vial</span>
+              <span class="result-value" id="result-doses">—</span>
+              <span class="result-unit">total injections</span>
+            </div>
+          </div>
+
+          <div class="result-summary" id="result-summary"></div>
+
+          <div class="result-visual" id="syringe-visual">
+            <h3>Syringe Reference</h3>
+            <div class="syringe-diagram">
+              <div class="syringe-body">
+                <div class="syringe-fill" id="syringe-fill"></div>
+                <div class="syringe-marks"></div>
+              </div>
+              <span class="syringe-label" id="syringe-label"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="calc-sidebar">
+        <div class="sidebar-card">
+          <h3>How to Reconstitute</h3>
+          <ol class="recon-steps">
+            <li><strong>Clean workspace.</strong> Sanitize hands, use alcohol swabs on vial tops.</li>
+            <li><strong>Draw BAC water.</strong> Pull calculated volume into a sterile syringe.</li>
+            <li><strong>Inject slowly.</strong> Aim water against the vial wall — never directly at the powder.</li>
+            <li><strong>Swirl gently.</strong> Roll the vial between your palms until dissolved. Never shake.</li>
+            <li><strong>Label and refrigerate.</strong> Store at 2–8°C. Use within 28–30 days.</li>
+          </ol>
+          <a href="/guides/reconstitution" class="sidebar-link">Full Reconstitution Guide &rarr;</a>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Common Vial Sizes</h3>
+          <table class="mini-table">
+            <thead><tr><th>Peptide</th><th>Typical Vial</th></tr></thead>
+            <tbody>
+              <tr><td><a href="/peptides/bpc-157">BPC-157</a></td><td>5mg</td></tr>
+              <tr><td><a href="/peptides/tb-500">TB-500</a></td><td>5mg</td></tr>
+              <tr><td><a href="/peptides/cjc-1295">CJC-1295</a></td><td>2mg / 5mg</td></tr>
+              <tr><td><a href="/peptides/ipamorelin">Ipamorelin</a></td><td>5mg</td></tr>
+              <tr><td><a href="/peptides/ghk-cu">GHK-Cu</a></td><td>5mg / 50mg</td></tr>
+              <tr><td><a href="/peptides/pt-141">PT-141</a></td><td>10mg</td></tr>
+              <tr><td><a href="/peptides/semaglutide">Semaglutide</a></td><td>3mg / 5mg</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Related Tools</h3>
+          <ul class="sidebar-nav">
+            <li><a href="/guides/stacking">Stacking Guide</a></li>
+            <li><a href="/guides/routes-of-administration">Routes of Administration</a></li>
+            <li><a href="/guides/beginners">Beginner's Guide</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How much bacteriostatic water should I use?</summary>
+        <p>The standard reconstitution uses 1–2 mL of bacteriostatic water per vial. Using less water creates a more concentrated solution (less volume per injection). Using more water makes it easier to measure small doses but increases injection volume. For most peptides in 5mg vials, 2 mL is the most common choice.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's the difference between bacteriostatic water and sterile water?</summary>
+        <p>Bacteriostatic water contains 0.9% benzyl alcohol as a preservative, allowing multi-use vials to remain sterile for up to 28 days. Sterile water has no preservative and is suitable only for single-use. For peptides that will be used over multiple injections, bacteriostatic water is the standard choice.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I read insulin syringe units?</summary>
+        <p>A standard 1 mL insulin syringe has 100 units total. Each unit equals 0.01 mL. So 10 units = 0.10 mL, 25 units = 0.25 mL, etc. Our calculator converts your desired dose directly into syringe units so you can draw accurately.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long does reconstituted peptide last?</summary>
+        <p>When mixed with bacteriostatic water and stored refrigerated (2–8°C / 36–46°F), most reconstituted peptides remain stable for 28–30 days. Do not freeze reconstituted peptides. If the solution becomes cloudy or discolored, discard it.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I adjust dosing based on body weight?</summary>
+        <p>Yes — our calculator includes an optional body-weight adjustment. Some research protocols specify doses in mcg per kilogram of body weight. Enter your weight and the per-kg dose from the literature to get a personalized calculation.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const peptidePresets = {
+    'bpc-157': { name: 'BPC-157', vial: 5, dose: 250, perKg: 3.5 },
+    'tb-500': { name: 'TB-500', vial: 5, dose: 750, perKg: 10 },
+    'cjc-1295': { name: 'CJC-1295', vial: 2, dose: 100, perKg: 1.5 },
+    'ipamorelin': { name: 'Ipamorelin', vial: 5, dose: 200, perKg: 3 },
+    'ghk-cu': { name: 'GHK-Cu', vial: 5, dose: 200, perKg: 3 },
+    'pt-141': { name: 'PT-141', vial: 10, dose: 1000, perKg: 10 },
+    'semaglutide': { name: 'Semaglutide', vial: 3, dose: 250, perKg: 3 },
+    'ghrp-2': { name: 'GHRP-2', vial: 5, dose: 100, perKg: 1.5 },
+    'ghrp-6': { name: 'GHRP-6', vial: 5, dose: 100, perKg: 1.5 },
+    'sermorelin': { name: 'Sermorelin', vial: 2, dose: 200, perKg: 3 },
+    'epithalon': { name: 'Epithalon', vial: 10, dose: 5000, perKg: 70 },
+    'semax': { name: 'Semax', vial: 3, dose: 600, perKg: 8 },
+    'selank': { name: 'Selank', vial: 5, dose: 300, perKg: 4 },
+    'aod-9604': { name: 'AOD-9604', vial: 5, dose: 300, perKg: 4 },
+    'dsip': { name: 'DSIP', vial: 5, dose: 100, perKg: 1.5 },
+    'thymosin-alpha-1': { name: 'Thymosin Alpha-1', vial: 5, dose: 1600, perKg: 20 },
+    'll-37': { name: 'LL-37', vial: 5, dose: 100, perKg: 1.5 },
+    'kpv': { name: 'KPV', vial: 5, dose: 200, perKg: 3 },
+    'mots-c': { name: 'MOTS-c', vial: 5, dose: 5000, perKg: 70 },
+    'melanotan-ii': { name: 'Melanotan II', vial: 10, dose: 500, perKg: 7 }
+  };
+
+  // Populate select
+  const sel = document.getElementById('peptide-select');
+  Object.entries(peptidePresets).forEach(([slug, p]) => {
+    const opt = document.createElement('option');
+    opt.value = slug;
+    opt.textContent = p.name;
+    sel.appendChild(opt);
+  });
+
+  sel.addEventListener('change', function() {
+    const p = peptidePresets[this.value];
+    if (p) {
+      document.getElementById('vial-amount').value = p.vial;
+      document.getElementById('desired-dose').value = p.dose;
+      document.getElementById('dose-per-kg').value = p.perKg;
+    }
+  });
+
+  document.getElementById('calc-by-weight').addEventListener('click', function() {
+    const weight = parseFloat(document.getElementById('body-weight').value);
+    const unit = document.getElementById('weight-unit').value;
+    const perKg = parseFloat(document.getElementById('dose-per-kg').value);
+    if (!weight || !perKg) return;
+    const kg = unit === 'lbs' ? weight * 0.4536 : weight;
+    document.getElementById('desired-dose').value = Math.round(kg * perKg);
+  });
+
+  document.getElementById('calculate-btn').addEventListener('click', function() {
+    const vialMg = parseFloat(document.getElementById('vial-amount').value);
+    const bacWater = parseFloat(document.getElementById('bac-water').value);
+    const desiredDose = parseFloat(document.getElementById('desired-dose').value);
+    const syringeMax = parseInt(document.getElementById('syringe-size').value);
+
+    if (!vialMg || !bacWater || !desiredDose) return;
+
+    const vialMcg = vialMg * 1000;
+    const concentration = vialMcg / bacWater; // mcg per mL
+    const volumePerDose = desiredDose / concentration; // mL
+    const units = volumePerDose * 100; // insulin syringe units
+    const dosesPerVial = Math.floor(vialMcg / desiredDose);
+
+    document.getElementById('result-concentration').textContent = concentration.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('result-volume').textContent = volumePerDose.toFixed(3);
+    document.getElementById('result-units').textContent = units.toFixed(1);
+    document.getElementById('result-doses').textContent = dosesPerVial;
+
+    // Summary text
+    const selPeptide = peptidePresets[sel.value];
+    const peptideName = selPeptide ? selPeptide.name : 'your peptide';
+    document.getElementById('result-summary').innerHTML = 
+      '<p><strong>Summary:</strong> With a <strong>' + vialMg + ' mg</strong> vial of ' + peptideName + 
+      ' reconstituted in <strong>' + bacWater + ' mL</strong> of bacteriostatic water, the concentration is <strong>' + 
+      concentration.toFixed(0) + ' mcg/mL</strong>. To administer a <strong>' + desiredDose + ' mcg</strong> dose, draw <strong>' + 
+      units.toFixed(1) + ' units</strong> (' + volumePerDose.toFixed(3) + ' mL) on your insulin syringe. This gives you approximately <strong>' + 
+      dosesPerVial + ' doses</strong> per vial.</p>';
+
+    // Syringe visual
+    const fillPct = Math.min((units / syringeMax) * 100, 100);
+    document.getElementById('syringe-fill').style.height = fillPct + '%';
+    document.getElementById('syringe-label').textContent = units.toFixed(1) + ' units / ' + syringeMax + ' units';
+
+    document.getElementById('calc-results').hidden = false;
+    document.getElementById('calc-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>

@@ -6,7 +6,7 @@
       </nav>
       <h1 itemprop="name">{{PEPTIDE_NAME}}</h1>
       {{ALT_NAMES}}
-      <div class="tag-group">{{CATEGORY_TAGS}}</div>
+      <div class="tag-group">{{CATEGORY_TAGS}} {{POPULARITY_BADGE}}</div>
     </div>
   </section>
 
@@ -31,6 +31,14 @@
             </ul>
           </section>
 
+          {{DOSAGE_SECTION}}
+
+          {{ROA_SECTION}}
+
+          {{STACKING_SECTION}}
+
+          {{RECONSTITUTION_SECTION}}
+
           <section class="detail-section" id="sequence">
             <h2>Amino Acid Sequence</h2>
             <code class="sequence-display">{{AMINO_ACID_SEQ}}</code>
@@ -41,12 +49,6 @@
             <ul class="side-effects-list">
               {{SIDE_EFFECTS_LIST}}
             </ul>
-          </section>
-
-          <section class="detail-section" id="dosage">
-            <h2>Research Dosage Notes</h2>
-            <p class="dosage-disclaimer">The following reflects doses used in published research studies. This is not medical advice.</p>
-            <p>{{DOSAGE_NOTES}}</p>
           </section>
 
           <section class="detail-section" id="synergistic">
@@ -61,6 +63,14 @@
             <h2>Related Peptides</h2>
             <div class="related-grid">
               {{RELATED_LINKS}}
+            </div>
+          </section>
+
+          <!-- Internal cross-links to guides -->
+          <section class="detail-section" id="learn-more">
+            <h2>Learn More</h2>
+            <div class="crosslink-grid">
+              {{GUIDE_CROSSLINKS}}
             </div>
           </section>
 
@@ -83,16 +93,30 @@
               <h4>On This Page</h4>
               <ul role="list">
                 <li><a href="#overview">Overview</a></li>
-                <li><a href="#mechanism">Mechanism of Action</a></li>
-                <li><a href="#benefits">Potential Benefits</a></li>
-                <li><a href="#sequence">Amino Acid Sequence</a></li>
+                <li><a href="#mechanism">Mechanism</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                {{TOC_DOSAGE}}
+                {{TOC_ROA}}
+                {{TOC_STACKING}}
+                {{TOC_RECONSTITUTION}}
+                <li><a href="#sequence">Sequence</a></li>
                 <li><a href="#side-effects">Side Effects</a></li>
-                <li><a href="#dosage">Dosage Notes</a></li>
-                <li><a href="#synergistic">Synergistic Compounds</a></li>
-                <li><a href="#related">Related Peptides</a></li>
+                <li><a href="#synergistic">Synergistic</a></li>
+                <li><a href="#related">Related</a></li>
                 <li><a href="#references">References</a></li>
               </ul>
             </nav>
+
+            <div class="sidebar-tools">
+              <a href="/tools/calculator" class="sidebar-tool-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/></svg>
+                Reconstitution Calculator
+              </a>
+              <a href="/guides/stacking" class="sidebar-tool-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8l-2 4h12l-2-4z"/></svg>
+                Stacking Guide
+              </a>
+            </div>
           </div>
         </aside>
       </div>
