@@ -19,6 +19,29 @@ const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'peptides.j
 const peptides = data.peptides;
 const categories = data.categories;
 
+// Load blog data
+const blogData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'blog-posts.json'), 'utf8'));
+const blogPosts = blogData.posts;
+const blogPostBySlug = {};
+blogPosts.forEach(p => { blogPostBySlug[p.slug] = p; });
+
+// Load blog article bodies
+const blogBodies = {};
+blogPosts.forEach(p => {
+  const bodyPath = path.join(__dirname, 'data', `blog-${p.slug.split('-').slice(0, 3).join('-')}-body.html`);
+  // Try specific body file, fall back to slug-based
+  const possiblePaths = [
+    path.join(__dirname, 'data', 'blog-rfk-peptides-body.html'),
+    bodyPath
+  ];
+  for (const bp of possiblePaths) {
+    if (fs.existsSync(bp)) {
+      blogBodies[p.slug] = fs.readFileSync(bp, 'utf8');
+      break;
+    }
+  }
+});
+
 // Build lookup maps
 const peptideBySlug = {};
 peptides.forEach(p => { peptideBySlug[p.slug] = p; });
@@ -56,6 +79,9 @@ function render(templateName, vars) {
   
   // Replace content block
   html = html.replace('{{CONTENT}}', content);
+  
+  // Default NAV_ACTIVE_BLOG to empty if not set
+  if (!vars.NAV_ACTIVE_BLOG) vars.NAV_ACTIVE_BLOG = '';
   
   // Replace all variables
   for (const [key, value] of Object.entries(vars)) {
@@ -243,6 +269,13 @@ app.get('/', (req, res) => {
     `<a href="/peptides/${p.slug}" class="az-link">${p.name}</a>`
   ).join('');
 
+  // Latest blog posts for homepage
+  const latestBlogCards = [...blogPosts]
+    .sort((a, b) => b.datePublished.localeCompare(a.datePublished))
+    .slice(0, 3)
+    .map(post => blogCardHTML(post))
+    .join('');
+
   const websiteLD = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -276,6 +309,7 @@ app.get('/', (req, res) => {
     OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${websiteLD}</script>\n<script type="application/ld+json">${orgLD}</script>`,
+    LATEST_BLOG_CARDS: latestBlogCards,
     CATEGORY_CARDS: categoryCards,
     FEATURED_PEPTIDES: featuredPeptides,
     TRENDING_PEPTIDES: trendingPeptides,
@@ -919,6 +953,14 @@ app.get('/sitemap.xml', (req, res) => {
     xml += `  <url><loc>${base}/peptides/${p.slug}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
   });
 
+  // Blog pages
+  xml += `  <url><loc>${base}/blog</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>\n`;
+  blogPosts.forEach(post => {
+    xml += `  <url><loc>${base}/blog/${post.slug}</loc><lastmod>${post.dateModified || post.datePublished}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image><image:loc>${base}${post.image}</image:loc><image:caption>${(post.imageAlt || '').replace(/&/g, '&amp;')}</image:caption></image:image>
+  </url>\n`;
+  });
+
   xml += '</urlset>';
   res.type('application/xml').send(xml);
 });
@@ -1303,6 +1345,10 @@ ${topPeptides}
 ## Data Available Per Peptide
 Each peptide page includes: name, alternative names, molecular weight, sequence length, CAS number, PubChem CID, mechanism of action, potential benefits, dosage protocols (typical range, beginner, intermediate, advanced), routes of administration (with bioavailability data), stacking protocols, reconstitution instructions, amino acid sequence, side effects, synergistic compounds, related peptides, references, and clinical research status.
 
+## News & Blog
+- Blog: https://www.peptideknow.com/blog
+- RSS Feed: https://www.peptideknow.com/blog/rss.xml
+
 ## API
 Search API: https://www.peptideknow.com/api/peptides?q={query}
 Sitemap: https://www.peptideknow.com/sitemap.xml
@@ -1327,6 +1373,318 @@ app.get('/llms-full.txt', (req, res) => {
   });
   
   res.type('text/plain').send(content);
+});
+
+// ============ BLOG ROUTES ============
+
+// Helper: format date for display
+function formatDateDisplay(isoDate) {
+  const d = new Date(isoDate + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Helper: generate blog card HTML
+function blogCardHTML(post) {
+  return `<a href="/blog/${post.slug}" class="blog-card">
+    <div class="blog-card-img">
+      <img src="${post.image}" alt="${post.imageAlt}" width="600" height="338" loading="lazy">
+    </div>
+    <div class="blog-card-body">
+      <span class="blog-card-category">${post.category}</span>
+      <h3>${post.title}</h3>
+      <p>${post.excerpt.substring(0, 160)}...</p>
+      <div class="blog-card-meta">
+        <time datetime="${post.datePublished}">${formatDateDisplay(post.datePublished)}</time>
+        <span>${post.readTime}</span>
+      </div>
+    </div>
+  </a>`;
+}
+
+// Blog index page
+app.get('/blog', (req, res) => {
+  const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+  const featured = sorted[0];
+  const rest = sorted.slice(1);
+
+  const featuredHTML = featured ? `<section class="blog-featured section">
+    <div class="container">
+      <a href="/blog/${featured.slug}" class="blog-featured-card">
+        <div class="blog-featured-img">
+          <img src="${featured.image}" alt="${featured.imageAlt}" width="1200" height="675" loading="eager">
+        </div>
+        <div class="blog-featured-body">
+          <span class="blog-card-category">${featured.category}</span>
+          <h2>${featured.title}</h2>
+          <p>${featured.excerpt}</p>
+          <div class="blog-card-meta">
+            <time datetime="${featured.datePublished}">${formatDateDisplay(featured.datePublished)}</time>
+            <span>${featured.readTime}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>` : '';
+
+  const blogCards = sorted.map(p => blogCardHTML(p)).join('');
+
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'News & Research' }
+  ]);
+
+  const blogListLD = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "PeptideKnow News & Research",
+    "description": "Latest peptide news, FDA regulatory updates, clinical research findings, and industry analysis.",
+    "url": "https://www.peptideknow.com/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "PeptideKnow",
+      "url": "https://www.peptideknow.com"
+    },
+    "blogPost": sorted.map(p => ({
+      "@type": "BlogPosting",
+      "headline": p.title,
+      "url": `https://www.peptideknow.com/blog/${p.slug}`,
+      "datePublished": p.datePublished,
+      "image": `https://www.peptideknow.com${p.image}`,
+      "author": { "@type": "Organization", "name": "PeptideKnow" }
+    }))
+  });
+
+  const html = render('blog-index', {
+    TITLE: 'Peptide News & Research Updates | PeptideKnow',
+    META_DESCRIPTION: 'Stay informed on the latest peptide regulations, FDA decisions, clinical trials, and industry news. Evidence-based reporting from the PeptideKnow editorial team.',
+    CANONICAL: 'https://www.peptideknow.com/blog',
+    OG_TITLE: 'Peptide News & Research | PeptideKnow',
+    OG_DESCRIPTION: 'Latest peptide news: FDA regulatory updates, clinical research, and industry analysis.',
+    OG_URL: 'https://www.peptideknow.com/blog',
+    OG_IMAGE: sorted[0] ? `https://www.peptideknow.com${sorted[0].image}` : 'https://www.peptideknow.com/static/og-home.png',
+    EXTRA_HEAD: '<link rel="alternate" type="application/rss+xml" title="PeptideKnow Blog RSS" href="/blog/rss.xml">',
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${blogListLD}</script>`,
+    FEATURED_POST: featuredHTML,
+    BLOG_CARDS: blogCards,
+    NAV_ACTIVE_HOME: '',
+    NAV_ACTIVE_PEPTIDES: '',
+    NAV_ACTIVE_CATEGORIES: '',
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: '',
+    NAV_ACTIVE_BLOG: 'active'
+  });
+
+  res.send(html);
+});
+
+// Individual blog post
+app.get('/blog/:slug', (req, res) => {
+  const post = blogPostBySlug[req.params.slug];
+  if (!post) return res.status(404).send(render('404', {
+    TITLE: 'Article Not Found | PeptideKnow',
+    META_DESCRIPTION: 'The requested article was not found.',
+    CANONICAL: '', OG_TITLE: '', OG_DESCRIPTION: '', OG_URL: '', OG_IMAGE: '',
+    EXTRA_HEAD: '<meta name="robots" content="noindex">', JSON_LD: '',
+    NAV_ACTIVE_HOME: '', NAV_ACTIVE_PEPTIDES: '', NAV_ACTIVE_CATEGORIES: '',
+    NAV_ACTIVE_ABOUT: '', NAV_ACTIVE_GUIDES: '', NAV_ACTIVE_CALCULATOR: '', NAV_ACTIVE_BLOG: ''
+  }));
+
+  const body = blogBodies[post.slug] || '<p>Article content is being prepared.</p>';
+
+  // Generate TOC from h2 headings in body
+  const tocMatches = [...body.matchAll(/<section id="([^"]+)">\s*<h2>([^<]+)<\/h2>/g)];
+  const tocHTML = '<ul>' + tocMatches.map(m =>
+    `<li><a href="#${m[1]}">${m[2]}</a></li>`
+  ).join('') + '</ul>';
+
+  // Tags
+  const tagsHTML = (post.tags || []).map(t =>
+    `<span class="blog-tag">${t}</span>`
+  ).join('');
+
+  // Sources
+  const sources = [
+    { title: 'FDA PCAC Meeting Announcement (July 23-24, 2026)', url: 'https://www.fda.gov/advisory-committees/advisory-committee-calendar/july-23-24-2026-meeting-pharmacy-compounding-advisory-committee-07232026' },
+    { title: 'PBS: FDA to Weigh Easing Limits on Peptides Favored by RFK Jr.', url: 'https://www.pbs.org/newshour/health/fda-to-weigh-easing-limits-on-unproven-peptides-favored-by-rfk-jr-and-maha-supporters' },
+    { title: 'BioPharma Dive: FDA Peptides RFK Advisory Committee Restrictions', url: 'https://www.biopharmadive.com/news/fda-peptides-rfk-advisory-committee-restrictions/817685/' },
+    { title: 'RAPS: FDA Considers Adding a Dozen Peptides to Bulk Drug List', url: 'https://www.raps.org/resource/fda-considers-adding-a-dozen-peptides-to-its-bulk-drug-compounding-list.html' },
+    { title: 'Ars Technica: RFK Jr. Forces FDA to Reconsider 12 Peptides', url: 'https://arstechnica.com/health/2026/04/rfk-jr-forces-fda-to-reconsider-12-unproven-peptides-after-2023-ban/' },
+    { title: 'ProPublica: Peptide Safety Investigation', url: 'https://www.propublica.org/article/peptide-safety-fda-compounding-pharmacies' },
+    { title: 'New York Times: Peptide Ban FDA RFK Jr.', url: 'https://www.nytimes.com/2026/03/31/health/peptide-ban-fda-rfk-jr.html' },
+    { title: 'SSRP Institute: FDA Announces Change in Status of 12 Peptides', url: 'https://ssrpinstitute.org/news/fda-announces-change-in-status-of-12-peptides/' },
+    { title: 'CNBC: RFK Jr. Peptides Hims Hers GLP-1', url: 'https://www.cnbc.com/2026/04/16/rfk-jr-peptides-hims-hers-glp-1.html' },
+    { title: 'USA Today: RFK Jr. FDA Peptides Explainer', url: 'https://www.usatoday.com/story/news/health/2026/04/01/rfk-jr-fda-peptides-what-are-they/89402206007/' }
+  ];
+  const sourcesHTML = sources.map(s =>
+    `<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title}</a></li>`
+  ).join('');
+
+  // Related peptide cards from article
+  const mentionedSlugs = ['bpc-157', 'tb-500', 'semax', 'epithalon', 'mots-c', 'll-37', 'ghk-cu', 'dihexa', 'melanotan-ii', 'ipamorelin', 'cjc-1295', 'selank'];
+  const relatedCards = mentionedSlugs
+    .filter(s => peptideBySlug[s])
+    .map(s => {
+      const p = peptideBySlug[s];
+      const cats = (p.categories || []).slice(0, 2).map(c => categoryById[c]?.name || c).join(', ');
+      return `<a href="/peptides/${p.slug}" class="blog-related-card-item">
+        <h4>${p.name}</h4>
+        <span class="blog-related-cats">${cats}</span>
+      </a>`;
+    }).join('');
+
+  // Other blog posts
+  const otherPosts = blogPosts.filter(p => p.slug !== post.slug).slice(0, 3);
+  const morePostsHTML = otherPosts.length > 0
+    ? otherPosts.map(p => blogCardHTML(p)).join('')
+    : '<p>More articles coming soon. Check back for daily peptide news updates.</p>';
+
+  // JSON-LD
+  const bcLD = breadcrumbLD([
+    { name: 'Home', url: '/' },
+    { name: 'News & Research', url: '/blog' },
+    { name: post.title }
+  ]);
+
+  const blogPostLD = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": post.title,
+    "description": post.metaDescription || post.excerpt,
+    "url": `https://www.peptideknow.com/blog/${post.slug}`,
+    "datePublished": post.datePublished,
+    "dateModified": post.dateModified || post.datePublished,
+    "image": {
+      "@type": "ImageObject",
+      "url": `https://www.peptideknow.com${post.image}`,
+      "width": 1200,
+      "height": 675,
+      "caption": post.imageAlt
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "PeptideKnow",
+      "url": "https://www.peptideknow.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PeptideKnow",
+      "url": "https://www.peptideknow.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.peptideknow.com/static/logo.svg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.peptideknow.com/blog/${post.slug}`
+    },
+    "keywords": post.keywords || (post.tags || []).join(', '),
+    "articleSection": post.category,
+    "wordCount": body.replace(/<[^>]+>/g, '').split(/\s+/).length,
+    "isPartOf": {
+      "@type": "Blog",
+      "name": "PeptideKnow News & Research",
+      "url": "https://www.peptideknow.com/blog"
+    }
+  });
+
+  // FAQ JSON-LD from the FAQ section
+  const faqItems = [
+    { q: 'Are these 12 peptides legal to buy now?', a: 'Not yet. The FDA has announced its intent to reclassify, but the formal process requires PCAC review and rulemaking. Until reclassification is finalized, these peptides remain on Category 2.' },
+    { q: 'What is the difference between Category 1 and Category 2?', a: 'Category 1 peptides can be compounded by licensed pharmacies with a valid prescription. Category 2 peptides are deemed difficult to compound and cannot legally be compounded.' },
+    { q: 'Why were GH secretagogues like Ipamorelin not included?', a: 'Growth hormone secretagogues directly stimulate growth hormone release, putting them in a more heavily regulated space with higher abuse potential concerns.' },
+    { q: 'When will I be able to get BPC-157 from a pharmacy again?', a: 'If the PCAC votes favorably in July 2026 and the FDA follows the recommendation, BPC-157 could return to compounding pharmacies by late 2026 or early 2027.' },
+    { q: 'Is RFK Jr. the reason these peptides are being reclassified?', a: 'RFK Jr. and the MAHA movement played a significant role, but the FDA decision also reflects input from patient advocacy groups, compounding organizations, and healthcare providers.' },
+    { q: 'Are there safety concerns with compounded peptides?', a: 'Yes. Compounded drugs are not subject to the same FDA oversight as manufactured pharmaceuticals. Choosing a reputable 503B outsourcing facility with third-party testing is critical.' }
+  ];
+
+  const html = render('blog-post', {
+    TITLE: `${post.title} | PeptideKnow`,
+    META_DESCRIPTION: post.metaDescription || post.excerpt,
+    CANONICAL: `https://www.peptideknow.com/blog/${post.slug}`,
+    OG_TITLE: post.title,
+    OG_DESCRIPTION: post.excerpt.substring(0, 200),
+    OG_URL: `https://www.peptideknow.com/blog/${post.slug}`,
+    OG_IMAGE: `https://www.peptideknow.com${post.image}`,
+    EXTRA_HEAD: `<meta name="keywords" content="${post.keywords || ''}">
+      <meta property="og:type" content="article">
+      <meta property="article:published_time" content="${post.datePublished}">
+      <meta property="article:modified_time" content="${post.dateModified}">
+      <meta property="article:section" content="${post.category}">
+      ${(post.tags || []).map(t => `<meta property="article:tag" content="${t}">`).join('\n      ')}
+      <link rel="alternate" type="application/rss+xml" title="PeptideKnow Blog RSS" href="/blog/rss.xml">`,
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${blogPostLD}</script>\n<script type="application/ld+json">${faqLD(faqItems)}</script>`,
+    POST_TITLE: post.title,
+    POST_SUBTITLE: post.subtitle || '',
+    POST_CATEGORY: post.category,
+    POST_DATE_ISO: post.datePublished,
+    POST_DATE_DISPLAY: formatDateDisplay(post.datePublished),
+    POST_MODIFIED_ISO: post.dateModified || post.datePublished,
+    POST_MODIFIED_DISPLAY: formatDateDisplay(post.dateModified || post.datePublished),
+    POST_READ_TIME: post.readTime || '10 min read',
+    POST_AUTHOR: post.author || 'PeptideKnow Editorial',
+    POST_IMAGE: post.image,
+    POST_IMAGE_ALT: post.imageAlt || '',
+    POST_TOC: tocHTML,
+    POST_BODY: body,
+    POST_TAGS: tagsHTML,
+    POST_SOURCES: sourcesHTML,
+    RELATED_PEPTIDE_CARDS: relatedCards,
+    MORE_POSTS: morePostsHTML,
+    NAV_ACTIVE_HOME: '',
+    NAV_ACTIVE_PEPTIDES: '',
+    NAV_ACTIVE_CATEGORIES: '',
+    NAV_ACTIVE_ABOUT: '',
+    NAV_ACTIVE_GUIDES: '',
+    NAV_ACTIVE_CALCULATOR: '',
+    NAV_ACTIVE_BLOG: 'active'
+  });
+
+  res.send(html);
+});
+
+// Blog RSS Feed
+app.get('/blog/rss.xml', (req, res) => {
+  const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+  const base = 'https://www.peptideknow.com';
+  
+  let rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>PeptideKnow — Peptide News &amp; Research</title>
+    <link>${base}/blog</link>
+    <description>Latest peptide news, FDA regulatory updates, clinical research findings, and industry analysis from PeptideKnow.</description>
+    <language>en-us</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${base}/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>${base}/static/logo.svg</url>
+      <title>PeptideKnow</title>
+      <link>${base}</link>
+    </image>
+`;
+
+  sorted.forEach(post => {
+    const body = blogBodies[post.slug] || '';
+    const plainExcerpt = post.excerpt.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    rss += `    <item>
+      <title>${post.title.replace(/&/g, '&amp;')}</title>
+      <link>${base}/blog/${post.slug}</link>
+      <guid isPermaLink="true">${base}/blog/${post.slug}</guid>
+      <pubDate>${new Date(post.datePublished + 'T12:00:00Z').toUTCString()}</pubDate>
+      <dc:creator>${post.author || 'PeptideKnow Editorial'}</dc:creator>
+      <category>${post.category}</category>
+      <description><![CDATA[${post.excerpt}]]></description>
+      <media:content url="${base}${post.image}" medium="image" />
+    </item>
+`;
+  });
+
+  rss += `  </channel>
+</rss>`;
+
+  res.type('application/rss+xml').send(rss);
 });
 
 // 404 catch-all

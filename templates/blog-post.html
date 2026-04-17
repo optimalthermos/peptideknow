@@ -1,0 +1,88 @@
+<!-- Breadcrumbs -->
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog">News &amp; Research</a></li>
+    <li aria-current="page">{{POST_TITLE}}</li>
+  </ol>
+</nav>
+
+<article class="blog-article" itemscope itemtype="https://schema.org/NewsArticle">
+  <header class="blog-header">
+    <div class="container">
+      <div class="blog-meta-top">
+        <span class="blog-category">{{POST_CATEGORY}}</span>
+        <time datetime="{{POST_DATE_ISO}}" itemprop="datePublished">{{POST_DATE_DISPLAY}}</time>
+        <span class="blog-read-time">{{POST_READ_TIME}}</span>
+      </div>
+      <h1 itemprop="headline">{{POST_TITLE}}</h1>
+      <p class="blog-subtitle" itemprop="description">{{POST_SUBTITLE}}</p>
+      <div class="blog-author">
+        <span itemprop="author" itemscope itemtype="https://schema.org/Organization">
+          <span itemprop="name">{{POST_AUTHOR}}</span>
+        </span>
+        <span class="blog-separator">&middot;</span>
+        <span>Updated <time datetime="{{POST_MODIFIED_ISO}}" itemprop="dateModified">{{POST_MODIFIED_DISPLAY}}</time></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="blog-hero-image">
+    <img src="{{POST_IMAGE}}" alt="{{POST_IMAGE_ALT}}" width="1200" height="675" loading="eager" itemprop="image">
+  </div>
+
+  <div class="blog-body-wrap">
+    <div class="container blog-layout">
+      <!-- Table of Contents Sidebar -->
+      <aside class="blog-toc" aria-label="Table of contents">
+        <h4>In This Article</h4>
+        {{POST_TOC}}
+      </aside>
+
+      <!-- Article Body -->
+      <div class="blog-body" itemprop="articleBody">
+        {{POST_BODY}}
+
+        <!-- Tags -->
+        <div class="blog-tags">
+          <h4>Topics</h4>
+          <div class="blog-tag-list">
+            {{POST_TAGS}}
+          </div>
+        </div>
+
+        <!-- Sources -->
+        <section class="blog-sources" id="sources">
+          <h2>Sources &amp; References</h2>
+          <ol class="source-list">
+            {{POST_SOURCES}}
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Peptides -->
+  <section class="blog-related section">
+    <div class="container">
+      <h2>Peptides Mentioned in This Article</h2>
+      <div class="blog-related-grid">
+        {{RELATED_PEPTIDE_CARDS}}
+      </div>
+    </div>
+  </section>
+
+  <!-- More Blog Posts -->
+  <section class="blog-more section section-alt">
+    <div class="container">
+      <h2>More News &amp; Research</h2>
+      <div class="blog-card-grid">
+        {{MORE_POSTS}}
+      </div>
+      <div class="section-cta">
+        <a href="/blog" class="btn-outline">View All Articles</a>
+        <a href="/blog/rss.xml" class="btn-outline rss-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg> RSS Feed</a>
+      </div>
+    </div>
+  </section>
+</article>
