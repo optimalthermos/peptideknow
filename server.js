@@ -5,6 +5,15 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Redirect non-www to www
+app.use((req, res, next) => {
+  const host = req.hostname || req.headers.host;
+  if (host === 'peptideknow.com') {
+    return res.redirect(301, `https://www.peptideknow.com${req.originalUrl}`);
+  }
+  next();
+});
+
 // Load peptide data
 const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'peptides.json'), 'utf8'));
 const peptides = data.peptides;
@@ -69,7 +78,7 @@ function breadcrumbLD(items) {
       "@type": "ListItem",
       "position": i + 1,
       "name": item.name,
-      "item": item.url ? `https://peptideknow.com${item.url}` : undefined
+      "item": item.url ? `https://www.peptideknow.com${item.url}` : undefined
     }))
   });
 }
@@ -158,11 +167,11 @@ app.get('/', (req, res) => {
     "@type": "WebSite",
     "name": "PeptideKnow",
     "alternateName": "Peptide Encyclopedia",
-    "url": "https://peptideknow.com",
+    "url": "https://www.peptideknow.com",
     "description": "Comprehensive peptide encyclopedia and reference database. Explore 100+ research peptides with mechanisms, benefits, synergies, and clinical data.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://peptideknow.com/search?q={search_term_string}",
+      "target": "https://www.peptideknow.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   });
@@ -171,19 +180,19 @@ app.get('/', (req, res) => {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "PeptideKnow",
-    "url": "https://peptideknow.com",
-    "logo": "https://peptideknow.com/static/logo.svg",
+    "url": "https://www.peptideknow.com",
+    "logo": "https://www.peptideknow.com/static/logo.svg",
     "sameAs": []
   });
 
   const html = render('home', {
     TITLE: 'PeptideKnow — Comprehensive Peptide Encyclopedia & Reference Database',
     META_DESCRIPTION: 'Explore the most comprehensive peptide reference database online. Browse 100+ research peptides organized by category with mechanisms of action, synergistic compounds, clinical research status, and more.',
-    CANONICAL: 'https://peptideknow.com/',
+    CANONICAL: 'https://www.peptideknow.com/',
     OG_TITLE: 'PeptideKnow — The Peptide Encyclopedia',
     OG_DESCRIPTION: 'Comprehensive reference database of 100+ research peptides. Mechanisms, benefits, synergies, and clinical data.',
-    OG_URL: 'https://peptideknow.com/',
-    OG_IMAGE: 'https://peptideknow.com/static/og-home.png',
+    OG_URL: 'https://www.peptideknow.com/',
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${websiteLD}</script>\n<script type="application/ld+json">${orgLD}</script>`,
     CATEGORY_CARDS: categoryCards,
@@ -240,11 +249,11 @@ app.get('/peptides', (req, res) => {
   const html = render('peptides-index', {
     TITLE: 'All Peptides A-Z — Complete Peptide Database | PeptideKnow',
     META_DESCRIPTION: `Browse all ${peptides.length} peptides in our database alphabetically. Find detailed information on research peptides including mechanisms of action, benefits, and synergistic compounds.`,
-    CANONICAL: 'https://peptideknow.com/peptides',
+    CANONICAL: 'https://www.peptideknow.com/peptides',
     OG_TITLE: 'All Peptides A-Z | PeptideKnow',
     OG_DESCRIPTION: `Complete alphabetical index of ${peptides.length} research peptides with detailed profiles.`,
-    OG_URL: 'https://peptideknow.com/peptides',
-    OG_IMAGE: 'https://peptideknow.com/static/og-peptides.png',
+    OG_URL: 'https://www.peptideknow.com/peptides',
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-peptides.png',
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${bcLD}</script>`,
     LETTER_NAV: letterNav,
@@ -347,7 +356,7 @@ app.get('/peptides/:slug', (req, res) => {
       "description": p.description,
       "mechanismOfAction": p.mechanismOfAction || ''
     },
-    "url": `https://peptideknow.com/peptides/${p.slug}`,
+    "url": `https://www.peptideknow.com/peptides/${p.slug}`,
     "mainEntity": {
       "@type": "Drug",
       "name": p.name,
@@ -356,13 +365,13 @@ app.get('/peptides/:slug', (req, res) => {
     "isPartOf": {
       "@type": "WebSite",
       "name": "PeptideKnow",
-      "url": "https://peptideknow.com"
+      "url": "https://www.peptideknow.com"
     },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://peptideknow.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Peptides", "item": "https://peptideknow.com/peptides" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.peptideknow.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Peptides", "item": "https://www.peptideknow.com/peptides" },
         { "@type": "ListItem", "position": 3, "name": p.name }
       ]
     }
@@ -371,11 +380,11 @@ app.get('/peptides/:slug', (req, res) => {
   const html = render('peptide-detail', {
     TITLE: `${p.name} — Mechanism, Benefits, Research & Synergies | PeptideKnow`,
     META_DESCRIPTION: `${p.name} (${(p.alternativeNames || []).slice(0, 2).join(', ')}): ${p.description.substring(0, 140)}. Explore mechanism of action, research status, synergistic compounds, and more.`,
-    CANONICAL: `https://peptideknow.com/peptides/${p.slug}`,
+    CANONICAL: `https://www.peptideknow.com/peptides/${p.slug}`,
     OG_TITLE: `${p.name} — Peptide Profile | PeptideKnow`,
     OG_DESCRIPTION: p.description.substring(0, 200),
-    OG_URL: `https://peptideknow.com/peptides/${p.slug}`,
-    OG_IMAGE: 'https://peptideknow.com/static/og-peptide.png',
+    OG_URL: `https://www.peptideknow.com/peptides/${p.slug}`,
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-peptide.png',
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${articleLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`,
     PEPTIDE_NAME: p.name,
@@ -425,11 +434,11 @@ app.get('/categories', (req, res) => {
   const html = render('categories-index', {
     TITLE: 'Peptide Categories — Browse by Function & Application | PeptideKnow',
     META_DESCRIPTION: `Browse ${categories.length} peptide categories organized by biological function. From growth hormone secretagogues to neuroprotective peptides, find the research peptide information you need.`,
-    CANONICAL: 'https://peptideknow.com/categories',
+    CANONICAL: 'https://www.peptideknow.com/categories',
     OG_TITLE: 'Peptide Categories | PeptideKnow',
     OG_DESCRIPTION: `${categories.length} categories of research peptides organized by biological function and application.`,
-    OG_URL: 'https://peptideknow.com/categories',
-    OG_IMAGE: 'https://peptideknow.com/static/og-categories.png',
+    OG_URL: 'https://www.peptideknow.com/categories',
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-categories.png',
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${bcLD}</script>`,
     CATEGORY_CARDS: cards,
@@ -479,19 +488,19 @@ app.get('/categories/:id', (req, res) => {
     "@type": "CollectionPage",
     "name": cat.name,
     "description": cat.description,
-    "url": `https://peptideknow.com/categories/${cat.id}`,
-    "isPartOf": { "@type": "WebSite", "name": "PeptideKnow", "url": "https://peptideknow.com" },
+    "url": `https://www.peptideknow.com/categories/${cat.id}`,
+    "isPartOf": { "@type": "WebSite", "name": "PeptideKnow", "url": "https://www.peptideknow.com" },
     "numberOfItems": catPeptides.length
   });
 
   const html = render('category-detail', {
     TITLE: `${cat.name} Peptides — Research Database | PeptideKnow`,
     META_DESCRIPTION: `${cat.description} Browse ${catPeptides.length} peptides in the ${cat.name} category with detailed profiles, mechanisms, and synergistic compounds.`,
-    CANONICAL: `https://peptideknow.com/categories/${cat.id}`,
+    CANONICAL: `https://www.peptideknow.com/categories/${cat.id}`,
     OG_TITLE: `${cat.name} Peptides | PeptideKnow`,
     OG_DESCRIPTION: `${catPeptides.length} peptides in the ${cat.name} category. ${cat.description}`,
-    OG_URL: `https://peptideknow.com/categories/${cat.id}`,
-    OG_IMAGE: 'https://peptideknow.com/static/og-category.png',
+    OG_URL: `https://www.peptideknow.com/categories/${cat.id}`,
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-category.png',
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${collectionLD}</script>`,
     CATEGORY_NAME: cat.name,
@@ -540,11 +549,11 @@ app.get('/search', (req, res) => {
   const html = render('search', {
     TITLE: q ? `Search: "${req.query.q}" | PeptideKnow` : 'Search Peptides | PeptideKnow',
     META_DESCRIPTION: 'Search the PeptideKnow database for research peptides by name, category, mechanism of action, or application.',
-    CANONICAL: 'https://peptideknow.com/search',
+    CANONICAL: 'https://www.peptideknow.com/search',
     OG_TITLE: 'Search Peptides | PeptideKnow',
     OG_DESCRIPTION: 'Search 100+ research peptides by name, function, or mechanism.',
-    OG_URL: 'https://peptideknow.com/search',
-    OG_IMAGE: 'https://peptideknow.com/static/og-home.png',
+    OG_URL: 'https://www.peptideknow.com/search',
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
     EXTRA_HEAD: '',
     JSON_LD: '',
     SEARCH_QUERY: req.query.q || '',
@@ -569,11 +578,11 @@ app.get('/about', (req, res) => {
   const html = render('about', {
     TITLE: 'About PeptideKnow — Peptide Research Reference Database',
     META_DESCRIPTION: 'PeptideKnow is an independent peptide reference database providing organized, research-backed information on bioactive peptides for researchers, clinicians, and the scientific community.',
-    CANONICAL: 'https://peptideknow.com/about',
+    CANONICAL: 'https://www.peptideknow.com/about',
     OG_TITLE: 'About PeptideKnow',
     OG_DESCRIPTION: 'Independent peptide reference database for researchers and the scientific community.',
-    OG_URL: 'https://peptideknow.com/about',
-    OG_IMAGE: 'https://peptideknow.com/static/og-home.png',
+    OG_URL: 'https://www.peptideknow.com/about',
+    OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${bcLD}</script>`,
     TOTAL_PEPTIDES: String(peptides.length),
@@ -589,7 +598,7 @@ app.get('/about', (req, res) => {
 
 // Sitemap.xml
 app.get('/sitemap.xml', (req, res) => {
-  const base = 'https://peptideknow.com';
+  const base = 'https://www.peptideknow.com';
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${base}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
@@ -616,7 +625,7 @@ app.get('/robots.txt', (req, res) => {
   res.type('text/plain').send(`User-agent: *
 Allow: /
 
-Sitemap: https://peptideknow.com/sitemap.xml
+Sitemap: https://www.peptideknow.com/sitemap.xml
 
 User-agent: GPTBot
 Allow: /
