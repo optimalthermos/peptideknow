@@ -99,6 +99,56 @@ function faqLD(faqs) {
   });
 }
 
+function articleLD({ title, description, url, datePublished, dateModified }) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "url": url,
+    "datePublished": datePublished || "2026-04-15",
+    "dateModified": dateModified || new Date().toISOString().split('T')[0],
+    "author": {
+      "@type": "Organization",
+      "name": "PeptideKnow",
+      "url": "https://www.peptideknow.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PeptideKnow",
+      "url": "https://www.peptideknow.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.peptideknow.com/static/logo.svg"
+      }
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "PeptideKnow",
+      "url": "https://www.peptideknow.com"
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": url }
+  });
+}
+
+function softwareAppLD({ name, description, url }) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": name,
+    "description": description,
+    "url": url,
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "PeptideKnow",
+      "url": "https://www.peptideknow.com"
+    }
+  });
+}
+
 // ============ ROUTES ============
 
 // Homepage
@@ -291,7 +341,20 @@ app.get('/peptides', (req, res) => {
     OG_URL: 'https://www.peptideknow.com/peptides',
     OG_IMAGE: 'https://www.peptideknow.com/static/og-peptides.png',
     EXTRA_HEAD: '',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>`,
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>
+<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "All Research Peptides A-Z",
+      "description": "Complete alphabetical index of " + peptides.length + " research peptides and compounds",
+      "numberOfItems": peptides.length,
+      "itemListElement": sorted.slice(0, 50).map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": p.name,
+        "url": "https://www.peptideknow.com/peptides/" + p.slug
+      }))
+    })}</script>`,
     LETTER_NAV: letterNav,
     PEPTIDE_GROUPS: peptideGroups,
     TOTAL_PEPTIDES: String(peptides.length),
@@ -753,7 +816,17 @@ app.get('/search', (req, res) => {
     OG_URL: 'https://www.peptideknow.com/search',
     OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
     EXTRA_HEAD: '',
-    JSON_LD: '',
+    JSON_LD: `<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SearchResultsPage",
+      "name": "Search Peptides",
+      "url": "https://www.peptideknow.com/search",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "PeptideKnow",
+        "url": "https://www.peptideknow.com"
+      }
+    })}</script>`,
     SEARCH_QUERY: req.query.q || '',
     SEARCH_RESULTS: resultHTML,
     RESULT_COUNT: String(results.length),
@@ -784,7 +857,25 @@ app.get('/about', (req, res) => {
     OG_URL: 'https://www.peptideknow.com/about',
     OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
     EXTRA_HEAD: '',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>`,
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>
+<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About PeptideKnow",
+      "description": "PeptideKnow is an independent peptide reference database providing organized, research-backed information on bioactive peptides for researchers, clinicians, and the scientific community.",
+      "url": "https://www.peptideknow.com/about",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "PeptideKnow",
+        "url": "https://www.peptideknow.com"
+      },
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "PeptideKnow",
+        "url": "https://www.peptideknow.com",
+        "description": "Independent peptide reference database and encyclopedia for the scientific and research community."
+      }
+    })}</script>`,
     TOTAL_PEPTIDES: String(peptides.length),
     TOTAL_CATEGORIES: String(categories.length),
     NAV_ACTIVE_HOME: '',
@@ -801,29 +892,31 @@ app.get('/about', (req, res) => {
 // Sitemap.xml
 app.get('/sitemap.xml', (req, res) => {
   const base = 'https://www.peptideknow.com';
+  const today = new Date().toISOString().split('T')[0];
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${base}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>${base}/peptides</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>${base}/categories</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>${base}/search</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>${base}/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>${base}/guides</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>${base}/guides/beginners</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>${base}/guides/stacking</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>${base}/guides/routes-of-administration</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>${base}/guides/reconstitution</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>${base}/guides/synthesis</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>${base}/guides/peptides-vs-sarms</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>${base}/tools/calculator</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>${base}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>${base}/peptides</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>${base}/categories</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>${base}/search</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>${base}/about</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>${base}/guides</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>${base}/guides/beginners</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/stacking</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/routes-of-administration</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/reconstitution</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/guides/synthesis</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>${base}/guides/peptides-vs-sarms</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/tools/calculator</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 `;
 
   categories.forEach(cat => {
-    xml += `  <url><loc>${base}/categories/${cat.id}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
+    xml += `  <url><loc>${base}/categories/${cat.id}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
   });
 
   peptides.forEach(p => {
-    xml += `  <url><loc>${base}/peptides/${p.slug}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
+    xml += `  <url><loc>${base}/peptides/${p.slug}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
   });
 
   xml += '</urlset>';
@@ -834,25 +927,87 @@ app.get('/sitemap.xml', (req, res) => {
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain').send(`User-agent: *
 Allow: /
+Crawl-delay: 1
 
 Sitemap: https://www.peptideknow.com/sitemap.xml
 
-User-agent: GPTBot
-Allow: /
+# AI-friendly site description (llms.txt standard)
+# https://www.peptideknow.com/llms.txt
+# https://www.peptideknow.com/llms-full.txt
 
-User-agent: Google-Extended
+# AI Crawlers — all explicitly allowed
+User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
 User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+User-agent: Timpibot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: Scrapy
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+Allow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
 Allow: /
 `);
 });
@@ -923,7 +1078,22 @@ app.get('/guides', (req, res) => {
     OG_TITLE: 'Peptide Guides | PeptideKnow',
     OG_DESCRIPTION: 'Complete guides to peptide reconstitution, stacking, administration routes, synthesis, and more.',
     OG_URL: 'https://www.peptideknow.com/guides',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>
+<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Peptide Guides & Resources",
+      "description": "Comprehensive guides covering peptide reconstitution, stacking, administration, synthesis, and comparisons.",
+      "numberOfItems": 6,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Beginner's Guide to Peptides", "url": "https://www.peptideknow.com/guides/beginners" },
+        { "@type": "ListItem", "position": 2, "name": "Peptide Stacking Guide", "url": "https://www.peptideknow.com/guides/stacking" },
+        { "@type": "ListItem", "position": 3, "name": "Routes of Administration", "url": "https://www.peptideknow.com/guides/routes-of-administration" },
+        { "@type": "ListItem", "position": 4, "name": "Reconstitution Guide", "url": "https://www.peptideknow.com/guides/reconstitution" },
+        { "@type": "ListItem", "position": 5, "name": "How Peptides Are Made", "url": "https://www.peptideknow.com/guides/synthesis" },
+        { "@type": "ListItem", "position": 6, "name": "Peptides vs SARMs", "url": "https://www.peptideknow.com/guides/peptides-vs-sarms" }
+      ]
+    })}</script>`
   });
   res.send(html);
 });
@@ -948,7 +1118,7 @@ app.get('/guides/beginners', (req, res) => {
     OG_TITLE: "Beginner's Guide to Peptides | PeptideKnow",
     OG_DESCRIPTION: 'Everything you need to know to get started with research peptides.',
     OG_URL: 'https://www.peptideknow.com/guides/beginners',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>\n<script type="application/ld+json">${articleLD({ title: "Beginner's Guide to Peptides", description: 'Everything you need to know to get started with research peptides.', url: 'https://www.peptideknow.com/guides/beginners' })}</script>`
   });
   res.send(html);
 });
@@ -972,7 +1142,7 @@ app.get('/guides/stacking', (req, res) => {
     OG_TITLE: 'Peptide Stacking Guide | PeptideKnow',
     OG_DESCRIPTION: 'Synergistic peptide combinations: healing, GH, cognitive, metabolic stacks.',
     OG_URL: 'https://www.peptideknow.com/guides/stacking',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>\n<script type="application/ld+json">${articleLD({ title: 'Peptide Stacking Guide — Synergistic Protocols', description: 'Learn how to stack peptides for synergistic effects.', url: 'https://www.peptideknow.com/guides/stacking' })}</script>`
   });
   res.send(html);
 });
@@ -996,7 +1166,7 @@ app.get('/guides/routes-of-administration', (req, res) => {
     OG_TITLE: 'Routes of Peptide Administration | PeptideKnow',
     OG_DESCRIPTION: 'Compare all peptide administration routes: SubQ, IM, oral, nasal, sublingual, topical.',
     OG_URL: 'https://www.peptideknow.com/guides/routes-of-administration',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>\n<script type="application/ld+json">${articleLD({ title: 'Routes of Peptide Administration', description: 'Compare subcutaneous, intramuscular, oral, nasal, and topical peptide administration.', url: 'https://www.peptideknow.com/guides/routes-of-administration' })}</script>`
   });
   res.send(html);
 });
@@ -1020,7 +1190,7 @@ app.get('/guides/reconstitution', (req, res) => {
     OG_TITLE: 'Peptide Reconstitution Guide | PeptideKnow',
     OG_DESCRIPTION: 'Step-by-step guide to reconstituting peptides with bacteriostatic water.',
     OG_URL: 'https://www.peptideknow.com/guides/reconstitution',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>\n<script type="application/ld+json">${articleLD({ title: 'How to Reconstitute Peptides', description: 'Step-by-step reconstitution guide with bacteriostatic water.', url: 'https://www.peptideknow.com/guides/reconstitution' })}</script>`
   });
   res.send(html);
 });
@@ -1039,7 +1209,7 @@ app.get('/guides/synthesis', (req, res) => {
     OG_TITLE: 'How Peptides Are Made | PeptideKnow',
     OG_DESCRIPTION: 'From SPPS to lyophilization: the science behind peptide manufacturing.',
     OG_URL: 'https://www.peptideknow.com/guides/synthesis',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${articleLD({ title: 'How Peptides Are Made — SPPS, Recombinant DNA & Purification', description: 'The science behind peptide manufacturing and quality control.', url: 'https://www.peptideknow.com/guides/synthesis' })}</script>`
   });
   res.send(html);
 });
@@ -1063,7 +1233,7 @@ app.get('/guides/peptides-vs-sarms', (req, res) => {
     OG_TITLE: 'Peptides vs SARMs Comparison | PeptideKnow',
     OG_DESCRIPTION: 'Detailed comparison: mechanisms, safety, legal status, and use cases.',
     OG_URL: 'https://www.peptideknow.com/guides/peptides-vs-sarms',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>\n<script type="application/ld+json">${articleLD({ title: 'Peptides vs SARMs — Key Differences & Safety Comparison', description: 'Comprehensive comparison of peptides and SARMs.', url: 'https://www.peptideknow.com/guides/peptides-vs-sarms' })}</script>`
   });
   res.send(html);
 });
@@ -1089,9 +1259,74 @@ app.get('/tools/calculator', (req, res) => {
     OG_TITLE: 'Peptide Reconstitution Calculator | PeptideKnow',
     OG_DESCRIPTION: 'Calculate exact dosing and syringe units for any peptide reconstitution.',
     OG_URL: 'https://www.peptideknow.com/tools/calculator',
-    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>`
+    JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>\n<script type="application/ld+json">${softwareAppLD({ name: 'Peptide Reconstitution Calculator', description: 'Calculate exact bacteriostatic water volumes, syringe units, and body-weight dosing for research peptides.', url: 'https://www.peptideknow.com/tools/calculator' })}</script>`
   });
   res.send(html);
+});
+
+// llms.txt — AI crawler optimization (emerging standard)
+app.get('/llms.txt', (req, res) => {
+  const catList = categories.map(c => `- ${c.name}: https://www.peptideknow.com/categories/${c.id}`).join('\n');
+  const topPeptides = ['bpc-157', 'semaglutide', 'tb-500', 'ipamorelin', 'mk-677', 'ghk-cu', 'epithalon', 'selank', 'semax', 'pt-141', 'tirzepatide', 'retatrutide', 'aod-9604', 'thymosin-alpha-1', 'll-37']
+    .filter(s => peptideBySlug[s])
+    .map(s => `- ${peptideBySlug[s].name}: https://www.peptideknow.com/peptides/${s}`)
+    .join('\n');
+
+  res.type('text/plain').send(`# PeptideKnow
+> Comprehensive peptide encyclopedia and reference database
+
+PeptideKnow is an independent reference database covering ${peptides.length} research peptides across ${categories.length} categories. It provides mechanisms of action, dosage protocols, stacking guides, reconstitution instructions, routes of administration, synergistic compound cross-references, and clinical research status for each peptide.
+
+## Main Pages
+- Homepage: https://www.peptideknow.com/
+- All Peptides (A-Z): https://www.peptideknow.com/peptides
+- Categories: https://www.peptideknow.com/categories
+- Guides: https://www.peptideknow.com/guides
+- Calculator: https://www.peptideknow.com/tools/calculator
+- About: https://www.peptideknow.com/about
+
+## Guides & Resources
+- Beginner's Guide to Peptides: https://www.peptideknow.com/guides/beginners
+- Peptide Stacking Guide: https://www.peptideknow.com/guides/stacking
+- Routes of Administration: https://www.peptideknow.com/guides/routes-of-administration
+- Reconstitution Guide: https://www.peptideknow.com/guides/reconstitution
+- How Peptides Are Made: https://www.peptideknow.com/guides/synthesis
+- Peptides vs SARMs: https://www.peptideknow.com/guides/peptides-vs-sarms
+- Reconstitution Calculator: https://www.peptideknow.com/tools/calculator
+
+## Categories
+${catList}
+
+## Top Peptides
+${topPeptides}
+
+## Data Available Per Peptide
+Each peptide page includes: name, alternative names, molecular weight, sequence length, CAS number, PubChem CID, mechanism of action, potential benefits, dosage protocols (typical range, beginner, intermediate, advanced), routes of administration (with bioavailability data), stacking protocols, reconstitution instructions, amino acid sequence, side effects, synergistic compounds, related peptides, references, and clinical research status.
+
+## API
+Search API: https://www.peptideknow.com/api/peptides?q={query}
+Sitemap: https://www.peptideknow.com/sitemap.xml
+`);
+});
+
+// llms-full.txt — expanded version with all peptide summaries
+app.get('/llms-full.txt', (req, res) => {
+  let content = `# PeptideKnow — Full Reference\n\n`;
+  content += `Total peptides: ${peptides.length}\nTotal categories: ${categories.length}\n\n`;
+  
+  peptides.forEach(p => {
+    const cats = (p.categories || []).map(c => categoryById[c]?.name || c).join(', ');
+    content += `## ${p.name}\n`;
+    content += `URL: https://www.peptideknow.com/peptides/${p.slug}\n`;
+    if (p.alternativeNames?.length) content += `Also known as: ${p.alternativeNames.join(', ')}\n`;
+    content += `Categories: ${cats}\n`;
+    content += `${p.description}\n`;
+    if (p.molecularWeight) content += `Molecular weight: ${p.molecularWeight}\n`;
+    if (p.sequenceLength) content += `Sequence: ${p.sequenceLength}\n`;
+    content += `\n`;
+  });
+  
+  res.type('text/plain').send(content);
 });
 
 // 404 catch-all
