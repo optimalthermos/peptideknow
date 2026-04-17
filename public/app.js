@@ -1,4 +1,4 @@
-// PeptideOpedia — Client-side functionality
+// PeptideKnow — Client-side functionality
 
 (function() {
   'use strict';
