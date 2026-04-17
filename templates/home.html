@@ -1,8 +1,9 @@
+<!-- ========== HERO ========== -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-content">
       <h1>The Peptide Encyclopedia</h1>
-      <p class="hero-subtitle">Explore <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong> — mechanisms of action, synergistic compounds, clinical research status, and more.</p>
+      <p class="hero-subtitle">Explore <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong> — mechanisms of action, dosage protocols, stacking guides, synergistic compounds, and clinical research data.</p>
       <form action="/search" method="GET" class="hero-search" role="search">
         <label for="hero-search-input" class="sr-only">Search peptides by name, function, or mechanism</label>
         <input type="search" id="hero-search-input" name="q" placeholder="Search peptides by name, function, or mechanism..." autocomplete="off">
@@ -24,7 +25,133 @@
   </div>
 </section>
 
-<section class="section" aria-labelledby="categories-heading">
+<!-- ========== STATS BAR ========== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-number">{{TOTAL_PEPTIDES}}</span>
+        <span class="stat-label">Peptides &amp; Compounds</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{TOTAL_CATEGORIES}}</span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">In-Depth Guides</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{DOSAGE_COUNT}}</span>
+        <span class="stat-label">Dosage Protocols</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{STACK_COUNT}}</span>
+        <span class="stat-label">Stacking Protocols</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== QUICK ACCESS TOOLS (ABOVE THE FOLD) ========== -->
+<section class="section" aria-labelledby="tools-heading">
+  <div class="container">
+    <h2 id="tools-heading" class="section-heading-center">Tools &amp; Quick Access</h2>
+    <p class="section-subheading">Jump straight to the most-used features on PeptideKnow.</p>
+    <div class="quick-tools-grid">
+      <a href="/tools/calculator" class="quick-tool-card qt-calculator">
+        <div class="qt-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="12" y1="10" x2="14" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="12" y1="14" x2="14" y2="14"/><line x1="8" y1="18" x2="14" y2="18"/></svg>
+        </div>
+        <h3>Reconstitution Calculator</h3>
+        <p>Calculate bacteriostatic water volumes, syringe units, and body-weight dosing for 20+ peptides.</p>
+        <span class="qt-cta">Open Calculator &rarr;</span>
+      </a>
+      <a href="/guides/beginners" class="quick-tool-card qt-guide">
+        <div class="qt-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3>Beginner's Guide</h3>
+        <p>New to peptides? Everything you need to know — what they are, how they work, and how to get started safely.</p>
+        <span class="qt-cta">Start Learning &rarr;</span>
+      </a>
+      <a href="/guides/stacking" class="quick-tool-card qt-guide">
+        <div class="qt-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8l-2 4h12l-2-4z"/></svg>
+        </div>
+        <h3>Stacking Guide</h3>
+        <p>7 named protocols — Wolverine, GH Optimization, Gut Healing, Phoenix, and more. Interaction warnings included.</p>
+        <span class="qt-cta">View Stacks &rarr;</span>
+      </a>
+      <a href="/guides/reconstitution" class="quick-tool-card qt-guide">
+        <div class="qt-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v4a2 2 0 002 2h4"/><path d="M4 7V4a2 2 0 012-2h8l6 6v12a2 2 0 01-2 2H6a2 2 0 01-2-2v-5"/><path d="M2 13h10"/><path d="M5 10l-3 3 3 3"/></svg>
+        </div>
+        <h3>Reconstitution Guide</h3>
+        <p>Step-by-step instructions for mixing lyophilized peptides with bacteriostatic water. Storage &amp; troubleshooting.</p>
+        <span class="qt-cta">Read Guide &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRENDING / POPULAR PEPTIDES ========== -->
+<section class="section section-alt" aria-labelledby="trending-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="trending-heading">Most Popular Peptides</h2>
+      <a href="/peptides" class="view-all">Browse all peptides &rarr;</a>
+    </div>
+    <div class="trending-grid">
+      {{TRENDING_PEPTIDES}}
+    </div>
+  </div>
+</section>
+
+<!-- ========== MORE GUIDES (FULL WIDTH CARDS) ========== -->
+<section class="section" aria-labelledby="guides-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="guides-heading">Guides &amp; Resources</h2>
+      <a href="/guides" class="view-all">All guides &rarr;</a>
+    </div>
+    <div class="guides-full-grid">
+      <a href="/guides/routes-of-administration" class="guide-full-card">
+        <div class="gf-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0020 0h-3"/><circle cx="12" cy="5" r="3"/></svg>
+        </div>
+        <div class="gf-text">
+          <h3>Routes of Administration</h3>
+          <p>Compare subcutaneous, intramuscular, oral, intranasal, sublingual, and topical delivery. Bioavailability charts and best-use tables.</p>
+        </div>
+        <span class="gf-arrow">&rarr;</span>
+      </a>
+      <a href="/guides/peptides-vs-sarms" class="guide-full-card">
+        <div class="gf-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v3"/><path d="M11 18H8a2 2 0 01-2-2v-3"/></svg>
+        </div>
+        <div class="gf-text">
+          <h3>Peptides vs SARMs</h3>
+          <p>Full comparison of mechanisms, safety profiles, legal status, PCT requirements, and practical use cases for both compound classes.</p>
+        </div>
+        <span class="gf-arrow">&rarr;</span>
+      </a>
+      <a href="/guides/synthesis" class="guide-full-card">
+        <div class="gf-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m14 0h2M3 15h2m14 0h2"/><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+        </div>
+        <div class="gf-text">
+          <h3>How Peptides Are Made</h3>
+          <p>Solid-phase synthesis (SPPS), recombinant DNA production, HPLC purification, lyophilization — from lab bench to your vial.</p>
+        </div>
+        <span class="gf-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CATEGORIES ========== -->
+<section class="section section-alt" aria-labelledby="categories-heading">
   <div class="container">
     <div class="section-header">
       <h2 id="categories-heading">Browse by Category</h2>
@@ -36,7 +163,8 @@
   </div>
 </section>
 
-<section class="section section-alt" aria-labelledby="featured-heading">
+<!-- ========== FEATURED PEPTIDES ========== -->
+<section class="section" aria-labelledby="featured-heading">
   <div class="container">
     <div class="section-header">
       <h2 id="featured-heading">Featured Peptides</h2>
@@ -48,7 +176,8 @@
   </div>
 </section>
 
-<section class="section" aria-labelledby="audience-heading">
+<!-- ========== FOR RESEARCHERS & BIOHACKERS ========== -->
+<section class="section section-alt" aria-labelledby="audience-heading">
   <div class="container">
     <h2 id="audience-heading" class="section-heading-center">Built for Researchers &amp; Biohackers</h2>
     <p class="section-subheading">Whether you're exploring clinical research or optimizing your own health, PeptideKnow has the data you need.</p>
@@ -64,14 +193,15 @@
         <img src="/static/images/biohacker-athlete.jpg" alt="Biohacker reviewing peptide research data" width="960" height="540" loading="lazy">
         <div class="audience-card-body">
           <h3>For Biohackers</h3>
-          <p>Synergistic compound stacking references, researched benefits with caveats, dosage ranges from literature, and side effect profiles.</p>
+          <p>Dosage protocols, stacking guides, reconstitution calculators, route-of-administration comparisons, and synergistic compound references.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt" aria-labelledby="recent-heading">
+<!-- ========== RECENTLY ADDED + A-Z ========== -->
+<section class="section" aria-labelledby="recent-heading">
   <div class="container">
     <div class="two-col">
       <div>
@@ -91,60 +221,14 @@
   </div>
 </section>
 
-<section class="section" aria-labelledby="guides-heading">
-  <div class="container">
-    <div class="section-header">
-      <h2 id="guides-heading">Guides &amp; Tools</h2>
-      <a href="/guides" class="view-all">All guides &rarr;</a>
-    </div>
-    <div class="guides-promo-grid">
-      <a href="/tools/calculator" class="guide-promo-card guide-promo-featured">
-        <div class="guide-promo-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="12" y1="10" x2="14" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="12" y1="14" x2="14" y2="14"/><line x1="8" y1="18" x2="14" y2="18"/></svg>
-        </div>
-        <h3>Reconstitution Calculator</h3>
-        <p>Calculate exact dosing, syringe units, and body-weight protocols for 20+ peptides.</p>
-        <span class="guide-promo-cta">Open Calculator &rarr;</span>
-      </a>
-      <a href="/guides/beginners" class="guide-promo-card">
-        <div class="guide-promo-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
-        </div>
-        <h3>Beginner's Guide</h3>
-        <p>New to peptides? Start here.</p>
-      </a>
-      <a href="/guides/stacking" class="guide-promo-card">
-        <div class="guide-promo-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8l-2 4h12l-2-4z"/></svg>
-        </div>
-        <h3>Stacking Guide</h3>
-        <p>Synergistic peptide protocols.</p>
-      </a>
-      <a href="/guides/routes-of-administration" class="guide-promo-card">
-        <div class="guide-promo-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0020 0h-3"/><circle cx="12" cy="5" r="3"/></svg>
-        </div>
-        <h3>Routes of Administration</h3>
-        <p>SubQ, IM, oral, nasal &amp; more.</p>
-      </a>
-      <a href="/guides/peptides-vs-sarms" class="guide-promo-card">
-        <div class="guide-promo-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v3"/><path d="M11 18H8a2 2 0 01-2-2v-3"/></svg>
-        </div>
-        <h3>Peptides vs SARMs</h3>
-        <p>Full mechanism &amp; safety comparison.</p>
-      </a>
-    </div>
-  </div>
-</section>
-
+<!-- ========== ABOUT ========== -->
 <section class="section section-alt" aria-labelledby="about-section-heading">
   <div class="container">
     <div class="about-split">
       <div class="about-split-text">
         <h2 id="about-section-heading">About PeptideKnow</h2>
         <p>PeptideKnow is a free, independent reference database designed to organize and present research-backed information on bioactive peptides. Our database covers growth hormone secretagogues, healing peptides, nootropics, antimicrobial peptides, metabolic agents, and more.</p>
-        <p>Each entry includes mechanism of action data, synergistic compound cross-references, amino acid sequences, and links to primary research literature.</p>
+        <p>Each entry includes mechanism of action data, synergistic compound cross-references, amino acid sequences, dosage protocols, stacking guides, and links to primary research literature.</p>
         <a href="/about" class="btn-outline">Learn More</a>
       </div>
       <div class="about-split-image">

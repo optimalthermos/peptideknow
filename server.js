@@ -139,7 +139,34 @@ app.get('/', (req, res) => {
     </a>`;
   }).join('');
 
-  const featuredPeptides = ['bpc-157', 'tb-500', 'semaglutide', 'epithalon', 'thymosin-alpha-1', 'ghk-cu', 'semax', 'pt-141']
+  // Trending peptides — sorted by popularity with rich cards
+  const trendingSlugs = ['bpc-157', 'semaglutide', 'tb-500', 'ipamorelin', 'mk-677', 'retatrutide', 'epithalon', 'ghk-cu', 'semax', 'ostarine-mk-2866', 'tirzepatide', 'pt-141'];
+  const trendingPeptides = trendingSlugs
+    .filter(slug => peptideBySlug[slug])
+    .map(slug => {
+      const p = peptideBySlug[slug];
+      const cats = (p.categories || []).slice(0, 2).map(c => categoryById[c]?.name || c);
+      const d = p.dosage;
+      const doseLine = d ? (d.typical_range || d.standard || '') : '';
+      const pop = p.popularity_score || p.popularity || 0;
+      const popBadge = pop >= 8 ? '<span class="trend-badge">Popular</span>' : '';
+      const roa = p.routes_of_administration || p.routesOfAdministration || [];
+      const roaTags = (Array.isArray(roa) && roa.length > 0)
+        ? roa.slice(0, 3).map(r => typeof r === 'object' ? r.route : r).map(r => `<span class="trend-roa">${r}</span>`).join('')
+        : '';
+      return `<a href="/peptides/${p.slug}" class="trend-card">
+        <div class="trend-header">
+          <h3>${p.name}</h3>
+          ${popBadge}
+        </div>
+        <div class="trend-cats">${cats.map(c => `<span class="trend-cat">${c}</span>`).join('')}</div>
+        <p class="trend-desc">${p.description.substring(0, 120)}...</p>
+        ${doseLine ? `<div class="trend-dose"><strong>Dose:</strong> ${doseLine}</div>` : ''}
+        ${roaTags ? `<div class="trend-roas">${roaTags}</div>` : ''}
+      </a>`;
+    }).join('');
+
+  const featuredPeptides = ['thymosin-alpha-1', 'll-37', 'aod-9604', 'selank', 'cjc-1295', 'melanotan-ii', 'dihexa', 'cerebrolysin']
     .filter(slug => peptideBySlug[slug])
     .map(slug => {
       const p = peptideBySlug[slug];
@@ -150,6 +177,10 @@ app.get('/', (req, res) => {
         <p>${p.description.substring(0, 140)}...</p>
       </a>`;
     }).join('');
+
+  // Stats counts
+  const dosageCount = peptides.filter(p => p.dosage).length;
+  const stackCount = peptides.reduce((sum, p) => sum + ((p.stacking || p.stackingProtocols || []).length), 0);
 
   const recentPeptides = peptides.slice(-8).reverse().map(p => {
     return `<a href="/peptides/${p.slug}" class="list-item">
@@ -197,10 +228,13 @@ app.get('/', (req, res) => {
     JSON_LD: `<script type="application/ld+json">${websiteLD}</script>\n<script type="application/ld+json">${orgLD}</script>`,
     CATEGORY_CARDS: categoryCards,
     FEATURED_PEPTIDES: featuredPeptides,
+    TRENDING_PEPTIDES: trendingPeptides,
     RECENT_PEPTIDES: recentPeptides,
     ALL_PEPTIDES_LIST: allPeptidesList,
     TOTAL_PEPTIDES: String(peptides.length),
     TOTAL_CATEGORIES: String(categories.length),
+    DOSAGE_COUNT: String(dosageCount),
+    STACK_COUNT: String(stackCount),
     NAV_ACTIVE_HOME: 'active',
     NAV_ACTIVE_PEPTIDES: '',
     NAV_ACTIVE_CATEGORIES: '',
