@@ -28,12 +28,15 @@ blogPosts.forEach(p => { blogPostBySlug[p.slug] = p; });
 // Load blog article bodies
 const blogBodies = {};
 blogPosts.forEach(p => {
-  const bodyPath = path.join(__dirname, 'data', `blog-${p.slug.split('-').slice(0, 3).join('-')}-body.html`);
-  // Try specific body file, fall back to slug-based
-  const possiblePaths = [
-    path.join(__dirname, 'data', 'blog-rfk-peptides-body.html'),
-    bodyPath
-  ];
+  // Priority: 1) explicit bodyFile field, 2) slug-based naming conventions
+  const possiblePaths = [];
+  if (p.bodyFile) {
+    possiblePaths.push(path.join(__dirname, 'data', p.bodyFile));
+  }
+  possiblePaths.push(
+    path.join(__dirname, 'data', `blog-${p.slug}-body.html`),
+    path.join(__dirname, 'data', `blog-${p.slug.split('-').slice(0, 3).join('-')}-body.html`)
+  );
   for (const bp of possiblePaths) {
     if (fs.existsSync(bp)) {
       blogBodies[p.slug] = fs.readFileSync(bp, 'utf8');
