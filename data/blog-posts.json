@@ -1,14 +1,54 @@
 {
   "posts": [
     {
+      "slug": "fda-pcac-july-2026-bpc-157-tb-500-mots-c-semax-epitalon",
+      "title": "FDA Sets July 2026 PCAC Hearing for BPC-157, TB-500, MOTS-C, Semax, and More",
+      "subtitle": "What the FDA will review at the July 23\u201324 Pharmacy Compounding Advisory Committee meeting \u2014 and what it means for compounded peptides",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-04-18",
+      "dateModified": "2026-04-18",
+      "image": "/static/images/blog-fda-pcac-july-2026.png",
+      "imageAlt": "FDA advisory committee meeting concept with peptide vials and regulatory documents",
+      "category": "Regulation & Policy",
+      "tags": [
+        "FDA",
+        "PCAC",
+        "compounding",
+        "503A",
+        "BPC-157",
+        "TB-500",
+        "MOTS-C",
+        "Semax",
+        "Epitalon",
+        "KPV",
+        "DSIP"
+      ],
+      "readTime": "10 min read",
+      "excerpt": "The FDA has published the agenda for its July 23\u201324, 2026 Pharmacy Compounding Advisory Committee (PCAC) meeting, naming seven peptides\u2014including BPC-157, TB-500, MOTS-C, Semax, and Epitalon\u2014for discussion as potential additions to the 503A bulks list. Here\u2019s what\u2019s on the agenda, what \u201cuses evaluated\u201d means, and what to watch before July.",
+      "bodyFile": "blog-fda-pcac-july-2026-peptides-body.html",
+      "metaDescription": "The FDA\u2019s July 23\u201324, 2026 PCAC meeting will discuss BPC-157, TB-500, MOTS-C, KPV, DSIP (emideltide), Semax, and Epitalon for possible inclusion on the 503A bulks list. Full breakdown of the agenda, deadlines, and implications for compounded peptides.",
+      "keywords": [
+        "FDA PCAC July 2026",
+        "BPC-157 FDA meeting",
+        "TB-500 FDA",
+        "MOTS-C compounding",
+        "Semax FDA",
+        "Epitalon FDA",
+        "KPV peptide FDA",
+        "DSIP emideltide",
+        "503A bulks list peptides",
+        "compounded peptides legal status"
+      ]
+    },
+    {
       "slug": "brp-stanford-ai-peptide-ozempic-alternative",
       "title": "BRP: Stanford's AI-Discovered Peptide That Could Replace Ozempic",
-      "subtitle": "A 12-amino-acid molecule found by AI targets only the brain's appetite center — no nausea, no muscle loss, no GI side effects",
+      "subtitle": "A 12-amino-acid molecule found by AI targets only the brain's appetite center \u2014 no nausea, no muscle loss, no GI side effects",
       "author": "PeptideKnow Editorial",
       "datePublished": "2026-04-18",
       "dateModified": "2026-04-18",
       "image": "/static/images/blog-brp-stanford-peptide.png",
-      "imageAlt": "Molecular peptide structure floating above a brain model in a neuroscience laboratory — representing BRP peptide discovery",
+      "imageAlt": "Molecular peptide structure floating above a brain model in a neuroscience laboratory \u2014 representing BRP peptide discovery",
       "category": "Research & Discovery",
       "tags": [
         "BRP",
@@ -21,9 +61,9 @@
         "Obesity"
       ],
       "readTime": "12 min read",
-      "excerpt": "Stanford researchers used an AI algorithm called Peptide Predictor to scan 20,000 human genes and discovered BRP — a naturally occurring 12-amino-acid peptide that reduces food intake by 50% in animal models, causes fat-specific weight loss, and produces none of the nausea, muscle loss, or GI side effects associated with Ozempic. Here's what the Nature paper actually shows, and why it matters.",
+      "excerpt": "Stanford researchers used an AI algorithm called Peptide Predictor to scan 20,000 human genes and discovered BRP \u2014 a naturally occurring 12-amino-acid peptide that reduces food intake by 50% in animal models, causes fat-specific weight loss, and produces none of the nausea, muscle loss, or GI side effects associated with Ozempic. Here's what the Nature paper actually shows, and why it matters.",
       "bodyFile": "blog-brp-stanford-ozempic-body.html",
-      "metaDescription": "Stanford scientists used AI to discover BRP (BRINP2-Related Peptide), a naturally occurring 12-amino-acid peptide that suppresses appetite through a novel hypothalamic mechanism — with no nausea, no muscle loss, and no GI side effects seen in animal studies. Full analysis of the Nature paper, mechanism, animal data, and comparison to Ozempic.",
+      "metaDescription": "Stanford scientists used AI to discover BRP (BRINP2-Related Peptide), a naturally occurring 12-amino-acid peptide that suppresses appetite through a novel hypothalamic mechanism \u2014 with no nausea, no muscle loss, and no GI side effects seen in animal studies. Full analysis of the Nature paper, mechanism, animal data, and comparison to Ozempic.",
       "keywords": [
         "BRP peptide",
         "BRINP2 related peptide",
