@@ -6,7 +6,7 @@
       </nav>
       <h1 itemprop="name">{{PEPTIDE_NAME}}</h1>
       {{ALT_NAMES}}
-      <div class="tag-group">{{CATEGORY_TAGS}} {{POPULARITY_BADGE}}</div>
+      <div class="tag-group">{{CATEGORY_TAGS}} {{POPULARITY_BADGE}} {{REGULATORY_BADGE}}</div>
     </div>
   </section>
 
@@ -50,6 +50,10 @@
               {{SIDE_EFFECTS_LIST}}
             </ul>
           </section>
+
+          {{SAFETY_SECTION}}
+
+          {{PHARMACOKINETICS_SECTION}}
 
           <section class="detail-section" id="synergistic">
             <h2>Synergistic Compounds</h2>
@@ -101,6 +105,8 @@
                 {{TOC_RECONSTITUTION}}
                 <li><a href="#sequence">Sequence</a></li>
                 <li><a href="#side-effects">Side Effects</a></li>
+                {{TOC_SAFETY}}
+                {{TOC_PHARMACOKINETICS}}
                 <li><a href="#synergistic">Synergistic</a></li>
                 <li><a href="#related">Related</a></li>
                 <li><a href="#references">References</a></li>

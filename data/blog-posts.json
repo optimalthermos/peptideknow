@@ -1,6 +1,23 @@
 {
   "posts": [
     {
+      "slug": "brp-stanford-ai-peptide-ozempic-alternative",
+      "title": "BRP: Stanford's AI-Discovered Peptide That Could Replace Ozempic",
+      "subtitle": "A 12-amino-acid molecule found by AI targets only the brain's appetite center — no nausea, no muscle loss, no GI side effects",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-04-18",
+      "dateModified": "2026-04-18",
+      "image": "/static/images/blog-rfk-peptides.png",
+      "imageAlt": "Molecular visualization of BRP peptide structure alongside Stanford laboratory research imagery representing AI-driven drug discovery",
+      "category": "Research & Discovery",
+      "tags": ["BRP", "GLP-1", "Ozempic", "Semaglutide", "Stanford", "AI Drug Discovery", "Weight Loss", "Obesity"],
+      "readTime": "12 min read",
+      "excerpt": "Stanford researchers used an AI algorithm called Peptide Predictor to scan 20,000 human genes and discovered BRP — a naturally occurring 12-amino-acid peptide that reduces food intake by 50% in animal models, causes fat-specific weight loss, and produces none of the nausea, muscle loss, or GI side effects associated with Ozempic. Here's what the Nature paper actually shows, and why it matters.",
+      "bodyFile": "blog-brp-stanford-ozempic-body.html",
+      "metaDescription": "Stanford scientists used AI to discover BRP (BRINP2-Related Peptide), a naturally occurring 12-amino-acid peptide that suppresses appetite through a novel hypothalamic mechanism — with no nausea, no muscle loss, and no GI side effects seen in animal studies. Full analysis of the Nature paper, mechanism, animal data, and comparison to Ozempic.",
+      "keywords": ["BRP peptide", "BRINP2 related peptide", "natural ozempic alternative", "Stanford AI peptide discovery", "BRP vs semaglutide", "non-incretin anti-obesity peptide", "GLP-1 alternative", "hypothalamic appetite suppression", "Katrin Svensson Stanford", "Peptide Predictor algorithm", "weight loss without nausea", "ozempic side effects alternative", "BRP Nature paper 2025"]
+    },
+    {
       "slug": "fda-peptide-reclassification-2026-rfk-bpc-157-tb-500",
       "title": "FDA Peptide Reclassification 2026: Which 12 Peptides Are Being Restored Under RFK Jr.",
       "subtitle": "A comprehensive guide to the FDA's reversal on compounded peptides, the PCAC review timeline, and what it means for patients and providers",

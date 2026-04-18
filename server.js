@@ -224,9 +224,9 @@ app.get('/', (req, res) => {
       const cats = (p.categories || []).slice(0, 2).map(c => categoryById[c]?.name || c);
       const d = p.dosage;
       const doseLine = d ? (d.typical_range || d.standard || '') : '';
-      const pop = p.popularity_score || p.popularity || 0;
+      const pop = p.popularityScore || p.popularity_score || p.popularity || 0;
       const popBadge = pop >= 8 ? '<span class="trend-badge">Popular</span>' : '';
-      const roa = p.routes_of_administration || p.routesOfAdministration || [];
+      const roa = p.routesOfAdministration || p.routes_of_administration || [];
       const roaTags = (Array.isArray(roa) && roa.length > 0)
         ? roa.slice(0, 3).map(r => typeof r === 'object' ? r.route : r).map(r => `<span class="trend-roa">${r}</span>`).join('')
         : '';
@@ -256,7 +256,7 @@ app.get('/', (req, res) => {
 
   // Stats counts
   const dosageCount = peptides.filter(p => p.dosage).length;
-  const stackCount = peptides.reduce((sum, p) => sum + ((p.stacking || p.stackingProtocols || []).length), 0);
+  const stackCount = peptides.reduce((sum, p) => sum + ((p.stackingProtocols || p.stacking || []).length), 0);
 
   const recentPeptides = peptides.slice(-8).reverse().map(p => {
     return `<a href="/peptides/${p.slug}" class="list-item">
@@ -479,9 +479,34 @@ app.get('/peptides/:slug', (req, res) => {
   if (p.compoundType) quickFacts.push(`<tr><th>Compound Type</th><td>${p.compoundType}</td></tr>`);
 
   // Popularity badge
-  const popScore = p.popularity_score || p.popularity || 0;
+  const popScore = p.popularityScore || p.popularity_score || p.popularity || 0;
   let popularityBadge = '';
   if (popScore >= 8) popularityBadge = '<span class="popularity-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Popular</span>';
+
+  // === REGULATORY STATUS BADGE ===
+  let regulatoryBadge = '';
+  const regStatusRaw = p.regulatoryStatus;
+  if (regStatusRaw) {
+    const regLabels = {
+      'fda-approved': { label: 'FDA Approved', cls: 'reg-approved', icon: '✓' },
+      'approved': { label: 'FDA Approved', cls: 'reg-approved', icon: '✓' },
+      'fda-category-2': { label: 'FDA Category 2', cls: 'reg-category2', icon: '⚠' },
+      'clinical-trials': { label: 'Clinical Trials', cls: 'reg-clinical', icon: '◉' },
+      'research-only': { label: 'Research Only', cls: 'reg-research', icon: '◎' },
+      'pre-clinical': { label: 'Pre-Clinical', cls: 'reg-research', icon: '◎' },
+      'approved-china': { label: 'Approved (China)', cls: 'reg-approved', icon: '✓' },
+      'pending-approval': { label: 'NDA Filed', cls: 'reg-clinical', icon: '◉' },
+      'nda-filed': { label: 'NDA Filed', cls: 'reg-clinical', icon: '◉' },
+      'phase-3': { label: 'Phase 3', cls: 'reg-clinical', icon: '◉' },
+      'phase-2': { label: 'Phase 2', cls: 'reg-clinical', icon: '◉' }
+    };
+    // Handle both string and object format
+    const regKey = typeof regStatusRaw === 'string' ? regStatusRaw : (regStatusRaw.status || 'research-only');
+    const regLabel = typeof regStatusRaw === 'object' && regStatusRaw.label ? regStatusRaw.label : null;
+    const reg = regLabels[regKey] || { label: regKey, cls: 'reg-research', icon: '◎' };
+    const displayLabel = regLabel || reg.label;
+    regulatoryBadge = `<span class="regulatory-badge ${reg.cls}"><span class="reg-icon">${reg.icon}</span> ${displayLabel}</span>`;
+  }
 
   // === RICH DOSAGE SECTION ===
   let dosageSection = '';
@@ -517,7 +542,7 @@ app.get('/peptides/:slug', (req, res) => {
   // === ROA SECTION ===
   let roaSection = '';
   let tocRoa = '';
-  const roa = p.routes_of_administration || p.routesOfAdministration;
+  const roa = p.routesOfAdministration || p.routes_of_administration;
   if (roa && roa.length > 0) {
     tocRoa = '<li><a href="#roa">Administration Routes</a></li>';
     let roaCards = '';
@@ -544,7 +569,7 @@ app.get('/peptides/:slug', (req, res) => {
   // === STACKING SECTION ===
   let stackingSection = '';
   let tocStacking = '';
-  const stacks = p.stacking || p.stackingProtocols;
+  const stacks = p.stackingProtocols || p.stacking;
   if (stacks && stacks.length > 0) {
     tocStacking = '<li><a href="#stacking">Stacking Protocols</a></li>';
     const stackCards = stacks.map(s => {
@@ -598,6 +623,82 @@ app.get('/peptides/:slug', (req, res) => {
           <a href="/guides/reconstitution" class="btn-outline">Full Guide</a>
         </div>
       </div>
+    </section>`;
+  }
+
+  // === SAFETY & CONTRAINDICATIONS SECTION ===
+  let safetySection = '';
+  let tocSafety = '';
+  const contras = p.contraindications;
+  const drugInts = p.drugInteractions;
+  const fdaNotes = p.fdaSafetyNotes;
+  if ((contras && contras.length > 0) || (drugInts && drugInts.length > 0) || fdaNotes) {
+    tocSafety = '<li><a href="#safety">Safety & Contraindications</a></li>';
+    let contraHtml = '';
+    if (contras && contras.length > 0) {
+      const contraCards = contras.map(c => {
+        if (typeof c === 'object') {
+          const sev = c.severity || 'caution';
+          const sevCls = sev === 'absolute' ? 'contra-absolute' : sev === 'relative' ? 'contra-relative' : 'contra-caution';
+          return `<div class="contra-card ${sevCls}">
+            <div class="contra-severity">${sev.charAt(0).toUpperCase() + sev.slice(1)}</div>
+            <h4>${c.condition || c.name || 'Contraindication'}</h4>
+            <p>${c.description || c.detail || ''}</p>
+          </div>`;
+        }
+        return `<div class="contra-card contra-caution"><p>${c}</p></div>`;
+      }).join('');
+      contraHtml = `<div class="contra-grid">${contraCards}</div>`;
+    }
+    let drugIntHtml = '';
+    if (drugInts && drugInts.length > 0) {
+      const intItems = drugInts.map(di => {
+        if (typeof di === 'object') {
+          return `<li><strong>${di.drug || di.name || 'Drug'}</strong>: ${di.interaction || di.description || di.effect || ''}</li>`;
+        }
+        return `<li>${di}</li>`;
+      }).join('');
+      drugIntHtml = `<div class="drug-interactions">
+        <h3>Drug Interactions</h3>
+        <ul>${intItems}</ul>
+      </div>`;
+    }
+    let fdaHtml = '';
+    if (fdaNotes) {
+      fdaHtml = `<div class="fda-safety-note">
+        <h3>FDA Safety Information</h3>
+        <p>${fdaNotes}</p>
+        <p class="fda-source"><a href="https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" target="_blank" rel="noopener noreferrer">FDA Source: Bulk Drug Substances Safety Risks</a></p>
+      </div>`;
+    }
+    safetySection = `<section class="detail-section safety-section" id="safety">
+      <h2>Safety & Contraindications</h2>
+      <p class="safety-disclaimer">This information is for educational purposes only. Consult a qualified healthcare provider before using any peptide.</p>
+      ${contraHtml}
+      ${drugIntHtml}
+      ${fdaHtml}
+    </section>`;
+  }
+
+  // === PHARMACOKINETICS SECTION ===
+  let pharmacokineticsSection = '';
+  let tocPharmacokinetics = '';
+  const hl = p.halfLife || p.half_life;
+  const stor = p.storage;
+  const bioav = p.bioavailability;
+  const clearance = p.clearance;
+  const vd = p.volumeOfDistribution;
+  if (hl || stor || bioav || clearance || vd) {
+    tocPharmacokinetics = '<li><a href="#pharmacokinetics">Pharmacokinetics</a></li>';
+    let pkRows = '';
+    if (hl) pkRows += `<tr><th>Half-Life</th><td>${hl}</td></tr>`;
+    if (bioav) pkRows += `<tr><th>Bioavailability</th><td>${bioav}</td></tr>`;
+    if (clearance) pkRows += `<tr><th>Clearance</th><td>${clearance}</td></tr>`;
+    if (vd) pkRows += `<tr><th>Volume of Distribution</th><td>${vd}</td></tr>`;
+    if (stor) pkRows += `<tr><th>Storage</th><td>${stor}</td></tr>`;
+    pharmacokineticsSection = `<section class="detail-section" id="pharmacokinetics">
+      <h2>Pharmacokinetics</h2>
+      <table class="data-table">${pkRows}</table>
     </section>`;
   }
 
@@ -678,6 +779,11 @@ app.get('/peptides/:slug', (req, res) => {
     SIDE_EFFECTS_LIST: sideEffectsList,
     AMINO_ACID_SEQ: p.aminoAcidSequence || 'Not yet characterized',
     POPULARITY_BADGE: popularityBadge,
+    REGULATORY_BADGE: regulatoryBadge,
+    SAFETY_SECTION: safetySection,
+    PHARMACOKINETICS_SECTION: pharmacokineticsSection,
+    TOC_SAFETY: tocSafety,
+    TOC_PHARMACOKINETICS: tocPharmacokinetics,
     DOSAGE_SECTION: dosageSection,
     ROA_SECTION: roaSection,
     STACKING_SECTION: stackingSection,
