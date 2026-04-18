@@ -113,22 +113,31 @@
     onScroll();
   }
 
-  // === NEWS BELL TOOLTIP (tap on mobile, hover on desktop via CSS) ===
+  // === NEWS BELL TOOLTIP (click/tap only) ===
   var bellBtn = document.querySelector('.news-bell-btn');
   var bellTooltip = document.querySelector('.news-bell-tooltip');
   if (bellBtn && bellTooltip) {
+    function openBell() {
+      bellTooltip.style.display = 'block';
+      bellTooltip.classList.add('active');
+    }
+    function closeBell() {
+      bellTooltip.style.display = 'none';
+      bellTooltip.classList.remove('active');
+    }
     bellBtn.addEventListener('click', function(e) {
       e.stopPropagation();
-      bellTooltip.classList.toggle('active');
+      var isOpen = bellTooltip.classList.contains('active');
+      if (isOpen) { closeBell(); } else { openBell(); }
     });
     document.addEventListener('click', function(e) {
       if (!bellTooltip.contains(e.target) && !bellBtn.contains(e.target)) {
-        bellTooltip.classList.remove('active');
+        closeBell();
       }
     });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        bellTooltip.classList.remove('active');
+        closeBell();
         bellBtn.focus();
       }
     });
