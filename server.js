@@ -436,16 +436,24 @@ app.get('/peptides/:slug', (req, res) => {
     ? `<p class="alt-names">Also known as: ${p.alternativeNames.join(', ')}</p>` 
     : '';
 
-  const synLinks = (p.synergisticCompounds || []).map(name => {
-    const match = peptides.find(pp => pp.name === name);
-    if (match) return `<a href="/peptides/${match.slug}" class="syn-link">${name}</a>`;
-    return `<span class="syn-link external">${name}</span>`;
+  const synLinks = (p.synergisticCompounds || []).map(item => {
+    const compName = typeof item === 'string' ? item : item.name;
+    const compSlug = typeof item === 'string' ? null : item.slug;
+    const compRel = typeof item === 'string' ? '' : (item.relationship || '');
+    const match = compSlug ? peptides.find(pp => pp.slug === compSlug) : peptides.find(pp => pp.name === compName);
+    const tooltip = compRel ? ` title="${compRel.replace(/"/g, '&quot;')}"` : '';
+    if (match) return `<a href="/peptides/${match.slug}" class="syn-link"${tooltip}>${compName}</a>`;
+    return `<span class="syn-link external"${tooltip}>${compName}</span>`;
   }).join('');
 
-  const relatedLinks = (p.relatedPeptides || []).map(name => {
-    const match = peptides.find(pp => pp.name === name);
-    if (match) return `<a href="/peptides/${match.slug}" class="related-link">${name}</a>`;
-    return `<span class="related-link">${name}</span>`;
+  const relatedLinks = (p.relatedPeptides || []).map(item => {
+    const compName = typeof item === 'string' ? item : item.name;
+    const compSlug = typeof item === 'string' ? null : item.slug;
+    const compRel = typeof item === 'string' ? '' : (item.relationship || '');
+    const match = compSlug ? peptides.find(pp => pp.slug === compSlug) : peptides.find(pp => pp.name === compName);
+    const tooltip = compRel ? ` title="${compRel.replace(/"/g, '&quot;')}"` : '';
+    if (match) return `<a href="/peptides/${match.slug}" class="related-link"${tooltip}>${compName}</a>`;
+    return `<span class="related-link"${tooltip}>${compName}</span>`;
   }).join('');
 
   // Find peptides in same categories for "More in this category"
@@ -515,7 +523,9 @@ app.get('/peptides/:slug', (req, res) => {
     let roaCards = '';
     if (typeof roa[0] === 'object') {
       roaCards = roa.map(r => {
-        const badge = r.bioavailability ? `<span class="route-badge route-badge-${r.bioavailability.toLowerCase() === 'high' ? 'high' : r.bioavailability.toLowerCase() === 'moderate' ? 'moderate' : 'low'}">${r.bioavailability}</span>` : '';
+        const bioLow = (r.bioavailability || '').toLowerCase();
+          const bioLevel = bioLow.startsWith('high') ? 'high' : bioLow.startsWith('moderate') ? 'moderate' : 'low';
+          const badge = r.bioavailability ? `<span class="route-badge route-badge-${bioLevel}">${r.bioavailability}</span>` : '';
         return `<div class="route-card">
           <h5>${r.route} ${badge}</h5>
           <p>${r.notes || ''}</p>
@@ -538,13 +548,16 @@ app.get('/peptides/:slug', (req, res) => {
   if (stacks && stacks.length > 0) {
     tocStacking = '<li><a href="#stacking">Stacking Protocols</a></li>';
     const stackCards = stacks.map(s => {
-      const compounds = (s.compounds || s.companions || []).map(c => {
-        const match = peptides.find(pp => pp.name === c || pp.name.includes(c));
-        return match ? `<a href="/peptides/${match.slug}" class="stack-compound-link">${c}</a>` : `<span class="stack-compound-tag">${c}</span>`;
+      const compoundList = s.compounds || s.companions || s.peptides || [];
+      const compounds = compoundList.map(c => {
+        const cName = typeof c === 'string' ? c : c.name;
+        const match = peptides.find(pp => pp.name === cName || pp.name.includes(cName));
+        return match ? `<a href="/peptides/${match.slug}" class="stack-compound-link">${cName}</a>` : `<span class="stack-compound-tag">${cName}</span>`;
       }).join('');
+      const desc = s.purpose || s.description || '';
       return `<div class="stack-card">
         <h4>${s.name}</h4>
-        <p class="stack-purpose">${s.purpose || ''}</p>
+        <p class="stack-purpose">${desc}</p>
         <div class="stack-compounds">${compounds}</div>
         <p class="stack-notes">${s.notes || ''}</p>
       </div>`;
@@ -602,7 +615,7 @@ app.get('/peptides/:slug', (req, res) => {
   const faqs = [
     { q: `What is ${p.name}?`, a: p.description },
     { q: `What are the potential benefits of ${p.name}?`, a: (p.benefits || []).join('. ') },
-    { q: `What compounds work synergistically with ${p.name}?`, a: (p.synergisticCompounds || []).length > 0 ? `${p.name} has been studied alongside ${p.synergisticCompounds.join(', ')} for potential synergistic effects.` : `Research on synergistic compounds for ${p.name} is ongoing.` }
+    { q: `What compounds work synergistically with ${p.name}?`, a: (p.synergisticCompounds || []).length > 0 ? `${p.name} has been studied alongside ${p.synergisticCompounds.map(c => typeof c === 'string' ? c : c.name).join(', ')} for potential synergistic effects.` : `Research on synergistic compounds for ${p.name} is ongoing.` }
   ];
   if (d && (d.typical_range || d.standard)) {
     faqs.push({ q: `What is the typical dosage for ${p.name}?`, a: `Research protocols typically use ${d.typical_range || d.standard}. ${d.notes || ''}` });
@@ -623,7 +636,7 @@ app.get('/peptides/:slug', (req, res) => {
       "name": p.name,
       "alternateName": p.alternativeNames || [],
       "description": p.description,
-      "mechanismOfAction": p.mechanismOfAction || ''
+      "mechanismOfAction": p.mechanismOfAction || p.mechanism || ''
     },
     "url": `https://www.peptideknow.com/peptides/${p.slug}`,
     "mainEntity": {
@@ -660,7 +673,7 @@ app.get('/peptides/:slug', (req, res) => {
     ALT_NAMES: altNames,
     CATEGORY_TAGS: catLinks,
     DESCRIPTION: p.description,
-    MECHANISM: p.mechanismOfAction || 'Research ongoing.',
+    MECHANISM: p.mechanismOfAction || p.mechanism || 'Research ongoing.',
     BENEFITS_LIST: benefitsList,
     SIDE_EFFECTS_LIST: sideEffectsList,
     AMINO_ACID_SEQ: p.aminoAcidSequence || 'Not yet characterized',
@@ -680,7 +693,9 @@ app.get('/peptides/:slug', (req, res) => {
     MORE_PEPTIDES: morePeptides,
     REFERENCES: (p.references || []).map((ref, i) => {
       if (typeof ref === 'object' && ref.url) {
-        return `<li><a href="${ref.url}" target="_blank" rel="noopener noreferrer">${ref.title || ref.url}</a></li>`;
+        const meta = [ref.authors, ref.journal, ref.year].filter(Boolean).join('. ');
+        const metaHtml = meta ? `<span class="ref-meta">${meta}</span>` : '';
+        return `<li><a href="${ref.url}" target="_blank" rel="noopener noreferrer">${ref.title || ref.url}</a>${metaHtml}</li>`;
       }
       if (typeof ref === 'string' && ref.startsWith('http')) {
         const domain = ref.replace(/https?:\/\//, '').split('/')[0];
@@ -824,7 +839,7 @@ app.get('/search', (req, res) => {
         ...(p.alternativeNames || []),
         p.description,
         ...(p.categories || []).map(c => categoryById[c]?.name || ''),
-        p.mechanismOfAction || ''
+        p.mechanismOfAction || p.mechanism || ''
       ].join(' ').toLowerCase();
       return searchable.includes(q);
     });

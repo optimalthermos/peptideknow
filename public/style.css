@@ -2222,3 +2222,13 @@ a:hover { color: var(--accent-hover); }
   .timeline-item { padding-left: 1rem; }
   .blog-body h2 { font-size: 1.3rem; }
 }
+
+/* Reference metadata */
+.ref-meta {
+  display: block;
+  font-size: 0.82rem;
+  color: #6b7280;
+  margin-top: 2px;
+  font-style: italic;
+}
+
