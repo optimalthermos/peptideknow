@@ -1600,6 +1600,48 @@ app.get('/blog', (req, res) => {
 });
 
 // Individual blog post
+// RSS Feed — must be before /blog/:slug to avoid being caught by the slug route
+app.get('/blog/rss.xml', (req, res) => {
+  const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+  const base = 'https://www.peptideknow.com';
+  
+  let rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>PeptideKnow \u2014 Peptide News &amp; Research</title>
+    <link>${base}/blog</link>
+    <description>Latest peptide news, FDA regulatory updates, clinical research findings, and industry analysis from PeptideKnow.</description>
+    <language>en-us</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${base}/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>${base}/static/logo.svg</url>
+      <title>PeptideKnow</title>
+      <link>${base}</link>
+    </image>
+`;
+
+  sorted.forEach(post => {
+    const plainExcerpt = post.excerpt.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    rss += `    <item>
+      <title>${post.title.replace(/&/g, '&amp;')}</title>
+      <link>${base}/blog/${post.slug}</link>
+      <guid isPermaLink="true">${base}/blog/${post.slug}</guid>
+      <pubDate>${new Date(post.datePublished + 'T12:00:00Z').toUTCString()}</pubDate>
+      <dc:creator>${post.author || 'PeptideKnow Editorial'}</dc:creator>
+      <category>${post.category}</category>
+      <description><![CDATA[${post.excerpt}]]></description>
+      <media:content url="${base}${post.image}" medium="image" />
+    </item>
+`;
+  });
+
+  rss += `  </channel>
+</rss>`;
+
+  res.type('application/rss+xml').send(rss);
+});
+
 app.get('/blog/:slug', (req, res) => {
   const post = blogPostBySlug[req.params.slug];
   if (!post) return res.status(404).send(render('404', {
@@ -1766,48 +1808,6 @@ app.get('/blog/:slug', (req, res) => {
 });
 
 // Blog RSS Feed
-app.get('/blog/rss.xml', (req, res) => {
-  const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
-  const base = 'https://www.peptideknow.com';
-  
-  let rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
-  <channel>
-    <title>PeptideKnow — Peptide News &amp; Research</title>
-    <link>${base}/blog</link>
-    <description>Latest peptide news, FDA regulatory updates, clinical research findings, and industry analysis from PeptideKnow.</description>
-    <language>en-us</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="${base}/blog/rss.xml" rel="self" type="application/rss+xml" />
-    <image>
-      <url>${base}/static/logo.svg</url>
-      <title>PeptideKnow</title>
-      <link>${base}</link>
-    </image>
-`;
-
-  sorted.forEach(post => {
-    const body = blogBodies[post.slug] || '';
-    const plainExcerpt = post.excerpt.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    rss += `    <item>
-      <title>${post.title.replace(/&/g, '&amp;')}</title>
-      <link>${base}/blog/${post.slug}</link>
-      <guid isPermaLink="true">${base}/blog/${post.slug}</guid>
-      <pubDate>${new Date(post.datePublished + 'T12:00:00Z').toUTCString()}</pubDate>
-      <dc:creator>${post.author || 'PeptideKnow Editorial'}</dc:creator>
-      <category>${post.category}</category>
-      <description><![CDATA[${post.excerpt}]]></description>
-      <media:content url="${base}${post.image}" medium="image" />
-    </item>
-`;
-  });
-
-  rss += `  </channel>
-</rss>`;
-
-  res.type('application/rss+xml').send(rss);
-});
-
 // 404 catch-all
 app.use((req, res) => {
   res.status(404).send(render('404', {
