@@ -76,20 +76,24 @@ function loadTemplate(name) {
   return templates[name];
 }
 
-// === GLOBAL: News bell dropdown items (shared across all pages) ===
-const newsBellItems = [...blogPosts]
-  .sort((a, b) => b.datePublished.localeCompare(a.datePublished))
-  .slice(0, 5)
-  .map(post => {
-    const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    return `<a href="/blog/${post.slug}" class="nbd-item">
-      <img src="${post.image}" alt="" width="64" height="36" loading="lazy">
-      <div class="nbd-text">
-        <span class="nbd-title">${post.title}</span>
-        <span class="nbd-date">${dateStr} &middot; ${post.readTime || '5 min read'}</span>
-      </div>
-    </a>`;
-  }).join('');
+// === GLOBAL: News bell tooltip (shared across all pages) ===
+const newsBellCount = blogPosts.length;
+const latestPost = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished))[0];
+const newsBellTooltip = latestPost ? (() => {
+  const d = new Date(latestPost.datePublished + 'T12:00:00Z');
+  const today = new Date();
+  const isToday = d.toDateString() === today.toDateString();
+  const dayLabel = isToday ? "Today's News" : d.toLocaleDateString('en-US', { weekday: 'long' }) + "'s News";
+  const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return `<a href="/blog/${latestPost.slug}" class="nbt-card">
+    <div class="nbt-img"><img src="${latestPost.image}" alt="" width="80" height="56" loading="lazy"></div>
+    <div class="nbt-body">
+      <span class="nbt-label">${dayLabel}</span>
+      <span class="nbt-title">${latestPost.title}</span>
+      <span class="nbt-date">${dateStr}</span>
+    </div>
+  </a>`;
+})() : '';
 
 function render(templateName, vars) {
   let html = loadTemplate('layout');
@@ -101,8 +105,9 @@ function render(templateName, vars) {
   // Default NAV_ACTIVE_BLOG to empty if not set
   if (!vars.NAV_ACTIVE_BLOG) vars.NAV_ACTIVE_BLOG = '';
   
-  // Inject global news bell items
-  if (!vars.NEWS_BELL_ITEMS) vars.NEWS_BELL_ITEMS = newsBellItems;
+  // Inject global news bell tooltip
+  if (!vars.NEWS_BELL_TOOLTIP) vars.NEWS_BELL_TOOLTIP = newsBellTooltip;
+  if (!vars.NEWS_BELL_COUNT) vars.NEWS_BELL_COUNT = String(newsBellCount);
   
   // Replace all variables
   for (const [key, value] of Object.entries(vars)) {

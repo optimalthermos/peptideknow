@@ -113,29 +113,22 @@
     onScroll();
   }
 
-  // === NEWS BELL TOGGLE ===
+  // === NEWS BELL TOOLTIP (tap on mobile, hover on desktop via CSS) ===
   var bellBtn = document.querySelector('.news-bell-btn');
-  var bellDrop = document.querySelector('.news-bell-dropdown');
-  if (bellBtn && bellDrop) {
+  var bellTooltip = document.querySelector('.news-bell-tooltip');
+  if (bellBtn && bellTooltip) {
     bellBtn.addEventListener('click', function(e) {
       e.stopPropagation();
-      var isOpen = bellDrop.hidden === false;
-      bellDrop.hidden = isOpen;
-      bellBtn.setAttribute('aria-expanded', String(!isOpen));
-      // Hide the red dot after first open
-      var dot = bellBtn.querySelector('.bell-dot');
-      if (dot && !isOpen) dot.style.display = 'none';
+      bellTooltip.classList.toggle('active');
     });
     document.addEventListener('click', function(e) {
-      if (!bellDrop.contains(e.target) && !bellBtn.contains(e.target)) {
-        bellDrop.hidden = true;
-        bellBtn.setAttribute('aria-expanded', 'false');
+      if (!bellTooltip.contains(e.target) && !bellBtn.contains(e.target)) {
+        bellTooltip.classList.remove('active');
       }
     });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !bellDrop.hidden) {
-        bellDrop.hidden = true;
-        bellBtn.setAttribute('aria-expanded', 'false');
+      if (e.key === 'Escape') {
+        bellTooltip.classList.remove('active');
         bellBtn.focus();
       }
     });

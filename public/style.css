@@ -1547,8 +1547,33 @@ a:hover { color: var(--accent-hover); }
 @media (max-width: 900px) {
   .quick-tools-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 540px) {
-  .quick-tools-grid { grid-template-columns: 1fr; }
+@media (max-width: 640px) {
+  .quick-tools-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  .quick-tools-grid::-webkit-scrollbar { display: none; }
+  .quick-tool-card {
+    flex: 0 0 120px;
+    scroll-snap-align: start;
+    padding: 0.875rem 0.75rem;
+    text-align: center;
+    align-items: center;
+  }
+  .quick-tool-card .qt-icon {
+    margin: 0 auto 0.4rem;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .quick-tool-card .qt-icon svg { width: 22px; height: 22px; }
+  .quick-tool-card h3 { font-size: 0.6875rem; text-align: center; margin-bottom: 0; line-height: 1.3; }
+  .quick-tool-card p { display: none; }
+  .quick-tool-card .qt-cta { display: none; }
 }
 
 /* ========== HOMEPAGE — TRENDING PEPTIDES ========== */
@@ -2567,100 +2592,130 @@ a:hover { color: var(--accent-hover); }
   color: var(--accent);
   background: rgba(15, 123, 108, 0.06);
 }
-.bell-dot {
+/* Red badge count */
+.bell-badge {
   position: absolute;
-  top: 6px;
-  right: 7px;
-  width: 7px;
-  height: 7px;
+  top: 2px;
+  right: 2px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: center;
+  color: #fff;
   background: #ef4444;
-  border-radius: 50%;
+  border-radius: 8px;
   border: 1.5px solid var(--bg, #fff);
-  animation: bell-pulse 3s infinite;
-}
-@keyframes bell-pulse {
-  0%, 90%, 100% { opacity: 1; }
-  45% { opacity: 0.4; }
+  pointer-events: none;
 }
 
-/* Dropdown */
-.news-bell-dropdown {
+/* Tooltip card — shown on hover (desktop) and tap (mobile) */
+.news-bell-tooltip {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 10px);
   right: 0;
-  width: 360px;
-  max-height: 420px;
-  overflow-y: auto;
+  width: 300px;
   background: var(--bg, #fff);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
   z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.18s, visibility 0.18s, transform 0.18s;
+  pointer-events: none;
 }
-.nbd-header {
+.news-bell-tooltip.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* Desktop: also show on hover */
+@media (hover: hover) {
+  .news-bell-wrap:hover .news-bell-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+.nbt-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.875rem 1rem;
-  border-bottom: 1px solid var(--border);
-}
-.nbd-header span {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 0.875rem;
-  color: var(--text-primary, var(--text));
-}
-.nbd-header a {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--accent);
+  gap: 0.625rem;
+  padding: 0.75rem;
   text-decoration: none;
+  color: var(--text);
 }
-.nbd-header a:hover { text-decoration: underline; }
-
-.nbd-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-  transition: background 0.12s;
-}
-.nbd-item:last-child { border-bottom: none; }
-.nbd-item:hover { background: var(--bg-alt, #f6f8fa); }
-.nbd-item img {
+.nbt-card:hover { background: var(--bg-alt, #f6f8fa); border-radius: 10px; }
+.nbt-img {
   flex-shrink: 0;
-  width: 56px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 4px;
+  width: 80px;
+  height: 56px;
+  border-radius: 6px;
+  overflow: hidden;
 }
-.nbd-text {
+.nbt-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.nbt-body {
   flex: 1;
   min-width: 0;
 }
-.nbd-title {
+.nbt-label {
   display: block;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+.nbt-title {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.3;
   color: var(--text-primary, var(--text));
-  line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.nbd-date {
+.nbt-date {
   display: block;
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   color: var(--text-secondary);
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
+}
+.nbt-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.75rem 0.625rem;
+  border-top: 1px solid var(--border);
+}
+.nbt-footer a {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.nbt-footer a:hover { text-decoration: underline; }
+.nbt-count {
+  font-size: 0.625rem;
+  color: var(--text-tertiary);
 }
 
-/* Mobile dropdown */
+/* Mobile tooltip */
 @media (max-width: 768px) {
-  .news-bell-dropdown {
+  .news-bell-tooltip {
     position: fixed;
     top: 56px;
     left: 1rem;
@@ -2801,9 +2856,15 @@ a:hover { color: var(--accent-hover); }
 }
 .dn-card-foot time { font-weight: 500; }
 
-/* Mobile: stack to single column */
+/* Mobile: keep side-by-side but compact */
 @media (max-width: 640px) {
-  .daily-news-grid { grid-template-columns: 1fr; }
-  .daily-news-strip { padding: 1rem 0; }
-  .dn-card-body h3 { font-size: 0.875rem; }
+  .daily-news-strip { padding: 0.75rem 0; }
+  .daily-news-header { margin-bottom: 0.5rem; }
+  .daily-news-grid { gap: 0.625rem; }
+  .dn-card-img { aspect-ratio: 3/2; }
+  .dn-card-body { padding: 0.5rem 0.625rem; }
+  .dn-card-tag { font-size: 0.5625rem; margin-bottom: 0.25rem; padding: 0.1rem 0.35rem; }
+  .dn-card-body h3 { font-size: 0.6875rem; -webkit-line-clamp: 2; margin-bottom: 0; }
+  .dn-card-body > p { display: none; }
+  .dn-card-foot { font-size: 0.5625rem; margin-top: 0.35rem; padding-top: 0.35rem; gap: 0.35rem; }
 }
