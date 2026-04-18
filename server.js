@@ -800,6 +800,36 @@ app.get('/peptides/:slug', (req, res) => {
     RELATED_LINKS: relatedLinks || '<span class="none-listed">None currently listed</span>',
     QUICK_FACTS: quickFacts.join(''),
     MORE_PEPTIDES: morePeptides,
+    LATEST_NEWS_SECTION: (() => {
+      if (!blogPosts || blogPosts.length === 0) return '';
+      const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+      const cards = sorted.slice(0, 4).map(post => {
+        const imgSrc = post.image || '/static/images/blog-rfk-peptides.png';
+        const imgAlt = post.imageAlt || post.title;
+        const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        return `<a href="/blog/${post.slug}" class="news-card">
+          <div class="news-card-img"><img src="${imgSrc}" alt="${imgAlt}" width="600" height="338" loading="lazy"></div>
+          <div class="news-card-body">
+            <span class="news-card-category">${post.category || 'News'}</span>
+            <h3>${post.title}</h3>
+            <p>${post.excerpt || post.subtitle || ''}</p>
+            <div class="news-card-meta">
+              <time datetime="${post.datePublished}">${dateStr}</time>
+              <span>${post.readTime || '5 min read'}</span>
+            </div>
+          </div>
+        </a>`;
+      }).join('');
+      return `<section class="section latest-news-section">
+        <div class="container">
+          <div class="section-header-row">
+            <h2>Latest News &amp; Research</h2>
+            <a href="/blog" class="view-all-link">View all articles &rarr;</a>
+          </div>
+          <div class="news-grid">${cards}</div>
+        </div>
+      </section>`;
+    })(),
     REFERENCES: (p.references || []).map((ref, i) => {
       if (typeof ref === 'object' && ref.url) {
         const meta = [ref.authors, ref.journal, ref.year].filter(Boolean).join('. ');
