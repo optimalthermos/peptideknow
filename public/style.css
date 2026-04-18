@@ -43,6 +43,7 @@ a:hover { color: var(--accent-hover); }
 .skip-link { position: absolute; top: -9999px; left: 0; background: var(--accent); color: #fff; padding: 0.5rem 1rem; z-index: 1000; border-radius: 0 0 var(--radius-sm) 0; }
 .skip-link:focus { top: 0; }
 
+html, body { overflow-x: hidden; }
 .container { max-width: 1140px; margin: 0 auto; padding: 0 1.25rem; }
 .container-narrow { max-width: 760px; }
 
@@ -2080,19 +2081,20 @@ a:hover { color: var(--accent-hover); }
 .blog-hero-image img { width: 100%; height: auto; border-radius: 8px; display: block; }
 
 /* Blog Body Layout */
-.blog-body-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-.blog-layout { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: start; }
+.blog-body-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; overflow-x: hidden; }
+.blog-layout { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: start; min-width: 0; }
+.blog-layout > * { min-width: 0; }
 
 /* Blog TOC */
 .blog-toc { position: sticky; top: 5rem; padding: 1rem 0; }
 .blog-toc h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.75px; color: var(--text-secondary); margin: 0 0 0.75rem; font-weight: 600; }
 .blog-toc ul { list-style: none; padding: 0; margin: 0; }
 .blog-toc li { margin-bottom: 0.5rem; }
-.blog-toc a { font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; line-height: 1.4; display: block; padding: 0.2rem 0; border-left: 2px solid transparent; padding-left: 0.75rem; transition: all 0.15s; }
+.blog-toc a { font-size: 0.8125rem; color: var(--text-secondary); text-decoration: none; line-height: 1.4; display: block; padding: 0.2rem 0; border-left: 2px solid transparent; padding-left: 0.75rem; transition: all 0.15s; overflow-wrap: break-word; word-break: break-word; }
 .blog-toc a:hover { color: var(--accent); border-left-color: var(--accent); }
 
 /* Blog Body */
-.blog-body { max-width: 720px; }
+.blog-body { max-width: 720px; overflow-wrap: break-word; word-break: break-word; }
 .blog-body h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text-primary); }
 .blog-body h2:first-child { border-top: none; margin-top: 0; padding-top: 0; }
 .blog-body h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; margin: 1.75rem 0 0.75rem; color: var(--text-primary); }
