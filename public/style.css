@@ -2587,8 +2587,9 @@ a:hover { color: var(--accent-hover); }
   pointer-events: none;
 }
 
-/* Tooltip card — shown on hover (desktop) and tap (mobile) */
+/* Tooltip card — shown on click/tap only (JS toggles .active) */
 .news-bell-tooltip {
+  display: none;
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
@@ -2597,27 +2598,10 @@ a:hover { color: var(--accent-hover); }
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(6px);
-  transition: opacity 0.18s, visibility 0.18s, transform 0.18s;
-  pointer-events: none;
+  z-index: 9999;
 }
 .news-bell-tooltip.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-/* Desktop: also show on hover */
-@media (hover: hover) {
-  .news-bell-wrap:hover .news-bell-tooltip {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
+  display: block;
 }
 .nbt-card {
   display: flex;
@@ -2697,6 +2681,7 @@ a:hover { color: var(--accent-hover); }
     left: 1rem;
     right: 1rem;
     width: auto;
+    border-radius: 10px;
   }
 }
 
