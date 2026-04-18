@@ -76,6 +76,21 @@ function loadTemplate(name) {
   return templates[name];
 }
 
+// === GLOBAL: News bell dropdown items (shared across all pages) ===
+const newsBellItems = [...blogPosts]
+  .sort((a, b) => b.datePublished.localeCompare(a.datePublished))
+  .slice(0, 5)
+  .map(post => {
+    const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return `<a href="/blog/${post.slug}" class="nbd-item">
+      <img src="${post.image}" alt="" width="64" height="36" loading="lazy">
+      <div class="nbd-text">
+        <span class="nbd-title">${post.title}</span>
+        <span class="nbd-date">${dateStr} &middot; ${post.readTime || '5 min read'}</span>
+      </div>
+    </a>`;
+  }).join('');
+
 function render(templateName, vars) {
   let html = loadTemplate('layout');
   const content = loadTemplate(templateName);
@@ -85,6 +100,9 @@ function render(templateName, vars) {
   
   // Default NAV_ACTIVE_BLOG to empty if not set
   if (!vars.NAV_ACTIVE_BLOG) vars.NAV_ACTIVE_BLOG = '';
+  
+  // Inject global news bell items
+  if (!vars.NEWS_BELL_ITEMS) vars.NEWS_BELL_ITEMS = newsBellItems;
   
   // Replace all variables
   for (const [key, value] of Object.entries(vars)) {
@@ -313,6 +331,25 @@ app.get('/', (req, res) => {
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${websiteLD}</script>\n<script type="application/ld+json">${orgLD}</script>`,
     LATEST_BLOG_CARDS: latestBlogCards,
+    DAILY_NEWS_CARDS: (() => {
+      const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+      return sorted.slice(0, 2).map(post => {
+        const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const imgSrc = post.image || '/static/images/blog-rfk-peptides.png';
+        return `<a href="/blog/${post.slug}" class="dn-card">
+          <div class="dn-card-img"><img src="${imgSrc}" alt="${post.imageAlt || post.title}" width="400" height="225" loading="eager"></div>
+          <div class="dn-card-body">
+            <span class="dn-card-tag">${post.category || 'News'}</span>
+            <h3>${post.title}</h3>
+            <p>${post.subtitle || post.excerpt || ''}</p>
+            <div class="dn-card-foot">
+              <time datetime="${post.datePublished}">${dateStr}</time>
+              <span>${post.readTime || '5 min read'}</span>
+            </div>
+          </div>
+        </a>`;
+      }).join('');
+    })(),
     CATEGORY_CARDS: categoryCards,
     FEATURED_PEPTIDES: featuredPeptides,
     TRENDING_PEPTIDES: trendingPeptides,
