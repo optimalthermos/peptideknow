@@ -16,12 +16,43 @@
           <h2>Step 1: Peptide Information</h2>
           <div class="calc-form">
             <div class="form-group">
-              <label for="peptide-select">Select Peptide (Optional)</label>
+              <label for="peptide-select">Select Peptide</label>
               <select id="peptide-select">
                 <option value="">— Custom / Not Listed —</option>
               </select>
               <small>Selecting a peptide auto-fills typical dosing ranges</small>
             </div>
+
+            <!-- Dosing range info box — shown when a peptide is selected -->
+            <div id="dosing-range-box" class="dosing-range-box" hidden>
+              <div class="dosing-range-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <strong id="dosing-range-title">Dosing Reference</strong>
+              </div>
+              <div class="dosing-range-body">
+                <div class="dosing-range-grid">
+                  <div class="dosing-range-item">
+                    <span class="dosing-range-label">Typical Range</span>
+                    <span class="dosing-range-value" id="dr-typical">—</span>
+                  </div>
+                  <div class="dosing-range-item">
+                    <span class="dosing-range-label">Beginner</span>
+                    <span class="dosing-range-value" id="dr-beginner">—</span>
+                  </div>
+                  <div class="dosing-range-item">
+                    <span class="dosing-range-label">Intermediate</span>
+                    <span class="dosing-range-value" id="dr-intermediate">—</span>
+                  </div>
+                  <div class="dosing-range-item">
+                    <span class="dosing-range-label">Advanced</span>
+                    <span class="dosing-range-value" id="dr-advanced">—</span>
+                  </div>
+                </div>
+                <div class="dosing-range-meta" id="dr-meta"></div>
+              </div>
+              <a id="dr-peptide-link" href="#" class="dosing-range-link">View full profile →</a>
+            </div>
+
             <div class="form-group">
               <label for="vial-amount">Peptide Vial Amount (mg)</label>
               <input type="number" id="vial-amount" placeholder="e.g., 5" min="0.1" step="0.1" value="5">
@@ -186,87 +217,96 @@
 
 <script>
 (function() {
-  const peptidePresets = {
-    'bpc-157': { name: 'BPC-157', vial: 5, dose: 250, perKg: 3.5 },
-    'tb-500': { name: 'TB-500', vial: 5, dose: 750, perKg: 10 },
-    'cjc-1295': { name: 'CJC-1295', vial: 2, dose: 100, perKg: 1.5 },
-    'ipamorelin': { name: 'Ipamorelin', vial: 5, dose: 200, perKg: 3 },
-    'ghk-cu': { name: 'GHK-Cu', vial: 5, dose: 200, perKg: 3 },
-    'pt-141': { name: 'PT-141', vial: 10, dose: 1000, perKg: 10 },
-    'semaglutide': { name: 'Semaglutide', vial: 3, dose: 250, perKg: 3 },
-    'ghrp-2': { name: 'GHRP-2', vial: 5, dose: 100, perKg: 1.5 },
-    'ghrp-6': { name: 'GHRP-6', vial: 5, dose: 100, perKg: 1.5 },
-    'sermorelin': { name: 'Sermorelin', vial: 2, dose: 200, perKg: 3 },
-    'epithalon': { name: 'Epithalon', vial: 10, dose: 5000, perKg: 70 },
-    'semax': { name: 'Semax', vial: 3, dose: 600, perKg: 8 },
-    'selank': { name: 'Selank', vial: 5, dose: 300, perKg: 4 },
-    'aod-9604': { name: 'AOD-9604', vial: 5, dose: 300, perKg: 4 },
-    'dsip': { name: 'DSIP', vial: 5, dose: 100, perKg: 1.5 },
-    'thymosin-alpha-1': { name: 'Thymosin Alpha-1', vial: 5, dose: 1600, perKg: 20 },
-    'll-37': { name: 'LL-37', vial: 5, dose: 100, perKg: 1.5 },
-    'kpv': { name: 'KPV', vial: 5, dose: 200, perKg: 3 },
-    'mots-c': { name: 'MOTS-c', vial: 5, dose: 5000, perKg: 70 },
-    'melanotan-ii': { name: 'Melanotan II', vial: 10, dose: 500, perKg: 7 }
-  };
+  var peptidePresets = {{CALC_PEPTIDE_DATA}};
 
-  // Populate select
-  const sel = document.getElementById('peptide-select');
-  Object.entries(peptidePresets).forEach(([slug, p]) => {
-    const opt = document.createElement('option');
+  // Populate select — sorted alphabetically
+  var sel = document.getElementById('peptide-select');
+  var entries = Object.entries(peptidePresets).sort(function(a, b) {
+    return a[1].name.localeCompare(b[1].name);
+  });
+  entries.forEach(function(entry) {
+    var slug = entry[0], p = entry[1];
+    var opt = document.createElement('option');
     opt.value = slug;
     opt.textContent = p.name;
     sel.appendChild(opt);
   });
 
+  // Dosing range box elements
+  var drBox = document.getElementById('dosing-range-box');
+  var drTitle = document.getElementById('dosing-range-title');
+  var drTypical = document.getElementById('dr-typical');
+  var drBeginner = document.getElementById('dr-beginner');
+  var drIntermediate = document.getElementById('dr-intermediate');
+  var drAdvanced = document.getElementById('dr-advanced');
+  var drMeta = document.getElementById('dr-meta');
+  var drLink = document.getElementById('dr-peptide-link');
+
   sel.addEventListener('change', function() {
-    const p = peptidePresets[this.value];
+    var p = peptidePresets[this.value];
     if (p) {
       document.getElementById('vial-amount').value = p.vial;
       document.getElementById('desired-dose').value = p.dose;
-      document.getElementById('dose-per-kg').value = p.perKg;
+
+      // Show dosing range box
+      drTitle.textContent = p.name + ' — Dosing Reference';
+      drTypical.textContent = p.range || '—';
+      drBeginner.textContent = p.beginner || '—';
+      drIntermediate.textContent = p.intermediate || '—';
+      drAdvanced.textContent = p.advanced || '—';
+
+      var metaParts = [];
+      if (p.cycle) metaParts.push('Cycle: ' + p.cycle);
+      if (p.notes) metaParts.push(p.notes);
+      drMeta.textContent = metaParts.join(' · ');
+      drMeta.hidden = metaParts.length === 0;
+
+      drLink.href = '/peptides/' + this.value;
+      drLink.textContent = 'View full ' + p.name + ' profile →';
+      drBox.hidden = false;
+    } else {
+      drBox.hidden = true;
     }
   });
 
   document.getElementById('calc-by-weight').addEventListener('click', function() {
-    const weight = parseFloat(document.getElementById('body-weight').value);
-    const unit = document.getElementById('weight-unit').value;
-    const perKg = parseFloat(document.getElementById('dose-per-kg').value);
+    var weight = parseFloat(document.getElementById('body-weight').value);
+    var unit = document.getElementById('weight-unit').value;
+    var perKg = parseFloat(document.getElementById('dose-per-kg').value);
     if (!weight || !perKg) return;
-    const kg = unit === 'lbs' ? weight * 0.4536 : weight;
+    var kg = unit === 'lbs' ? weight * 0.4536 : weight;
     document.getElementById('desired-dose').value = Math.round(kg * perKg);
   });
 
   document.getElementById('calculate-btn').addEventListener('click', function() {
-    const vialMg = parseFloat(document.getElementById('vial-amount').value);
-    const bacWater = parseFloat(document.getElementById('bac-water').value);
-    const desiredDose = parseFloat(document.getElementById('desired-dose').value);
-    const syringeMax = parseInt(document.getElementById('syringe-size').value);
+    var vialMg = parseFloat(document.getElementById('vial-amount').value);
+    var bacWater = parseFloat(document.getElementById('bac-water').value);
+    var desiredDose = parseFloat(document.getElementById('desired-dose').value);
+    var syringeMax = parseInt(document.getElementById('syringe-size').value);
 
     if (!vialMg || !bacWater || !desiredDose) return;
 
-    const vialMcg = vialMg * 1000;
-    const concentration = vialMcg / bacWater; // mcg per mL
-    const volumePerDose = desiredDose / concentration; // mL
-    const units = volumePerDose * 100; // insulin syringe units
-    const dosesPerVial = Math.floor(vialMcg / desiredDose);
+    var vialMcg = vialMg * 1000;
+    var concentration = vialMcg / bacWater;
+    var volumePerDose = desiredDose / concentration;
+    var units = volumePerDose * 100;
+    var dosesPerVial = Math.floor(vialMcg / desiredDose);
 
     document.getElementById('result-concentration').textContent = concentration.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     document.getElementById('result-volume').textContent = volumePerDose.toFixed(3);
     document.getElementById('result-units').textContent = units.toFixed(1);
     document.getElementById('result-doses').textContent = dosesPerVial;
 
-    // Summary text
-    const selPeptide = peptidePresets[sel.value];
-    const peptideName = selPeptide ? selPeptide.name : 'your peptide';
-    document.getElementById('result-summary').innerHTML = 
-      '<p><strong>Summary:</strong> With a <strong>' + vialMg + ' mg</strong> vial of ' + peptideName + 
-      ' reconstituted in <strong>' + bacWater + ' mL</strong> of bacteriostatic water, the concentration is <strong>' + 
-      concentration.toFixed(0) + ' mcg/mL</strong>. To administer a <strong>' + desiredDose + ' mcg</strong> dose, draw <strong>' + 
-      units.toFixed(1) + ' units</strong> (' + volumePerDose.toFixed(3) + ' mL) on your insulin syringe. This gives you approximately <strong>' + 
+    var selPeptide = peptidePresets[sel.value];
+    var peptideName = selPeptide ? selPeptide.name : 'your peptide';
+    document.getElementById('result-summary').innerHTML =
+      '<p><strong>Summary:</strong> With a <strong>' + vialMg + ' mg</strong> vial of ' + peptideName +
+      ' reconstituted in <strong>' + bacWater + ' mL</strong> of bacteriostatic water, the concentration is <strong>' +
+      concentration.toFixed(0) + ' mcg/mL</strong>. To administer a <strong>' + desiredDose + ' mcg</strong> dose, draw <strong>' +
+      units.toFixed(1) + ' units</strong> (' + volumePerDose.toFixed(3) + ' mL) on your insulin syringe. This gives you approximately <strong>' +
       dosesPerVial + ' doses</strong> per vial.</p>';
 
-    // Syringe visual
-    const fillPct = Math.min((units / syringeMax) * 100, 100);
+    var fillPct = Math.min((units / syringeMax) * 100, 100);
     document.getElementById('syringe-fill').style.height = fillPct + '%';
     document.getElementById('syringe-label').textContent = units.toFixed(1) + ' units / ' + syringeMax + ' units';
 

@@ -1490,13 +1490,45 @@ app.get('/tools/calculator', (req, res) => {
     { q: 'What syringe should I use for peptides?', a: 'Insulin syringes (U-100, 1mL) are standard for subcutaneous peptide injections. They provide precise measurement in units (100 units = 1 mL).' },
     { q: 'What is bacteriostatic water?', a: 'Bacteriostatic water is sterile water containing 0.9% benzyl alcohol as a preservative, allowing multiple uses from the same vial for up to 28 days.' }
   ];
+
+  // Build peptide dosing data from peptides.json for calculator presets
+  const calcPresets = {};
+  peptides.forEach(p => {
+    if (!p.dosage) return;
+    const d = p.dosage;
+    const range = d.typical_range || '';
+    // Parse a default dose in mcg for auto-fill
+    let dose = 250;
+    const mcgDayM = range.match(/([\d.]+)(?:\s*-\s*[\d.]+)?\s*mcg\/d/i);
+    const mcgM = range.match(/([\d.]+)(?:\s*-\s*[\d.]+)?\s*mcg/i);
+    const mgWeekM = range.match(/([\d.]+)(?:\s*-\s*[\d.]+)?\s*mg\/week/i);
+    const mgDayM = range.match(/([\d.]+)(?:\s*-\s*[\d.]+)?\s*mg\/day/i);
+    if (mcgDayM) dose = Math.round(parseFloat(mcgDayM[1]));
+    else if (mcgM) dose = Math.round(parseFloat(mcgM[1]));
+    else if (mgWeekM) dose = Math.round(parseFloat(mgWeekM[1]) * 1000 / 2);
+    else if (mgDayM) dose = Math.round(parseFloat(mgDayM[1]) * 1000);
+    calcPresets[p.slug] = {
+      name: p.name,
+      vial: 5,
+      dose,
+      range: d.typical_range || '',
+      beginner: d.beginner || '',
+      intermediate: d.intermediate || '',
+      advanced: d.advanced || '',
+      cycle: d.cycle_length || '',
+      notes: d.notes || ''
+    };
+  });
+  const calcDataJSON = JSON.stringify(calcPresets).replace(/<\//g, '<\\/');
+
   const html = renderTool('calculator', {
     TITLE: 'Peptide Reconstitution Calculator — Dosing & Syringe Guide | PeptideKnow',
-    META_DESCRIPTION: 'Free peptide reconstitution calculator. Enter peptide amount and water volume to get exact syringe units. Supports 20+ peptides with preset doses, body-weight calculations, and visual syringe guide.',
+    META_DESCRIPTION: 'Free peptide reconstitution calculator. Enter peptide amount and water volume to get exact syringe units. Supports 114 peptides with preset doses, body-weight calculations, and visual syringe guide.',
     CANONICAL: 'https://www.peptideknow.com/tools/calculator',
     OG_TITLE: 'Peptide Reconstitution Calculator | PeptideKnow',
     OG_DESCRIPTION: 'Calculate exact dosing and syringe units for any peptide reconstitution.',
     OG_URL: 'https://www.peptideknow.com/tools/calculator',
+    CALC_PEPTIDE_DATA: calcDataJSON,
     JSON_LD: `<script type="application/ld+json">${bcLD}</script>\n<script type="application/ld+json">${faqLD(faqs)}</script>\n<script type="application/ld+json">${softwareAppLD({ name: 'Peptide Reconstitution Calculator', description: 'Calculate exact bacteriostatic water volumes, syringe units, and body-weight dosing for research peptides.', url: 'https://www.peptideknow.com/tools/calculator' })}</script>`
   });
   res.send(html);
