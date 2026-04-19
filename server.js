@@ -387,6 +387,7 @@ app.get('/', (req, res) => {
     "name": "PeptideKnow",
     "url": "https://www.peptideknow.com",
     "logo": "https://www.peptideknow.com/static/logo.svg",
+    "slogan": "Your trusted source for up-to-date peptide research, news & information",
     "sameAs": []
   });
 

@@ -240,7 +240,8 @@ html, body { overflow-x: hidden; }
   padding-top: 0.75rem;
   border-top: 1px solid var(--border);
 }
-a.mega-footer-btn {
+.mega-menu-footer a.mega-footer-btn,
+.news-menu-footer a.mega-footer-btn {
   display: inline-flex;
   align-items: center;
   padding: 0.4375rem 1rem;
@@ -252,7 +253,8 @@ a.mega-footer-btn {
   color: #fff;
   transition: opacity 0.15s;
 }
-a.mega-footer-btn:hover { opacity: 0.9; color: #fff; }
+.mega-menu-footer a.mega-footer-btn:hover,
+.news-menu-footer a.mega-footer-btn:hover { opacity: 0.9; color: #fff; }
 a.mega-footer-btn-outline {
   background: transparent;
   color: var(--accent);
@@ -485,7 +487,15 @@ a.mega-footer-btn-outline:hover { background: var(--accent-light); color: var(--
   color: var(--text);
   line-height: 1.15;
   letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+.hero-tagline {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: -0.01em;
   margin-bottom: 1rem;
+  font-style: italic;
 }
 .hero-subtitle {
   font-size: 1.0625rem;
@@ -1304,6 +1314,7 @@ a.row-cat-pill:hover {
   .hero-content { padding: 2rem 0 0; }
   .hero-image { height: 220px; border-radius: var(--radius); margin-bottom: 1rem; }
   .hero h1 { font-size: 1.5rem; }
+  .hero-tagline { font-size: 0.9375rem; }
   .hero-subtitle { font-size: 0.9375rem; }
   .hero-search { max-width: 100%; }
   .hero-search input { padding: 0.75rem 0.75rem; font-size: 0.875rem; min-width: 0; }
