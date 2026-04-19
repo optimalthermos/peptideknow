@@ -583,6 +583,7 @@ a.mega-footer-btn-outline:hover { background: var(--accent-light); color: var(--
   border-radius: var(--radius);
   background: var(--bg);
   padding: 0.75rem 1rem;
+  overflow: hidden;
 }
 .hero-news-label {
   display: flex;
@@ -620,6 +621,7 @@ a.mega-footer-btn-outline:hover { background: var(--accent-light); color: var(--
   text-decoration: none;
   color: var(--text);
   transition: background 0.15s;
+  overflow: hidden;
 }
 .hero-news-item:hover { background: var(--bg-alt); margin: 0 -1rem; padding: 0.5rem 1rem; }
 .hero-news-item img {
@@ -635,6 +637,8 @@ a.mega-footer-btn-outline:hover { background: var(--accent-light); color: var(--
   align-items: baseline;
   gap: 0.25rem 0.5rem;
   min-width: 0;
+  overflow: hidden;
+  flex: 1;
 }
 .hero-news-item-tag {
   font-size: 0.625rem;
@@ -1410,8 +1414,8 @@ a.row-cat-pill:hover {
   .logo-slogan { display: block; }
   .logo { gap: 0.375rem; }
 
-  .hero-inner { grid-template-columns: 1fr; min-height: auto; gap: 1rem; padding: 0 1rem; }
-  .hero-content { padding: 2rem 0 0; }
+  .hero-inner { grid-template-columns: 1fr; min-height: auto; gap: 1rem; padding: 0 1rem; overflow: hidden; }
+  .hero-content { padding: 2rem 0 0; overflow: hidden; max-width: 100%; }
   .hero-image { height: 220px; border-radius: var(--radius); margin-bottom: 1rem; }
   .hero h1 { font-size: 1.5rem; }
   .hero-tagline { font-size: 0.9375rem; }
