@@ -4,6 +4,19 @@
     <div class="hero-content">
       <h1>The Peptide Encyclopedia</h1>
       <p class="hero-tagline">Your trusted source for up-to-date peptide research, news &amp; information</p>
+
+      <!-- Latest News — inline wire-style -->
+      <div class="hero-news-wire">
+        <div class="hero-news-label">
+          <span class="pulse-dot"></span>
+          <span>Latest Peptide News</span>
+          <a href="/blog" class="hero-news-all">All articles &rarr;</a>
+        </div>
+        <div class="hero-news-list">
+          {{HERO_NEWS_ITEMS}}
+        </div>
+      </div>
+
       <p class="hero-subtitle">Explore <strong>{{TOTAL_PEPTIDES}} research peptides</strong> across <strong>{{TOTAL_CATEGORIES}} categories</strong> — mechanisms of action, dosage protocols, stacking guides, synergistic compounds, and clinical research data.</p>
       <form action="/search" method="GET" class="hero-search" role="search">
         <label for="hero-search-input" class="sr-only">Search peptides by name, function, or mechanism</label>
@@ -22,22 +35,6 @@
     </div>
     <div class="hero-image">
       <img src="/static/images/hero-light.jpg" alt="Researcher examining peptide vials in a modern biotech laboratory" width="960" height="540" loading="eager">
-    </div>
-  </div>
-</section>
-
-<!-- ========== DAILY NEWS BLOCK ========== -->
-<section class="daily-news-strip">
-  <div class="container">
-    <div class="daily-news-header">
-      <div class="daily-news-label">
-        <span class="pulse-dot"></span>
-        <span>Today's Peptide News</span>
-      </div>
-      <a href="/blog" class="daily-news-more">All articles &rarr;</a>
-    </div>
-    <div class="daily-news-grid">
-      {{DAILY_NEWS_CARDS}}
     </div>
   </div>
 </section>

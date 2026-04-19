@@ -402,21 +402,17 @@ app.get('/', (req, res) => {
     EXTRA_HEAD: '',
     JSON_LD: `<script type="application/ld+json">${websiteLD}</script>\n<script type="application/ld+json">${orgLD}</script>`,
     LATEST_BLOG_CARDS: latestBlogCards,
-    DAILY_NEWS_CARDS: (() => {
+    HERO_NEWS_ITEMS: (() => {
       const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
-      return sorted.slice(0, 2).map(post => {
-        const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return sorted.slice(0, 4).map(post => {
+        const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         const imgSrc = imgThumb(post.image);
-        return `<a href="/blog/${post.slug}" class="dn-card">
-          <div class="dn-card-img"><img src="${imgSrc}" alt="${post.imageAlt || post.title}" width="400" height="225" loading="eager"></div>
-          <div class="dn-card-body">
-            <span class="dn-card-tag">${post.category || 'News'}</span>
-            <h3>${post.title}</h3>
-            <p>${post.subtitle || post.excerpt || ''}</p>
-            <div class="dn-card-foot">
-              <time datetime="${post.datePublished}">${dateStr}</time>
-              <span>${post.readTime || '5 min read'}</span>
-            </div>
+        return `<a href="/blog/${post.slug}" class="hero-news-item">
+          <img src="${imgSrc}" alt="" width="64" height="40" loading="eager">
+          <div class="hero-news-item-body">
+            <span class="hero-news-item-tag">${post.category || 'News'}</span>
+            <span class="hero-news-item-title">${post.title}</span>
+            <span class="hero-news-item-meta">${dateStr} · ${post.readTime || '5 min read'}</span>
           </div>
         </a>`;
       }).join('');
