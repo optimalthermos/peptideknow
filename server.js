@@ -1597,6 +1597,9 @@ app.get('/guides/peptides-vs-sarms', (req, res) => {
 
 // ============ TOOL ROUTES ============
 
+// Redirect /calculator to canonical path
+app.get('/calculator', (req, res) => res.redirect(301, '/tools/calculator'));
+
 // Reconstitution Calculator
 app.get('/tools/calculator', (req, res) => {
   const bcLD = breadcrumbLD([

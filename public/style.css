@@ -898,8 +898,8 @@ a.mega-footer-btn-outline:hover { background: var(--accent-light); color: var(--
   padding: 2.5rem 0 2rem;
 }
 .page-header-bg { position: absolute; inset: 0; z-index: 0; }
-.page-header-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.12; filter: saturate(0.5); }
-.page-header-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(246,248,250,0.7) 0%, var(--bg-alt) 100%); }
+.page-header-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; filter: saturate(0.6); }
+.page-header-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(246,248,250,0.45) 0%, rgba(246,248,250,0.85) 100%); }
 .page-header-image .container { position: relative; z-index: 1; }
 .page-header .blog-index-actions { margin-top: 0.75rem; }
 
