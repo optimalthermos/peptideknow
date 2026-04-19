@@ -95,6 +95,45 @@ const newsBellTooltip = latestPost ? (() => {
   </a>`;
 })() : '';
 
+// === GLOBAL: Peptides mega-menu (shared across all pages) ===
+const megaMenuIconMap = {
+  'healing-recovery': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
+  'cognitive-nootropic': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 017 7c0 2.5-1.3 4.7-3.2 6H8.2C6.3 13.7 5 11.5 5 9a7 7 0 017-7z"/><path d="M9 17h6M10 21h4M12 17v4"/></svg>',
+  'muscle-growth': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 6.5l4 4M13.5 13.5l4 4M4 17l3-3M17 4l3 3M7 3l4 7M13 14l4 7"/></svg>',
+  'anti-aging-longevity': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+  'weight-loss-metabolic': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+  'skin-hair': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/></svg>',
+  'growth-hormone-secretagogues': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>',
+  'immune-support': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  'pain-inflammation': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7 7-7z"/></svg>',
+  'neuroprotective': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2A3.5 3.5 0 006 5.5V6a3 3 0 00-3 3v1a3 3 0 003 3h1.5A3.5 3.5 0 0011 16.5V18a3 3 0 003 3h0a3 3 0 003-3v-1.5a3.5 3.5 0 013.5-3.5H21a3 3 0 003-3V9a3 3 0 00-3-3h-.5A3.5 3.5 0 0017 2.5V2"/></svg>',
+  'sexual-health': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M12 13v9M9 18h6"/></svg>',
+  'sleep': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>',
+  'mitochondrial': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="3" ry="6"/><line x1="2" y1="12" x2="22" y2="12"/></svg>',
+  'antimicrobial': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>',
+  'related-compounds': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7.5L10 10M14 10l3-2.5M7 16.5l3-2.5M14 14l3 2.5"/></svg>',
+  'sarms-related': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.36 6.64A9 9 0 015.64 19.36 9 9 0 0118.36 6.64z"/><path d="M12 2v4M12 18v4"/></svg>',
+  'reproductive': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M12 13v9M9 18h6"/></svg>'
+};
+
+// Build mega-menu HTML — show categories with peptides, sorted by count
+const megaMenuCats = categories
+  .map(c => ({ ...c, count: (categoryPeptides[c.id] || []).length }))
+  .filter(c => c.count > 0)
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 16);
+
+const megaMenuHTML = megaMenuCats.map(c => {
+  const icon = megaMenuIconMap[c.id] || megaMenuIconMap['related-compounds'];
+  return `<a href="/categories/${c.id}" class="mega-cat-item">
+    <span class="mega-cat-icon" style="color:${c.color}">${icon}</span>
+    <span class="mega-cat-info">
+      <span class="mega-cat-name">${c.name}</span>
+      <span class="mega-cat-count">${c.count} peptide${c.count !== 1 ? 's' : ''}</span>
+    </span>
+  </a>`;
+}).join('');
+
 function render(templateName, vars) {
   let html = loadTemplate('layout');
   const content = loadTemplate(templateName);
@@ -108,6 +147,9 @@ function render(templateName, vars) {
   // Inject global news bell tooltip
   if (!vars.NEWS_BELL_TOOLTIP) vars.NEWS_BELL_TOOLTIP = newsBellTooltip;
   if (!vars.NEWS_BELL_COUNT) vars.NEWS_BELL_COUNT = String(newsBellCount);
+  
+  // Inject global peptides mega-menu
+  if (!vars.MEGA_MENU_CATEGORIES) vars.MEGA_MENU_CATEGORIES = megaMenuHTML;
   
   // Replace all variables
   for (const [key, value] of Object.entries(vars)) {
