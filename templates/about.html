@@ -40,7 +40,102 @@
     <h2>Important Disclaimer</h2>
     <p>PeptideKnow is strictly an informational and educational resource. Nothing on this website constitutes medical advice, diagnosis, or treatment recommendations. Many peptides listed here are investigational compounds that have not received FDA approval for human therapeutic use. Always consult qualified healthcare professionals before making any health-related decisions.</p>
 
-    <h2>Contact</h2>
-    <p>For corrections, additions, or inquiries, please contact us at <strong>info@peptideknow.com</strong>.</p>
+    <h2 id="contact">Contact Us</h2>
+    <p>Have a correction, suggestion, or question? We'd love to hear from you. Fill out the form below and our editorial team will get back to you.</p>
   </div>
 </section>
+
+<section class="section section-alt" id="contact-section">
+  <div class="container container-narrow">
+    <div class="contact-form-card">
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="contact-form-row">
+          <div class="form-group">
+            <label for="contact-name">Name <span class="required">*</span></label>
+            <input type="text" id="contact-name" name="name" required placeholder="Your name" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email <span class="required">*</span></label>
+            <input type="email" id="contact-email" name="email" required placeholder="you@example.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contact-subject">Subject</label>
+          <select id="contact-subject" name="subject">
+            <option value="general">General Inquiry</option>
+            <option value="correction">Data Correction</option>
+            <option value="suggestion">New Peptide Suggestion</option>
+            <option value="partnership">Partnership / Collaboration</option>
+            <option value="bug">Bug Report</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Message <span class="required">*</span></label>
+          <textarea id="contact-message" name="message" required rows="5" placeholder="Tell us what's on your mind..."></textarea>
+        </div>
+        <div class="contact-form-footer">
+          <button type="submit" class="btn-primary btn-lg" id="contact-submit">Send Message</button>
+          <span class="contact-form-note">We typically respond within 1-2 business days.</span>
+        </div>
+      </form>
+      <div id="contact-success" class="contact-success" hidden>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Message Sent</h3>
+        <p>Thank you for reaching out. Our team will review your message and respond as soon as possible.</p>
+        <button type="button" class="btn-secondary" onclick="document.getElementById('contact-success').hidden=true;document.getElementById('contact-form').hidden=false;document.getElementById('contact-form').reset();">Send Another</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var form = document.getElementById('contact-form');
+  var successEl = document.getElementById('contact-success');
+  var submitBtn = document.getElementById('contact-submit');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('contact-name').value.trim();
+    var email = document.getElementById('contact-email').value.trim();
+    var message = document.getElementById('contact-message').value.trim();
+
+    if (!name || !email || !message) {
+      // Trigger native validation
+      form.reportValidity();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        subject: document.getElementById('contact-subject').value,
+        message: message
+      })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.ok) {
+        form.hidden = true;
+        successEl.hidden = false;
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch(function() {
+      alert('Unable to send. Please try again later.');
+    })
+    .finally(function() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    });
+  });
+})();
+</script>

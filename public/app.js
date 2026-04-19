@@ -182,4 +182,47 @@
       }
     });
   }
+
+  // === NEWS MEGA-MENU (delayed hover) ===
+  var newsDropdown = document.querySelector('.nav-news-dropdown');
+  var newsPanel = newsDropdown ? newsDropdown.querySelector('.news-menu') : null;
+  if (newsDropdown && newsPanel) {
+    var newsTimer = null;
+    var NEWS_CLOSE_DELAY = 250;
+
+    function openNews() {
+      clearTimeout(newsTimer);
+      newsDropdown.classList.add('news-open');
+      // Close peptides mega-menu if open
+      if (megaDropdown) megaDropdown.classList.remove('mega-open');
+    }
+    function closeNews() {
+      newsDropdown.classList.remove('news-open');
+    }
+    function scheduleNewsClose() {
+      clearTimeout(newsTimer);
+      newsTimer = setTimeout(closeNews, NEWS_CLOSE_DELAY);
+    }
+
+    newsDropdown.addEventListener('mouseenter', openNews);
+    newsDropdown.addEventListener('mouseleave', scheduleNewsClose);
+    newsPanel.addEventListener('mouseenter', openNews);
+    newsPanel.addEventListener('mouseleave', scheduleNewsClose);
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeNews();
+    });
+    document.addEventListener('click', function(e) {
+      if (!newsDropdown.contains(e.target) && !newsPanel.contains(e.target)) {
+        closeNews();
+      }
+    });
+  }
+
+  // Close other mega-menus when one opens
+  if (megaDropdown && newsDropdown) {
+    megaDropdown.addEventListener('mouseenter', function() {
+      if (newsDropdown) newsDropdown.classList.remove('news-open');
+    });
+  }
 })();

@@ -5,6 +5,8 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
+
 // Redirect non-www to www
 app.use((req, res, next) => {
   const host = req.hostname || req.headers.host;
@@ -95,6 +97,23 @@ const newsBellTooltip = latestPost ? (() => {
   </a>`;
 })() : '';
 
+// === GLOBAL: News mega-menu (shared across all pages) ===
+const sortedBlogPosts = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+const newsMenuHTML = sortedBlogPosts.map(p => {
+  const d = new Date(p.datePublished + 'T12:00:00Z');
+  const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const excerpt = (p.excerpt || '').length > 100 ? p.excerpt.substring(0, 100) + '...' : (p.excerpt || '');
+  return `<a href="/blog/${p.slug}" class="news-menu-card">
+    <div class="news-menu-img"><img src="${p.image}" alt="" width="200" height="120" loading="lazy"></div>
+    <div class="news-menu-body">
+      <span class="news-menu-cat">${p.category || ''}</span>
+      <span class="news-menu-title">${p.title}</span>
+      <span class="news-menu-excerpt">${excerpt}</span>
+      <span class="news-menu-meta">${dateStr} · ${p.readTime || ''}</span>
+    </div>
+  </a>`;
+}).join('');
+
 // === GLOBAL: Peptides mega-menu (shared across all pages) ===
 const megaMenuIconMap = {
   'healing-recovery': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
@@ -150,6 +169,10 @@ function render(templateName, vars) {
   
   // Inject global peptides mega-menu
   if (!vars.MEGA_MENU_CATEGORIES) vars.MEGA_MENU_CATEGORIES = megaMenuHTML;
+  
+  // Inject global news mega-menu
+  if (!vars.NEWS_MENU_CARDS) vars.NEWS_MENU_CARDS = newsMenuHTML;
+  if (!vars.NEWS_MENU_COUNT) vars.NEWS_MENU_COUNT = String(blogPosts.length);
   
   // Replace all variables
   for (const [key, value] of Object.entries(vars)) {
@@ -1307,6 +1330,52 @@ app.get('/api/peptides', (req, res) => {
   }));
   
   res.json(results);
+});
+
+// Contact form API
+const contactFile = path.join(__dirname, 'data', 'contact-submissions.json');
+app.post('/api/contact', (req, res) => {
+  const { name, email, subject, message } = req.body || {};
+  if (!name || !email || !message) {
+    return res.status(400).json({ ok: false, error: 'Missing required fields' });
+  }
+  // Basic email validation
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ ok: false, error: 'Invalid email' });
+  }
+  // Rate limit: max 5 per IP per hour (simple in-memory)
+  const ip = req.ip || req.connection.remoteAddress;
+  if (!global._contactRateLimit) global._contactRateLimit = {};
+  const now = Date.now();
+  const hourAgo = now - 3600000;
+  global._contactRateLimit[ip] = (global._contactRateLimit[ip] || []).filter(t => t > hourAgo);
+  if (global._contactRateLimit[ip].length >= 5) {
+    return res.status(429).json({ ok: false, error: 'Too many submissions. Please try again later.' });
+  }
+  global._contactRateLimit[ip].push(now);
+
+  const entry = {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    name: name.slice(0, 200),
+    email: email.slice(0, 200),
+    subject: (subject || 'general').slice(0, 100),
+    message: message.slice(0, 5000),
+    date: new Date().toISOString(),
+    ip: ip
+  };
+  try {
+    let submissions = [];
+    if (fs.existsSync(contactFile)) {
+      submissions = JSON.parse(fs.readFileSync(contactFile, 'utf8'));
+    }
+    submissions.push(entry);
+    fs.writeFileSync(contactFile, JSON.stringify(submissions, null, 2));
+    console.log(`[Contact] New submission from ${name} <${email}> — ${subject}`);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('[Contact] Error saving submission:', err);
+    res.status(500).json({ ok: false, error: 'Server error' });
+  }
 });
 
 // ============ GUIDE & TOOL HELPER FUNCTIONS ============
