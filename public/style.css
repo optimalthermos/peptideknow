@@ -1158,6 +1158,12 @@ a.letter-link:hover {
   color: var(--accent);
   border-radius: 999px;
   white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+a.row-cat-pill:hover {
+  background: var(--accent);
+  color: #fff;
 }
 
 /* --- Categories Index Large Cards --- */

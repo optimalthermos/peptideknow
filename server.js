@@ -405,7 +405,7 @@ app.get('/', (req, res) => {
       const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
       return sorted.slice(0, 2).map(post => {
         const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        const imgSrc = post.image || '/static/images/blog-rfk-peptides.png';
+        const imgSrc = imgThumb(post.image);
         return `<a href="/blog/${post.slug}" class="dn-card">
           <div class="dn-card-img"><img src="${imgSrc}" alt="${post.imageAlt || post.title}" width="400" height="225" loading="eager"></div>
           <div class="dn-card-body">
@@ -465,7 +465,7 @@ app.get('/peptides', (req, res) => {
       const altNames = (p.alternativeNames || []).slice(0, 2).join(', ');
       const cats = (p.categories || []).map(c => {
         const cat = categoryById[c];
-        return cat ? `<span class="row-cat-pill">${cat.name}</span>` : '';
+        return cat ? `<a href="/categories/${cat.id}" class="row-cat-pill">${cat.name}</a>` : '';
       }).join('');
       return `<div class="peptide-row">
         <a href="/peptides/${p.slug}" class="row-name">${p.name}</a>
@@ -919,11 +919,11 @@ app.get('/peptides/:slug', (req, res) => {
       if (!blogPosts || blogPosts.length === 0) return '';
       const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
       const cards = sorted.slice(0, 4).map(post => {
-        const imgSrc = post.image || '/static/images/blog-rfk-peptides.png';
+        const imgSrc = imgThumb(post.image);
         const imgAlt = post.imageAlt || post.title;
         const dateStr = new Date(post.datePublished + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         return `<a href="/blog/${post.slug}" class="news-card">
-          <div class="news-card-img"><img src="${imgSrc}" alt="${imgAlt}" width="600" height="338" loading="lazy"></div>
+          <div class="news-card-img"><img src="${imgSrc}" alt="${imgAlt}" width="400" height="225" loading="lazy"></div>
           <div class="news-card-body">
             <span class="news-card-category">${post.category || 'News'}</span>
             <h3>${post.title}</h3>
@@ -1730,11 +1730,21 @@ function formatDateDisplay(isoDate) {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
+// Helper: get optimized image variant (thumb or medium WebP)
+function imgThumb(src) {
+  if (!src) return '/static/images/blog-rfk-peptides-thumb.webp';
+  return src.replace(/\.(png|jpg|jpeg)$/i, '-thumb.webp');
+}
+function imgMedium(src) {
+  if (!src) return '/static/images/blog-rfk-peptides-med.webp';
+  return src.replace(/\.(png|jpg|jpeg)$/i, '-med.webp');
+}
+
 // Helper: generate blog card HTML
 function blogCardHTML(post) {
   return `<a href="/blog/${post.slug}" class="blog-card">
     <div class="blog-card-img">
-      <img src="${post.image}" alt="${post.imageAlt}" width="600" height="338" loading="lazy">
+      <img src="${imgMedium(post.image)}" alt="${post.imageAlt}" width="600" height="338" loading="lazy">
     </div>
     <div class="blog-card-body">
       <span class="blog-card-category">${post.category}</span>
@@ -1758,7 +1768,7 @@ app.get('/blog', (req, res) => {
     <div class="container">
       <a href="/blog/${featured.slug}" class="blog-featured-card">
         <div class="blog-featured-img">
-          <img src="${featured.image}" alt="${featured.imageAlt}" width="1200" height="675" loading="eager">
+          <img src="${imgMedium(featured.image)}" alt="${featured.imageAlt}" width="800" height="450" loading="eager">
         </div>
         <div class="blog-featured-body">
           <span class="blog-card-category">${featured.category}</span>
