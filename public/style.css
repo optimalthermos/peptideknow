@@ -240,7 +240,7 @@ html, body { overflow-x: hidden; }
   padding-top: 0.75rem;
   border-top: 1px solid var(--border);
 }
-.mega-footer-btn {
+a.mega-footer-btn {
   display: inline-flex;
   align-items: center;
   padding: 0.4375rem 1rem;
@@ -252,13 +252,13 @@ html, body { overflow-x: hidden; }
   color: #fff;
   transition: opacity 0.15s;
 }
-.mega-footer-btn:hover { opacity: 0.9; color: #fff; }
-.mega-footer-btn-outline {
+a.mega-footer-btn:hover { opacity: 0.9; color: #fff; }
+a.mega-footer-btn-outline {
   background: transparent;
   color: var(--accent);
   border: 1px solid var(--accent);
 }
-.mega-footer-btn-outline:hover { background: var(--accent-light); color: var(--accent); }
+a.mega-footer-btn-outline:hover { background: var(--accent-light); color: var(--accent); }
 
 /* Hide mega-menu on mobile — just use the link */
 @media (max-width: 768px) {
