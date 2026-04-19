@@ -149,7 +149,9 @@ html, body { overflow-x: hidden; }
   z-index: 300;
   padding: 0;
 }
-.nav-mega-dropdown:hover .mega-menu { display: block; }
+/* JS toggles .mega-open class instead of pure :hover */
+.nav-mega-dropdown.mega-open .mega-menu { display: block; }
+.nav-mega-dropdown.mega-open > a svg { transform: rotate(180deg); }
 .mega-menu-inner {
   max-width: 980px;
   margin: 0 auto;

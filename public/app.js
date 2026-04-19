@@ -142,4 +142,44 @@
       }
     });
   }
+
+  // === PEPTIDES MEGA-MENU (delayed hover) ===
+  var megaDropdown = document.querySelector('.nav-mega-dropdown');
+  var megaPanel = megaDropdown ? megaDropdown.querySelector('.mega-menu') : null;
+  if (megaDropdown && megaPanel) {
+    var megaTimer = null;
+    var CLOSE_DELAY = 250; // ms grace period when leaving
+
+    function openMega() {
+      clearTimeout(megaTimer);
+      megaDropdown.classList.add('mega-open');
+    }
+    function closeMega() {
+      megaDropdown.classList.remove('mega-open');
+    }
+    function scheduleMegaClose() {
+      clearTimeout(megaTimer);
+      megaTimer = setTimeout(closeMega, CLOSE_DELAY);
+    }
+
+    // Open on hover over the nav item (the <li>)
+    megaDropdown.addEventListener('mouseenter', openMega);
+    megaDropdown.addEventListener('mouseleave', scheduleMegaClose);
+
+    // Keep open while hovering the panel itself
+    megaPanel.addEventListener('mouseenter', openMega);
+    megaPanel.addEventListener('mouseleave', scheduleMegaClose);
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMega();
+    });
+
+    // Close if clicking outside
+    document.addEventListener('click', function(e) {
+      if (!megaDropdown.contains(e.target) && !megaPanel.contains(e.target)) {
+        closeMega();
+      }
+    });
+  }
 })();
