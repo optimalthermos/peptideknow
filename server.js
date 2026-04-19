@@ -452,18 +452,26 @@ app.get('/peptides', (req, res) => {
     grouped[letter].push(p);
   });
 
-  const letterNav = Object.keys(grouped).sort().map(letter =>
-    `<a href="#letter-${letter}" class="letter-link">${letter}</a>`
+  // Build full A-Z nav (show all 26 letters, disable missing ones)
+  const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const letterNav = allLetters.map(letter =>
+    grouped[letter]
+      ? `<a href="#letter-${letter}" class="letter-link">${letter}</a>`
+      : `<span class="letter-link letter-disabled">${letter}</span>`
   ).join('');
 
   const peptideGroups = Object.keys(grouped).sort().map(letter => {
     const items = grouped[letter].map(p => {
-      const cats = (p.categories || []).map(c => categoryById[c]?.name || c).join(', ');
-      return `<a href="/peptides/${p.slug}" class="peptide-row">
-        <span class="row-name">${p.name}</span>
-        <span class="row-alt">${(p.alternativeNames || []).slice(0, 2).join(', ')}</span>
-        <span class="row-cats">${cats}</span>
-      </a>`;
+      const altNames = (p.alternativeNames || []).slice(0, 2).join(', ');
+      const cats = (p.categories || []).map(c => {
+        const cat = categoryById[c];
+        return cat ? `<span class="row-cat-pill">${cat.name}</span>` : '';
+      }).join('');
+      return `<div class="peptide-row">
+        <a href="/peptides/${p.slug}" class="row-name">${p.name}</a>
+        ${altNames ? `<span class="row-alt">${altNames}</span>` : ''}
+        <div class="row-cats">${cats}</div>
+      </div>`;
     }).join('');
     return `<div class="letter-group" id="letter-${letter}">
       <h2 class="letter-heading">${letter}</h2>
