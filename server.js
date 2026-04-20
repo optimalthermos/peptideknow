@@ -371,9 +371,9 @@ app.get('/', (req, res) => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "PeptideKnow",
-    "alternateName": "Peptide Encyclopedia",
+    "alternateName": "PeptideKnow",
     "url": "https://www.peptideknow.com",
-    "description": "Comprehensive peptide encyclopedia and reference database. Explore 100+ research peptides with mechanisms, benefits, synergies, and clinical data.",
+    "description": "The ultimate source for up-to-date peptide news, regulation, safety, dosages, stacks, and research. Explore 100+ research peptides with mechanisms, benefits, synergies, and clinical data.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://www.peptideknow.com/search?q={search_term_string}",
@@ -387,15 +387,15 @@ app.get('/', (req, res) => {
     "name": "PeptideKnow",
     "url": "https://www.peptideknow.com",
     "logo": "https://www.peptideknow.com/static/logo.svg",
-    "slogan": "Your trusted source for up-to-date peptide research, news & information",
+    "slogan": "The ultimate source for up-to-date peptide news, regulation, safety, dosages, stacks & research",
     "sameAs": []
   });
 
   const html = render('home', {
-    TITLE: 'PeptideKnow — Comprehensive Peptide Encyclopedia & Reference Database',
-    META_DESCRIPTION: 'Explore the most comprehensive peptide reference database online. Browse 100+ research peptides organized by category with mechanisms of action, synergistic compounds, clinical research status, and more.',
+    TITLE: 'PeptideKnow — Up-to-Date Peptide News, Regulation, Safety, Dosages & Research',
+    META_DESCRIPTION: 'The ultimate source for up-to-date peptide news, regulation, safety, dosages, stacks, and research. Browse 114+ research peptides with mechanisms of action, synergistic compounds, clinical data, and more.',
     CANONICAL: 'https://www.peptideknow.com/',
-    OG_TITLE: 'PeptideKnow — The Peptide Encyclopedia',
+    OG_TITLE: 'PeptideKnow — Peptide News, Regulation, Safety & Research',
     OG_DESCRIPTION: 'Comprehensive reference database of 100+ research peptides. Mechanisms, benefits, synergies, and clinical data.',
     OG_URL: 'https://www.peptideknow.com/',
     OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
@@ -1173,7 +1173,7 @@ app.get('/about', (req, res) => {
         "@type": "Organization",
         "name": "PeptideKnow",
         "url": "https://www.peptideknow.com",
-        "description": "Independent peptide reference database and encyclopedia for the scientific and research community."
+        "description": "Independent peptide reference database for the scientific and research community. Up-to-date news, regulation, safety, dosages, stacks, and research."
       }
     })}</script>`,
     TOTAL_PEPTIDES: String(peptides.length),
@@ -1662,7 +1662,7 @@ app.get('/llms.txt', (req, res) => {
     .join('\n');
 
   res.type('text/plain').send(`# PeptideKnow
-> Comprehensive peptide encyclopedia and reference database
+> The ultimate source for up-to-date peptide news, regulation, safety, dosages, stacks, and research
 
 PeptideKnow is an independent reference database covering ${peptides.length} research peptides across ${categories.length} categories. It provides mechanisms of action, dosage protocols, stacking guides, reconstitution instructions, routes of administration, synergistic compound cross-references, and clinical research status for each peptide.
 
