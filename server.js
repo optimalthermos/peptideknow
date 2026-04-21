@@ -270,34 +270,35 @@ function softwareAppLD({ name, description, url }) {
 
 // Homepage
 app.get('/', (req, res) => {
-  // Category image mapping
+  // Category image mapping — UNIQUE WebP per category (SEO-optimized filenames)
   const catImages = {
-    'healing-recovery': 'cat-healing.jpg',
-    'cognitive-nootropic': 'cat-cognitive.jpg',
-    'muscle-growth': 'cat-muscle.jpg',
-    'anti-aging-longevity': 'cat-longevity.jpg',
-    'weight-loss-metabolic': 'cat-metabolic.jpg',
-    'skin-hair': 'cat-skin.jpg',
-    'growth-hormone-secretagogues': 'cat-muscle.jpg',
-    'immune-support': 'cat-healing.jpg',
-    'sleep': 'cat-longevity.jpg',
-    'pain-inflammation': 'cat-healing.jpg',
-    'neuroprotective': 'cat-cognitive.jpg',
-    'sexual-health': 'cat-longevity.jpg',
-    'mitochondrial': 'cat-muscle.jpg',
-    'antimicrobial': 'cat-healing.jpg',
-    'reproductive': 'cat-longevity.jpg',
-    'cardiovascular': 'cat-muscle.jpg',
-    'gastrointestinal': 'cat-metabolic.jpg',
-    'bone-mineral': 'cat-healing.jpg',
-    'antiviral': 'cat-healing.jpg'
+    'healing-recovery': 'cat-healing-recovery-peptides.webp',
+    'cognitive-nootropic': 'cat-cognitive-nootropic-peptides.webp',
+    'muscle-growth': 'cat-muscle-growth-peptides.webp',
+    'anti-aging-longevity': 'cat-anti-aging-longevity-peptides.webp',
+    'weight-loss-metabolic': 'cat-weight-loss-metabolic-peptides.webp',
+    'skin-hair': 'cat-skin-hair-peptides.webp',
+    'growth-hormone-secretagogues': 'cat-growth-hormone-secretagogues-peptides.webp',
+    'immune-support': 'cat-immune-support-peptides.webp',
+    'sleep': 'cat-sleep-peptides.webp',
+    'pain-inflammation': 'cat-pain-inflammation-peptides.webp',
+    'neuroprotective': 'cat-neuroprotective-peptides.webp',
+    'sexual-health': 'cat-sexual-health-peptides.webp',
+    'mitochondrial': 'cat-mitochondrial-peptides.webp',
+    'antimicrobial': 'cat-antimicrobial-peptides.webp',
+    'reproductive': 'cat-reproductive-fertility-peptides.webp',
+    'cardiovascular': 'cat-cardiovascular-peptides.webp',
+    'gastrointestinal': 'cat-gastrointestinal-peptides.webp',
+    'bone-mineral': 'cat-bone-mineral-metabolism-peptides.webp',
+    'antiviral': 'cat-antiviral-peptides.webp',
+    'related-compounds': 'cat-related-compounds-peptides.webp'
   };
 
   const categoryCards = categories.map(cat => {
     const count = categoryPeptides[cat.id] ? categoryPeptides[cat.id].length : 0;
-    const img = catImages[cat.id] || 'cat-healing.jpg';
+    const img = catImages[cat.id] || 'cat-related-compounds-peptides.webp';
     return `<a href="/categories/${cat.id}" class="category-card">
-      <div class="category-card-img"><img src="/static/images/${img}" alt="${cat.name}" width="400" height="300" loading="lazy"></div>
+      <div class="category-card-img"><img src="/static/images/${img}" alt="${cat.name} peptides — scientific illustration" width="800" height="600" loading="lazy"></div>
       <div class="category-card-body">
         <h3>${cat.name}</h3>
         <p>${cat.description}</p>
