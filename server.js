@@ -1697,6 +1697,9 @@ Each peptide page includes: name, alternative names, molecular weight, sequence 
 - Blog: https://www.peptideknow.com/blog
 - RSS Feed: https://www.peptideknow.com/blog/rss.xml
 
+### Recent Articles
+${[...blogPosts].sort((a,b)=>b.datePublished.localeCompare(a.datePublished)).slice(0,20).map(p=>`- ${p.datePublished} — ${p.title}: https://www.peptideknow.com/blog/${p.slug}`).join('\n')}
+
 ## API
 Search API: https://www.peptideknow.com/api/peptides?q={query}
 Sitemap: https://www.peptideknow.com/sitemap.xml
@@ -1719,7 +1722,25 @@ app.get('/llms-full.txt', (req, res) => {
     if (p.sequenceLength) content += `Sequence: ${p.sequenceLength}\n`;
     content += `\n`;
   });
-  
+
+  // Blog posts — full excerpts for AI crawlers
+  const sortedPosts = [...blogPosts].sort((a,b)=>b.datePublished.localeCompare(a.datePublished));
+  if (sortedPosts.length) {
+    content += `\n# Blog Articles (${sortedPosts.length})\n\n`;
+    sortedPosts.forEach(post => {
+      content += `## ${post.title}\n`;
+      content += `URL: https://www.peptideknow.com/blog/${post.slug}\n`;
+      content += `Published: ${post.datePublished}`;
+      if (post.dateModified && post.dateModified !== post.datePublished) content += ` (updated ${post.dateModified})`;
+      content += `\n`;
+      content += `Category: ${post.category}\n`;
+      if (post.author) content += `Author: ${post.author}\n`;
+      if (post.tags?.length) content += `Tags: ${post.tags.join(', ')}\n`;
+      if (post.subtitle) content += `Subtitle: ${post.subtitle}\n`;
+      content += `\n${post.excerpt}\n\n`;
+    });
+  }
+
   res.type('text/plain').send(content);
 });
 
