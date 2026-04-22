@@ -392,6 +392,92 @@ app.get('/', (req, res) => {
     "sameAs": []
   });
 
+  // ItemList of latest blog articles — eligible for Google "Carousel" rich result
+  const sortedForLD = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+  const latestArticlesLD = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Latest Peptide News from PeptideKnow",
+    "itemListOrder": "https://schema.org/ItemListOrderDescending",
+    "numberOfItems": Math.min(sortedForLD.length, 10),
+    "itemListElement": sortedForLD.slice(0, 10).map((post, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://www.peptideknow.com/blog/${post.slug}`,
+      "item": {
+        "@type": "NewsArticle",
+        "headline": post.title,
+        "datePublished": post.datePublished,
+        "dateModified": post.dateModified || post.datePublished,
+        "url": `https://www.peptideknow.com/blog/${post.slug}`,
+        "image": post.image ? `https://www.peptideknow.com${post.image}` : undefined,
+        "author": { "@type": "Organization", "name": post.author || "PeptideKnow Editorial" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "PeptideKnow",
+          "logo": { "@type": "ImageObject", "url": "https://www.peptideknow.com/static/logo.svg" }
+        },
+        "description": post.excerpt
+      }
+    }))
+  });
+
+  // ItemList of featured peptides — also eligible for rich carousel
+  const featuredPeptideSlugsLD = ['bpc-157', 'tb-500', 'semaglutide', 'epithalon', 'semax', 'ghk-cu'];
+  const featuredPeptidesForLD = featuredPeptideSlugsLD.map(s => peptides.find(p => p.slug === s)).filter(Boolean);
+  const featuredPeptidesLD = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Popular Research Peptides",
+    "numberOfItems": featuredPeptidesForLD.length,
+    "itemListElement": featuredPeptidesForLD.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://www.peptideknow.com/peptides/${p.slug}`,
+      "name": p.name
+    }))
+  });
+
+  // FAQPage — eligible for rich "FAQ" result
+  const homeFaqLD = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is PeptideKnow?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PeptideKnow is an independent reference database covering 114+ research peptides with mechanisms of action, dosage protocols, stacking guides, clinical data, and regulatory news — including FDA compounding rules and 503A/503B policy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are research peptides FDA-approved?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most research peptides such as BPC-157, TB-500, and MOTS-C are not FDA-approved for therapeutic use. The FDA regulates peptide compounding under sections 503A and 503B of the FD&C Act. A small number of peptides (e.g. semaglutide) are approved drugs with specific indications."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does PeptideKnow get its data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PeptideKnow pulls from primary sources: FDA announcements and dockets, PubMed-indexed peptide research, and manufacturer monographs. Every peptide profile cites the underlying studies and every news article links to primary regulatory documents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often is PeptideKnow updated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Peptide profiles are reviewed continuously and the news section is updated daily with the latest FDA regulatory actions, clinical trial results, and industry developments."
+        }
+      }
+    ]
+  });
+
   const html = render('home', {
     TITLE: 'PeptideKnow — Up-to-Date Peptide News, Regulation, Safety, Dosages & Research',
     META_DESCRIPTION: 'The ultimate source for up-to-date peptide news, regulation, safety, dosages, stacks, and research. Browse 114+ research peptides with mechanisms of action, synergistic compounds, clinical data, and more.',
@@ -401,7 +487,7 @@ app.get('/', (req, res) => {
     OG_URL: 'https://www.peptideknow.com/',
     OG_IMAGE: 'https://www.peptideknow.com/static/og-home.png',
     EXTRA_HEAD: '',
-    JSON_LD: `<script type="application/ld+json">${websiteLD}</script>\n<script type="application/ld+json">${orgLD}</script>`,
+    JSON_LD: `<script type="application/ld+json">${websiteLD}</script>\n<script type="application/ld+json">${orgLD}</script>\n<script type="application/ld+json">${latestArticlesLD}</script>\n<script type="application/ld+json">${featuredPeptidesLD}</script>\n<script type="application/ld+json">${homeFaqLD}</script>`,
     LATEST_BLOG_CARDS: latestBlogCards,
     HERO_NEWS_ITEMS: (() => {
       const sorted = [...blogPosts].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
