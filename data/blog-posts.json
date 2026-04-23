@@ -1,6 +1,45 @@
 {
   "posts": [
     {
+      "slug": "sab-142-phase-1-type-1-diabetes-c-peptide-preservation",
+      "title": "SAB-142 Phase 1 Data: C-Peptide Preservation in Established Type 1 Diabetes",
+      "subtitle": "SAB Biotherapeutics reports all four treated adults preserved endogenous C-peptide at Day 120, with CGM time-in-range climbing from 73% to 85%",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-04-23",
+      "dateModified": "2026-04-23",
+      "image": "/static/images/blog-sab-142-type-1-diabetes-c-peptide.png",
+      "imageAlt": "Endocrinology researcher placing a continuous glucose monitor sensor on a Type 1 Diabetes clinical trial participant, next to a lab vial and a printed C-peptide preservation curve chart",
+      "category": "Research & Discovery",
+      "tags": [
+        "Type 1 Diabetes",
+        "C-peptide",
+        "SAB-142",
+        "clinical trials",
+        "autoimmune",
+        "biologics",
+        "CGM",
+        "time-in-range",
+        "SAFEGUARD",
+        "endocrinology"
+      ],
+      "readTime": "10 min read",
+      "excerpt": "At IDS 2026 on April 22, SAB Biotherapeutics reported that all four adults with established Type 1 Diabetes dosed with SAB-142 preserved endogenous C-peptide at Day 120, with mean CGM time-in-range climbing from 73% to 85%. A small but mechanistically coherent signal in a disease where C-peptide almost always declines.",
+      "bodyFile": "blog-sab-142-type-1-diabetes-c-peptide-body.html",
+      "metaDescription": "SAB-142 Phase 1 data (Apr 22, 2026): all four treated adults with established Type 1 Diabetes preserved endogenous C-peptide at Day 120; CGM time-in-range rose from 73% to 85%. Mechanistic signal from TIGIT+ Tconv cells.",
+      "keywords": [
+        "SAB-142 Phase 1 results",
+        "C-peptide preservation Type 1 Diabetes",
+        "SAB Biotherapeutics T1D trial",
+        "SAFEGUARD NCT07187531",
+        "CGM time-in-range clinical trial",
+        "autoimmune T1D disease-modifying therapy",
+        "polyclonal anti-thymocyte antibody T1D",
+        "IDS 2026 peptide news",
+        "beta-cell preservation biologic",
+        "TIGIT Tconv T-cell exhaustion"
+      ]
+    },
+    {
       "slug": "fda-peptide-rally-supply-chain-enforcement-risk",
       "title": "FDA\u2019s Peptide \u2018Rally\u2019 Update: Supply Chain and Enforcement Are the Real Bottlenecks",
       "subtitle": "FDA Law Blog (Post 2) explains why compliant API sourcing and marketing enforcement may matter more than Category 2 headlines",
