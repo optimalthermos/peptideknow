@@ -1,6 +1,45 @@
 {
   "posts": [
     {
+      "slug": "fda-import-alert-66-80-glp1-peptide-bulk-drug-substances",
+      "title": "FDA Import Alert 66-80: GLP-1 and Peptide Bulk API Now Detained at the Border",
+      "subtitle": "FDA activates Detention Without Physical Examination (DWPE) for semaglutide, tirzepatide, liraglutide, exenatide, dulaglutide, retatrutide, and certain peptide drug products \u2014 what it means for compounders, telehealth, and research-peptide supply",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-04-24",
+      "dateModified": "2026-04-24",
+      "image": "/static/images/blog-fda-import-alert-66-80-glp1-peptide-dwpe.png",
+      "imageAlt": "US customs inspector scanning a pharmaceutical shipping carton stamped DETAINED in red next to amber peptide API vials and an FDA Import Alert notice at a port of entry inspection table",
+      "category": "Regulation & Policy",
+      "tags": [
+        "FDA enforcement",
+        "Import Alert",
+        "GLP-1",
+        "semaglutide",
+        "tirzepatide",
+        "503A compounding",
+        "503B",
+        "peptide supply chain",
+        "CGMP",
+        "customs"
+      ],
+      "readTime": "12 min read",
+      "excerpt": "FDA has updated Import Alert 66-80 to authorize Detention Without Physical Examination for bulk GLP-1 API (semaglutide, tirzepatide, liraglutide, exenatide, dulaglutide, retatrutide) and certain peptide drug products. The agency is moving enforcement upstream \u2014 choking off the compounded GLP-1 market at the port instead of chasing pharmacies and telehealth clinics one at a time.",
+      "bodyFile": "blog-fda-import-alert-66-80-glp1-peptide-dwpe-body.html",
+      "metaDescription": "FDA Import Alert 66-80 activates Detention Without Physical Examination for bulk semaglutide, tirzepatide, and peptide APIs. What DWPE means, who\u2019s in scope, and a compliance checklist for 503A/503B compounders and telehealth.",
+      "keywords": [
+        "FDA Import Alert 66-80",
+        "DWPE semaglutide tirzepatide",
+        "GLP-1 bulk drug substance import",
+        "503A compounding GLP-1 enforcement",
+        "FDA peptide import detention",
+        "retatrutide import alert",
+        "compounded semaglutide legal 2026",
+        "peptide API supply chain CGMP",
+        "FDA Red List GLP-1 manufacturer",
+        "telehealth GLP-1 enforcement"
+      ]
+    },
+    {
       "slug": "sab-142-phase-1-type-1-diabetes-c-peptide-preservation",
       "title": "SAB-142 Phase 1 Data: C-Peptide Preservation in Established Type 1 Diabetes",
       "subtitle": "SAB Biotherapeutics reports all four treated adults preserved endogenous C-peptide at Day 120, with CGM time-in-range climbing from 73% to 85%",
