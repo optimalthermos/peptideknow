@@ -1,6 +1,45 @@
 {
   "posts": [
     {
+      "slug": "fda-2025-n-6895-pcac-peptide-public-comments",
+      "title": "FDA Docket FDA-2025-N-6895: How to Submit Peptide Evidence Ahead of the July 2026 PCAC Meeting",
+      "subtitle": "A practical guide to the 503A peptide review: what Category 2 removal does (and doesn’t) mean, which peptides are on the agenda, and how to write a comment FDA can use",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "/static/images/blog-fda-2025-n-6895-pcac-peptide-comments.png",
+      "imageAlt": "Federal Register notice and calendar marked July 2026 PCAC meeting beside labeled peptide vials (BPC-157, KPV, TB-500, MOTs-C, Semax, Epitalon) on a sterile laboratory bench",
+      "category": "Regulation & Policy",
+      "tags": [
+        "PCAC",
+        "FDA docket",
+        "503A compounding",
+        "peptides",
+        "BPC-157",
+        "MOTs-C",
+        "KPV",
+        "TB-500",
+        "Semax",
+        "Epitalon"
+      ],
+      "readTime": "8 min read",
+      "excerpt": "FDA opened docket FDA-2025-N-6895 for July 23–24, 2026 PCAC review of seven peptides. Here’s what’s being reviewed, what Category 2 removal doesn’t mean, and how to submit evidence-based comments.",
+      "bodyFile": "blog-fda-2025-n-6895-pcac-peptide-comments-body.html",
+      "metaDescription": "FDA docket FDA-2025-N-6895 covers July 2026 PCAC review of seven peptides. What’s being reviewed, what Category 2 removal doesn’t mean, and how to comment.",
+      "keywords": [
+        "FDA-2025-N-6895",
+        "PCAC July 2026 peptide meeting",
+        "503A bulks list peptides",
+        "Category 2 removal peptides",
+        "BPC-157 PCAC",
+        "MOTs-C compounding",
+        "KPV peptide compounding",
+        "TB-500 compounding",
+        "Semax Epitalon PCAC",
+        "how to comment FDA docket"
+      ]
+    },
+    {
       "slug": "fda-import-alert-66-80-glp1-peptide-bulk-drug-substances",
       "title": "FDA Import Alert 66-80: GLP-1 and Peptide Bulk API Now Detained at the Border",
       "subtitle": "FDA activates Detention Without Physical Examination (DWPE) for semaglutide, tirzepatide, liraglutide, exenatide, dulaglutide, retatrutide, and certain peptide drug products \u2014 what it means for compounders, telehealth, and research-peptide supply",
