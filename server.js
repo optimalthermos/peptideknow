@@ -21,6 +21,14 @@ const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'peptides.j
 const peptides = data.peptides;
 const categories = data.categories;
 
+// Load slug redirects (old slug -> new slug). Used for 301s when peptide slugs are renamed.
+let slugRedirects = {};
+try {
+  slugRedirects = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'slug-redirects.json'), 'utf8'));
+} catch (e) {
+  slugRedirects = {};
+}
+
 // Load blog data
 const blogData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'blog-posts.json'), 'utf8'));
 const blogPosts = blogData.posts;
@@ -607,6 +615,10 @@ app.get('/peptides', (req, res) => {
 
 // Individual peptide page
 app.get('/peptides/:slug', (req, res) => {
+  // Honor 301 redirects for renamed slugs
+  if (slugRedirects[req.params.slug]) {
+    return res.redirect(301, '/peptides/' + slugRedirects[req.params.slug]);
+  }
   const p = peptideBySlug[req.params.slug];
   if (!p) return res.status(404).send(render('404', {
     TITLE: 'Page Not Found | PeptideKnow',
