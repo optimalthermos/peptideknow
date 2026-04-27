@@ -1,6 +1,30 @@
 {
   "posts": [
     {
+      "slug": "tirzepatide-pci-tavr-cardiac-outcomes-scai-2026",
+      "title": "Tirzepatide Linked to Fewer Cardiac Events After PCI and TAVR: Three Propensity-Matched Studies at SCAI 2026 and AACE 2026",
+      "subtitle": "Propensity-matched analyses of 86,000 patients in obesity-with-hypothyroidism, plus smaller cohorts after PCI and after transcatheter aortic valve replacement, all show tirzepatide outperforming GLP-1 comparators on hard endpoints.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-04-27",
+      "dateModified": "2026-04-27",
+      "image": "/static/images/blog-tirzepatide-pci-tavr-cardiac-outcomes.png",
+      "category": "weight-loss-metabolic",
+      "tags": [
+        "tirzepatide",
+        "GLP-1",
+        "PCI",
+        "TAVR",
+        "SCAI 2026",
+        "AACE 2026",
+        "cardiovascular outcomes",
+        "dulaglutide"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "Three propensity-matched studies presented April 23-24 link tirzepatide to fewer deaths and major cardiovascular events versus GLP-1 comparators in PCI, TAVR, and obese hypothyroid populations.",
+      "metaDescription": "SCAI 2026 and AACE 2026 propensity-matched data show tirzepatide reduces cardiovascular events after PCI and TAVR and lowers 5-year mortality vs semaglutide.",
+      "keywords": "tirzepatide, dulaglutide, semaglutide, SCAI 2026, AACE 2026, PCI cardiovascular outcomes, TAVR outcomes, GLP-1 procedural cardiology, MACE, obesity"
+    },
+    {
       "slug": "tirzepatide-vs-semaglutide-cost-effectiveness-surmount-5",
       "title": "Tirzepatide vs Semaglutide Cost-Effectiveness: SURMOUNT-5 Lifetime Model Shows $41,688 Per-Patient Savings",
       "subtitle": "A peer-reviewed lifetime simulation built on the SURMOUNT-5 head-to-head trial finds tirzepatide dominant on cost and QALYs in U.S. obesity care without type 2 diabetes.",
