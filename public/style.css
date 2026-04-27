@@ -1448,6 +1448,28 @@ a.row-cat-pill:hover {
 .footer-links a { color: #c8ccd4; font-size: 0.75rem; }
 .footer-links a:hover { color: #fff; }
 
+/* Footer brand block */
+.footer-brand { display: inline-flex; align-items: center; gap: 0.5rem; color: #fff; text-decoration: none; margin-bottom: 0.5rem; }
+.footer-brand:hover { color: #fff; }
+.footer-brand svg { color: #2dd4bf; flex-shrink: 0; }
+.footer-brand-text { font-size: 1.125rem; font-weight: 500; letter-spacing: -0.01em; color: #fff; }
+.footer-brand-text strong { color: #2dd4bf; font-weight: 700; }
+.footer-domain { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: lowercase; color: #8a92a3; margin: 0 0 0.75rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+/* Trusted source badges */
+.footer-sources { border-top: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 0 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.footer-sources-label { font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8a92a3; font-weight: 600; }
+.footer-source-badges { display: flex; flex-wrap: wrap; gap: 0.625rem; list-style: none; padding: 0; margin: 0; }
+.source-badge { display: inline-flex; align-items: stretch; border: 1px solid rgba(255,255,255,0.18); border-radius: 4px; overflow: hidden; text-decoration: none; background: rgba(255,255,255,0.02); transition: border-color 0.15s, background 0.15s; }
+.source-badge:hover { border-color: rgba(45,212,191,0.5); background: rgba(45,212,191,0.06); }
+.source-badge-mark { background: rgba(255,255,255,0.08); color: #e6e9ee; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.4rem 0.55rem; display: inline-flex; align-items: center; border-right: 1px solid rgba(255,255,255,0.12); white-space: nowrap; }
+.source-badge-name { color: #c8ccd4; font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.625rem; display: inline-flex; align-items: center; white-space: nowrap; }
+.source-badge:hover .source-badge-name { color: #fff; }
+
+/* About page lede */
+.about-lede { font-size: 1.1875rem; line-height: 1.55; color: var(--text-primary); font-weight: 500; margin: 0 0 2rem; padding: 0 0 1.5rem; border-bottom: 1px solid var(--border); }
+@media (max-width: 768px) { .about-lede { font-size: 1.0625rem; } }
+
 /* --- 404 --- */
 .not-found { text-align: center; padding: 4rem 0; }
 .not-found h1 { font-size: 4rem; color: var(--text-tertiary); }
