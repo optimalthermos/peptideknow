@@ -1,6 +1,30 @@
 {
   "posts": [
     {
+      "slug": "fda-pcac-503a-peptide-list-july-2026",
+      "title": "FDA Sets July 23-24 PCAC Vote on Seven Peptides for the 503A Bulks List: BPC-157, KPV, TB-500, MOTs-C, DSIP, Semax, Epitalon",
+      "subtitle": "FDA published the July 2026 PCAC agenda on April 15. Two dockets are open. Comments to FDA-2026-N-2979 must arrive by July 9 to reach the committee before the vote.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-04-28",
+      "dateModified": "2026-04-28",
+      "image": "/static/images/blog-fda-pcac-503a-peptide-list-july-2026.png",
+      "category": "regulation-policy",
+      "tags": [
+        "FDA",
+        "PCAC",
+        "503A bulks list",
+        "compounding",
+        "BPC-157",
+        "Epitalon",
+        "Semax",
+        "TB-500"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "FDA's July 23-24 PCAC will vote on seven peptides for the 503A Bulks List. Two dockets are open. July 9 is the cutoff for comments to reach the committee.",
+      "metaDescription": "FDA's July 23-24, 2026 PCAC will vote on BPC-157, KPV, TB-500, MOTs-C, DSIP, Semax, and Epitalon for the 503A Bulks List. Comment by July 9 to reach the committee.",
+      "keywords": "FDA PCAC July 2026, 503A bulks list, BPC-157 FDA, peptide compounding, FDA-2026-N-2979, FDA-2025-N-6895, peptide bulks nomination, Epitalon FDA, Semax FDA, DSIP Emideltide"
+    },
+    {
       "slug": "tirzepatide-pci-tavr-cardiac-outcomes-scai-2026",
       "title": "Tirzepatide Linked to Fewer Cardiac Events After PCI and TAVR: Three Propensity-Matched Studies at SCAI 2026 and AACE 2026",
       "subtitle": "Propensity-matched analyses of 86,000 patients in obesity-with-hypothyroidism, plus smaller cohorts after PCI and after transcatheter aortic valve replacement, all show tirzepatide outperforming GLP-1 comparators on hard endpoints.",
