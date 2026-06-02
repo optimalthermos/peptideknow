@@ -16661,6 +16661,148 @@
         "typicalVolume": "Not applicable",
         "storage": "Per product label"
       }
+    },
+    {
+      "name": "Epitalon (Epithalon)",
+      "slug": "epitalon",
+      "alternativeNames": [
+        "Epithalon",
+        "Epithalamin-derived tetrapeptide"
+      ],
+      "categories": [
+        "longevity",
+        "sleep"
+      ],
+      "description": "Epitalon (also spelled epithalon) is a synthetic tetrapeptide derived from the pineal peptide complex known in Russian gerontology literature as \"epithalamin.\" It is marketed in longevity and sleep circles as a peptide that may influence circadian signaling, oxidative stress, and cellular aging, often with claims about telomerase activation. The evidence base is not comparable to approved drugs: much of the published work is preclinical or small clinical studies conducted outside the U.S., and study methods can be difficult to evaluate against modern trial standards.\n\nIn the U.S., Epitalon is not an FDA-approved drug. Interest surged because it sits at the intersection of sleep, ‘anti-aging’ marketing, and the broader debate about whether compounding pharmacies should be allowed to prepare unapproved peptides under Section 503A. That regulatory context matters more than any single mechanistic hypothesis: even if a peptide shows intriguing signals in lab systems, patients are exposed to real-world risks from sterility failures, mislabeling, and impurities when products are sourced outside established pharmaceutical supply chains.\n\nIf you see Epitalon positioned as a ‘natural’ human peptide, treat that as a claim that needs evidence. In practice, Epitalon products sold online are synthetic research chemicals or compounded preparations, and there is no FDA-reviewed package insert describing indications, dosing, or safety monitoring.",
+      "mechanismOfAction": "Proposed mechanisms include modulation of pineal signaling and neuroendocrine pathways, antioxidant effects, and possible effects on telomerase activity reported in some experimental models. These hypotheses remain uncertain, and there is no consensus receptor target or clinically validated pharmacodynamic marker for Epitalon in humans.",
+      "benefits": [
+        "Research-stage only; no FDA-approved indications."
+      ],
+      "researchStatus": "Unapproved; studied in preclinical/limited human contexts depending on jurisdiction.",
+      "aminoAcidSequence": "",
+      "molecularWeight": "",
+      "casNumber": "",
+      "pubChemCID": "",
+      "sequenceLength": "",
+      "synergisticCompounds": [],
+      "relatedPeptides": [
+        "dsip",
+        "semax",
+        "mots-c"
+      ],
+      "sideEffects": [
+        "Human safety data are limited; potential risks include contamination/impurities from non-pharmaceutical sources and unknown long-term effects."
+      ],
+      "dosageNotes": "No established dosing. Online dosing regimens are not evidence-based; discuss any use with a licensed clinician.",
+      "references": [
+        {
+          "title": "FDA to Convene Pharmacy Compounding Advisory Committee (PCAC) to discuss peptide bulk drug substances (includes Epitalon)",
+          "url": "https://natlawreview.com/article/tiny-chains-big-changes-what-fdas-latest-actions-mean-peptide-compounding",
+          "year": 2026
+        },
+        {
+          "title": "Recent Regulatory Updates on Compounded Peptide Injections (mentions Epitalon on July 2026 PCAC agenda)",
+          "url": "https://newdrugloft.com/recent-regulatory-updates-on-compounded-peptide-injections/",
+          "year": 2026
+        }
+      ],
+      "dosage": {
+        "typical": "No established dosing.",
+        "research": "Evidence is insufficient to recommend a dose."
+      },
+      "reconstitution": "If supplied as a lyophilized powder for research, reconstitution technique depends on formulation; avoid non-sterile handling.",
+      "popularity_score": 50,
+      "mechanism": "Proposed mechanisms include modulation of pineal signaling and neuroendocrine pathways, antioxidant effects, and possible effects on telomerase activity reported in some experimental models. These hypotheses remain uncertain, and there is no consensus receptor target or clinically validated pharmacodynamic marker for Epitalon in humans.",
+      "routesOfAdministration": [
+        "Not established"
+      ],
+      "stackingProtocols": [],
+      "regulatoryStatus": "Not FDA-approved. The FDA Pharmacy Compounding Advisory Committee (PCAC) has been scheduled to discuss Epitalon for potential inclusion on the 503A bulks list (a pathway that, if finalized through rulemaking, could allow certain compounding under Section 503A).",
+      "contraindications": [
+        "Pregnancy/breastfeeding (unknown safety)",
+        "Active cancer or history of hormone-sensitive malignancy (risk unknown)"
+      ],
+      "drugInteractions": [
+        "Unknown; insufficient human data"
+      ],
+      "fdaSafetyNotes": "Not FDA-approved. Compounding status is subject to FDA policy and advisory committee review; quality and sterility are key risks.",
+      "halfLife": "Unknown",
+      "storage": "Store per supplier/manufacturer guidance; protect from heat and light.",
+      "clinicalTrialStatus": "No FDA registration demonstrating efficacy for marketed claims.",
+      "pharmacokinetics": "Insufficient published human pharmacokinetic data.",
+      "synthesisInfo": "Synthetic peptide typically produced via solid-phase peptide synthesis; quality depends on purification/analytics.",
+      "popularityScore": 50
+    },
+    {
+      "name": "Emideltide (DSIP)",
+      "slug": "emideltide",
+      "alternativeNames": [
+        "DSIP",
+        "Delta sleep-inducing peptide"
+      ],
+      "categories": [
+        "sleep",
+        "neuro"
+      ],
+      "description": "Emideltide is the International Nonproprietary Name (INN) that appears in U.S. regulatory discussions for DSIP (delta sleep-inducing peptide), a short peptide historically investigated for sleep and stress-related effects. DSIP has been marketed widely online despite limited modern clinical evidence and an unclear mechanism of action.\n\nIn practice, most products are sold as ‘DSIP,’ but advisory committee agendas and legal analyses often use the INN ‘Emideltide.’ For clinicians and patients, the naming matters because a regulatory docket may list Emideltide even if the marketplace talks about DSIP.\n\nIn the U.S., Emideltide/DSIP is not an FDA-approved drug. If it were ever considered for compounding eligibility under Section 503A, the FDA would still weigh whether the substance can be adequately characterized, whether there are safety concerns (including immunogenicity and impurities), and whether any evidence supports the specific uses being proposed.",
+      "mechanismOfAction": "DSIP/Emideltide has been reported to affect sleep architecture and neuroendocrine signaling in some experimental settings, but a definitive receptor target and reproducible human pharmacology have not been established.",
+      "benefits": [
+        "Research-stage only; no FDA-approved indications."
+      ],
+      "researchStatus": "Unapproved; studied in preclinical/limited human contexts depending on jurisdiction.",
+      "aminoAcidSequence": "",
+      "molecularWeight": "",
+      "casNumber": "",
+      "pubChemCID": "",
+      "sequenceLength": "",
+      "synergisticCompounds": [],
+      "relatedPeptides": [
+        "dsip",
+        "semax",
+        "epitalon"
+      ],
+      "sideEffects": [
+        "Human safety data are limited; potential risks include contamination/impurities from non-pharmaceutical sources and unknown long-term effects."
+      ],
+      "dosageNotes": "No established dosing. Online dosing regimens are not evidence-based; discuss any use with a licensed clinician.",
+      "references": [
+        {
+          "title": "FDA to Convene Pharmacy Compounding Advisory Committee (PCAC) to discuss peptide bulk drug substances (includes Emideltide/DSIP)",
+          "url": "https://natlawreview.com/article/tiny-chains-big-changes-what-fdas-latest-actions-mean-peptide-compounding",
+          "year": 2026
+        },
+        {
+          "title": "Recent Regulatory Updates on Compounded Peptide Injections (lists Emideltide/DSIP for July 2026 PCAC)",
+          "url": "https://newdrugloft.com/recent-regulatory-updates-on-compounded-peptide-injections/",
+          "year": 2026
+        }
+      ],
+      "dosage": {
+        "typical": "No established dosing.",
+        "research": "Evidence is insufficient to recommend a dose."
+      },
+      "reconstitution": "If supplied as a lyophilized powder for research, reconstitution technique depends on formulation; avoid non-sterile handling.",
+      "popularity_score": 50,
+      "mechanism": "DSIP/Emideltide has been reported to affect sleep architecture and neuroendocrine signaling in some experimental settings, but a definitive receptor target and reproducible human pharmacology have not been established.",
+      "routesOfAdministration": [
+        "Not established"
+      ],
+      "stackingProtocols": [],
+      "regulatoryStatus": "Not FDA-approved. The FDA has scheduled PCAC discussion for Emideltide (DSIP) in the July 2026 meeting materials referenced by legal analyses; any change in compounding status would require further FDA action and rulemaking.",
+      "contraindications": [
+        "Pregnancy/breastfeeding (unknown safety)",
+        "Active cancer or history of hormone-sensitive malignancy (risk unknown)"
+      ],
+      "drugInteractions": [
+        "Unknown; insufficient human data"
+      ],
+      "fdaSafetyNotes": "Not FDA-approved. Compounding status is subject to FDA policy and advisory committee review; quality and sterility are key risks.",
+      "halfLife": "Unknown",
+      "storage": "Store per supplier/manufacturer guidance; protect from heat and light.",
+      "clinicalTrialStatus": "No FDA registration demonstrating efficacy for marketed claims.",
+      "pharmacokinetics": "Insufficient published human pharmacokinetic data.",
+      "synthesisInfo": "Synthetic peptide typically produced via solid-phase peptide synthesis; quality depends on purification/analytics.",
+      "popularityScore": 50
     }
   ]
 }

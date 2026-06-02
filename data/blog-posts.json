@@ -1,6 +1,30 @@
 {
   "posts": [
     {
+      "slug": "fda-pcac-bpc-157-peptide-compounding-july-2026",
+      "title": "FDA PCAC July 2026: What the BPC-157 peptide compounding review really means",
+      "subtitle": "Seven unapproved peptides are headed to an FDA advisory meeting. Here’s what’s on the agenda, what changes (slowly), and what doesn’t.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-02",
+      "dateModified": "2026-06-02",
+      "image": "/static/images/blog-fda-pcac-bpc-157-peptide-compounding-july-2026.png",
+      "category": "Regulation",
+      "tags": [
+        "FDA",
+        "compounding",
+        "BPC-157",
+        "PCAC",
+        "503A",
+        "peptides",
+        "pharmacy"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "FDA’s Pharmacy Compounding Advisory Committee will review seven unapproved peptides in July 2026. What that process means for BPC-157—and what it doesn’t.",
+      "metaDescription": "FDA’s PCAC will discuss seven unapproved peptides in July 2026. Learn what the BPC-157 compounding review means, the 503A bulks list path, and key risks.",
+      "keywords": "FDA PCAC July 2026, BPC-157, peptide compounding, 503A bulks list, Pharmacy Compounding Advisory Committee, TB-500, MOTS-c, KPV, Semax, Epitalon, Emideltide DSIP",
+      "bodyFile": "blog-fda-pcac-bpc-157-peptide-compounding-july-2026-body.html"
+    },
+    {
       "slug": "fda-glp1-compounding-enforcement-june-2026",
       "title": "FDA signals enforcement against unapproved compounded GLP-1 drugs: what it means for peptide medicine",
       "subtitle": "On June 1, 2026, the FDA said it will use seizures, injunctions, and advertising enforcement against mass-marketed compounded GLP-1 products. Here is what changes for clinicians, telehealth platforms, and patients.",
