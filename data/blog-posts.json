@@ -1,6 +1,32 @@
 {
   "posts": [
     {
+      "slug": "fda-peptide-category-2-withdrawal-april-22-pcac-july-2026",
+      "title": "FDA removes BPC-157, KPV, Semax from Category 2 on April 22 — but they are not legal to compound yet",
+      "subtitle": "The peptides came off Category 2 because their nominations were withdrawn, not because the FDA cleared them. PCAC reviews them July 23–24, 2026 — that is the next real decision.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03",
+      "image": "/static/images/blog-fda-peptide-category-2-withdrawal-april-22.png",
+      "bodyFile": "blog-fda-peptide-category-2-withdrawal-april-22-body.html",
+      "category": "Regulation",
+      "tags": [
+        "FDA",
+        "BPC-157",
+        "KPV",
+        "Semax",
+        "PCAC",
+        "compounding",
+        "503A",
+        "Category 2",
+        "bulk drug substances"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "Removed from Category 2 on April 22, 2026 because the nominations were withdrawn — not because the FDA cleared them. Here is what actually changes, and what does not.",
+      "metaDescription": "FDA removed BPC-157, KPV, and Semax from Category 2 on April 22, 2026 after nominations were withdrawn. They are still not legal to compound. PCAC reviews July 23-24.",
+      "keywords": "FDA Category 2, BPC-157 legal, KPV peptide, Semax peptide, PCAC July 2026, 503A bulks list, peptide compounding 2026, FDA peptide letter, withdrawn nomination, peptide regulation"
+    },
+    {
       "slug": "fda-pcac-bpc-157-peptide-compounding-july-2026",
       "title": "FDA PCAC July 2026: What the BPC-157 peptide compounding review really means",
       "subtitle": "Seven unapproved peptides are headed to an FDA advisory meeting. Here’s what’s on the agenda, what changes (slowly), and what doesn’t.",
