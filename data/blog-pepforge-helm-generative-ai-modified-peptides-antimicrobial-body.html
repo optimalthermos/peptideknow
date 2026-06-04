@@ -1,0 +1,84 @@
+<section>
+  <p><strong>Most “AI peptide design” models still think in strings of letters.</strong> That works fine for simple linear peptides made of the 20 standard amino acids. It breaks down fast once you step into the part of peptide drug discovery that actually pays the bills: non‑canonical monomers, lipidation, stapling, macrocyclization, and other engineered connections that turn a fragile peptide into something that survives in a body.</p>
+
+  <p>A new <a href="https://www.biorxiv.org/content/10.64898/2026.05.29.728379v1" rel="noopener">bioRxiv preprint</a> introduces <strong>PepForge</strong>, a generative platform that treats peptides as macromolecules described in <strong>HELM</strong> (Hierarchical Editing Language for Macromolecules), not as plain sequences. The authors claim a training set of <strong>383,817 HELM peptides</strong>, then an antimicrobial demo: <strong>4.78 million generated peptides</strong> and <strong>799 structurally novel antimicrobial candidates</strong> after potency and safety filtering.</p>
+
+  <p>This is not a clinical story. It’s a tooling story—about how peptide discovery is trying to represent the chemistry it cares about. And it’s worth understanding, because the representation layer often decides what kinds of drugs get proposed in the first place.</p>
+</section>
+
+<h2 id="helm-explained">HELM, in plain terms: why it exists</h2>
+<section>
+  <p>If you’ve ever looked at a peptide therapeutic label and wondered why it behaves nothing like a short protein fragment, the answer is usually <em>modification</em>. Drug-like peptides are often:</p>
+  <ul>
+    <li><strong>Macrocyclic</strong> (a ring closure constrains shape and can protect from proteases).</li>
+    <li><strong>Stapled</strong> or crosslinked (extra connections that lock helices or turn motifs).</li>
+    <li><strong>Built from non‑canonical monomers</strong> (D‑amino acids, β‑amino acids, N‑methylation, etc.).</li>
+    <li><strong>Conjugated</strong> (lipids, PEG, dyes, targeting moieties).</li>
+  </ul>
+
+  <p>A linear sequence like “ACDEFG…” doesn’t tell you where the ring closure sits or what the monomers actually are. HELM was designed for that gap: a formal notation that can encode monomer identity and special connections.</p>
+</section>
+
+<h2 id="what-pepforge-claims">What PepForge claims to do</h2>
+<section>
+  <p>According to the preprint, PepForge uses a <strong>Layout‑Content‑Connection (LCC) cascade</strong> that breaks generation into three steps: (1) block layout, (2) monomer content, and (3) prediction of special connections. The authors write that the cascade is trained on <strong>383,817 HELM peptides</strong> spanning <strong>425 monomers</strong> and <strong>nine connection types</strong>.</p>
+
+  <p>One practical claim is important for real workflows: the system supports <strong>masked infilling</strong>—changing a scaffold without redesigning the whole molecule. That’s how peptide chemistry often works in the lab: keep the scaffold, tweak a position, move a linkage, and see what breaks.</p>
+</section>
+
+<h2 id="the-antimicrobial-demo">The antimicrobial demo: 4.78 million designs to 799 hits</h2>
+<section>
+  <p>To show downstream use, the authors built an antimicrobial potency ensemble predictor trained on <strong>11,026 peptides</strong> with MIC values and compared against an external predictor (PeptiVerse). They report generating <strong>4.78 million</strong> novel HELM peptides and narrowing to <strong>799 structurally novel hit antimicrobial peptide candidates</strong> after potency and safety filtering.</p>
+
+  <p>The headline number is seductive. The more useful question is: what does “hit” mean here? In the preprint, “hit” is computational—high predicted potency and acceptable predicted safety under their filters. That’s a legitimate first step, but it’s not a culture plate, an animal model, or a dosing regimen.</p>
+</section>
+
+<h2 id="why-this-matters">Why HELM-native generation matters for peptide therapeutics</h2>
+<section>
+  <p>There are two ways peptide discovery stalls. One is biology. The other is representation.</p>
+
+  <p>If your model can only output linear sequences over 20 letters, it will keep suggesting peptides that are easy to write down, not peptides that are easy to turn into drugs. A HELM-native generator is an attempt to reverse that bias: start from the language medicinal chemists actually use for modified peptides.</p>
+
+  <p>In that sense, PepForge is less like a new “peptide idea machine” and more like a bridge between machine learning and peptide chemistry’s real design space.</p>
+</section>
+
+<h2 id="how-to-read-this-preprint">How to read this preprint without over-reading it</h2>
+<section>
+  <p>BioRxiv is a useful place to see tools early. It’s also where methods can look stronger on paper than in practice.</p>
+
+  <h3 id="questions">Questions that matter before you believe the headline</h3>
+  <ul>
+    <li><strong>Data provenance:</strong> Where do the 383,817 HELM peptides come from, and how are duplicates and near-duplicates handled?</li>
+    <li><strong>Novelty definition:</strong> “Structurally novel” compared to what reference set?</li>
+    <li><strong>Predictor leakage:</strong> Does the MIC predictor share training families with the generator’s data?</li>
+    <li><strong>Safety filtering:</strong> What assays are they approximating, and what failure modes are invisible to the filters?</li>
+  </ul>
+
+  <p>Those are not “gotchas.” They’re the normal due diligence steps when a generative model outputs a large number of candidates.</p>
+</section>
+
+<h2 id="where-this-goes-next">Where this goes next: from modified peptides to medicines</h2>
+<section>
+  <p>Antimicrobial peptides (AMPs) are a good demo domain because MIC data exists at scale. But the more consequential destination for HELM-based generation is likely <em>modified peptide therapeutics</em>—the macrocycles and conjugates designed to hit difficult targets with a drug-like profile.</p>
+
+  <p>That’s also the area where any model has to collide with manufacturing, stability, and regulatory realities. A peptide that looks great in silico but can’t be synthesized cleanly, characterized, or reproduced at scale doesn’t survive long.</p>
+</section>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+<section>
+  <h3 id="faq-helm">What is HELM in peptide design?</h3>
+  <p>HELM (Hierarchical Editing Language for Macromolecules) is a notation system that can describe complex macromolecules—like modified peptides—by encoding non-standard monomers and special connections (such as cyclizations) that a plain amino-acid sequence can’t capture.</p>
+
+  <h3 id="faq-799">Does “799 antimicrobial candidates” mean 799 new drugs?</h3>
+  <p>No. In the PepForge preprint, the candidates are computational hits after predictive scoring and filtering. They would still need synthesis and experimental validation, and most will fail somewhere along that pipeline.</p>
+
+  <h3 id="faq-relevance">Why would peptide clinicians care about a generative model paper?</h3>
+  <p>Because model outputs influence which peptide scaffolds get attention and investment. A shift toward HELM-native generation can steer early discovery toward modified peptides that are more plausible drug candidates than simple linear sequences.</p>
+</section>
+
+<h2 id="sources">Sources</h2>
+<section>
+  <ul>
+    <li>Wang et al. — “PepForge: Hierarchical HELM-Based Peptide Generation” (bioRxiv, posted June 2, 2026): <a href="https://www.biorxiv.org/content/10.64898/2026.05.29.728379v1" rel="noopener">https://www.biorxiv.org/content/10.64898/2026.05.29.728379v1</a></li>
+  </ul>
+</section>
