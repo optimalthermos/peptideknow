@@ -1,6 +1,29 @@
 {
   "posts": [
     {
+      "slug": "pfizer-berobenatide-monthly-glp1-peptide",
+      "title": "Pfizer\u2019s Berobenatide: A Once-Monthly GLP-1 Peptide Moves Toward Phase 3",
+      "subtitle": "New Phase 2b VESPER data frames monthly maintenance dosing\u2014and a crowded obesity market\u2019s next scheduling fight.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-07",
+      "dateModified": "2026-06-07",
+      "image": "/static/images/blog-pfizer-berobenatide-monthly-glp1-peptide.png",
+      "category": "Clinical Trials",
+      "tags": [
+        "GLP-1",
+        "berobenatide",
+        "Pfizer",
+        "obesity",
+        "type 2 diabetes",
+        "Phase 3",
+        "monthly dosing"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "Pfizer shared Phase 2b VESPER data for berobenatide, a GLP-1 peptide aimed at monthly dosing, and outlined a 2026 Phase 3 plan for obesity and diabetes.",
+      "metaDescription": "Pfizer detailed Phase 2b VESPER results for berobenatide, a GLP-1 peptide designed for monthly dosing, and laid out a 2026 Phase 3 program in obesity.",
+      "keywords": "berobenatide, PF\u20193944, monthly GLP-1, Pfizer obesity drug, VESPER-1, VESPER-2 HbA1c, VESPER-6 enrollment, long-acting peptide, GLP-1 receptor agonist"
+    },
+    {
       "slug": "pepforge-helm-generative-ai-modified-peptides-antimicrobial",
       "title": "PepForge uses HELM to generate modified peptides\u2014and flags 799 new antimicrobial candidates",
       "subtitle": "A new bioRxiv preprint argues that standard sequence models miss the chemistry of macrocycles and non-canonical monomers. HELM is the workaround.",
