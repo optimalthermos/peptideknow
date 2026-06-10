@@ -1,6 +1,28 @@
 {
   "posts": [
     {
+      "slug": "peptide-import-inspections-compounding-2026",
+      "title": "Peptide Import Inspections Are the New Front Line for Compounding Enforcement (Q1 2026)",
+      "subtitle": "A new import-data analysis highlights how bulk peptide APIs move through U.S. ports\u2014and why 'FDA-registered' is not a safety guarantee.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-10",
+      "dateModified": "2026-06-10",
+      "image": "/static/images/blog-peptide-import-inspections-compounding-2026.png",
+      "category": "FDA & Compliance",
+      "tags": [
+        "peptide imports",
+        "compounding",
+        "FDA",
+        "customs",
+        "API sourcing",
+        "sterility"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "New Q1 2026 import data suggests selective border enforcement for unapproved peptides and helps explain why compounding policy is shifting this summer.",
+      "metaDescription": "A Q1 2026 import-data analysis shows how peptide APIs enter the U.S., why 'FDA-registered' isn\u2019t approval, and what it means for compounding enforcement.",
+      "keywords": "peptide import data, peptide API, compounding enforcement, FDA registered facility, PCAC meeting, BPC-157 shipments, TB-500 border refusals, epithalon import, semaglutide API, tirzepatide API"
+    },
+    {
       "slug": "pfizer-berobenatide-monthly-glp1-peptide-phase2b",
       "title": "Pfizer\u2019s berobenatide: a monthly GLP\u20111 peptide heads for Phase 3",
       "subtitle": "New Phase IIb VESPER data puts a once\u2011monthly GLP\u20111 receptor agonist on the table\u2014and reframes what \u2018maintenance\u2019 could look like.",
