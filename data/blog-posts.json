@@ -1,6 +1,31 @@
 {
   "posts": [
     {
+      "slug": "canvuparatide-mbx-2109-pth-prodrug-phase3-2026",
+      "bodyFile": "blog-canvuparatide-mbx-2109-pth-prodrug-phase3-body.html",
+      "title": "Canvuparatide one-year data: once-weekly PTH peptide prodrug stays on track for Phase 3",
+      "subtitle": "MBX Biosciences reports durable response in chronic hypoparathyroidism through 52 weeks of open-label dosing; registrational trial slated for Q3 2026.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-13",
+      "dateModified": "2026-06-13",
+      "image": "/static/images/blog-canvuparatide-mbx-2109-pth-prodrug-phase3.png",
+      "category": "Clinical Trials",
+      "tags": [
+        "canvuparatide",
+        "MBX 2109",
+        "parathyroid hormone",
+        "hypoparathyroidism",
+        "PTH replacement",
+        "Phase 3",
+        "MBX Biosciences",
+        "peptide prodrug"
+      ],
+      "readTime": "8 min read",
+      "excerpt": "MBX Biosciences reported one-year open-label data for once-weekly canvuparatide in chronic hypoparathyroidism. Phase 3 starts Q3 2026.",
+      "metaDescription": "Canvuparatide (MBX 2109) one-year Phase 2 OLE data shows sustained calcium normalization in chronic hypoparathyroidism. Phase 3 on track for Q3 2026.",
+      "keywords": "canvuparatide, MBX 2109, parathyroid hormone peptide, hypoparathyroidism, PTH replacement, Phase 3 trial, MBX Biosciences, once-weekly peptide prodrug"
+    },
+    {
       "slug": "state-pharmacy-board-peptide-enforcement-actions-2026",
       "bodyFile": "blog-state-pharmacy-board-peptide-enforcement-actions-2026-body.html",
       "title": "State pharmacy boards escalate peptide enforcement: what April–May 2026 actions signal",

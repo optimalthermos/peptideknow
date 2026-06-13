@@ -16803,6 +16803,74 @@
       "pharmacokinetics": "Insufficient published human pharmacokinetic data.",
       "synthesisInfo": "Synthetic peptide typically produced via solid-phase peptide synthesis; quality depends on purification/analytics.",
       "popularityScore": 50
+    },
+    {
+      "name": "Canvuparatide (MBX 2109)",
+      "slug": "canvuparatide-mbx-2109-pth-prodrug",
+      "alternativeNames": [
+        "MBX 2109",
+        "MBX-2109",
+        "Once-weekly canvuparatide"
+      ],
+      "categories": [
+        "bone-mineral",
+        "healing-recovery"
+      ],
+      "description": "Canvuparatide (development name MBX 2109) is an investigational once-weekly parathyroid hormone (PTH) peptide prodrug being developed by MBX Biosciences for chronic hypoparathyroidism (HP), a rare endocrine disorder in which the parathyroid glands produce insufficient PTH, leading to chronically low calcium, high phosphate, and complications including kidney damage and impaired bone metabolism. Standard care has historically relied on high doses of oral calcium and active vitamin D analogs (calcitriol), which do not replace PTH itself and leave patients with significant disease burden. Canvuparatide is engineered as a prodrug that undergoes a controlled-release intramolecular cyclization (governed by temperature and pH) to slowly release a biologically active PTH analog after subcutaneous injection, producing a sustained, infusion-like PTH exposure with a flatter peak-to-trough profile than daily injections. In the Phase 2 Avail trial in adults with HP, canvuparatide achieved its primary composite endpoint with 63% of treated patients reaching responder status at 12 weeks and 79% at six months in the open-label extension. One-year OLE data announced June 12, 2026 showed sustained calcium normalization, kidney function, and bone marker improvements with once-weekly dosing. A Phase 3 double-blind placebo-controlled trial enrolling approximately 160 patients (3:1 randomization) is on track to initiate in Q3 2026, with primary endpoint assessment at week 26.",
+      "mechanismOfAction": "Canvuparatide is the prodrug form of an extended PTH(1-32) peptide carrying a fatty acylated lysine at position 33. After subcutaneous administration, the prodrug undergoes a temperature- and pH-dependent intramolecular cyclization that slowly releases the biologically active PTH peptide. The active peptide binds parathyroid hormone receptor 1 (PTH1R), a class B GPCR expressed on osteoblasts, osteoclasts, and renal tubular cells. Compared with daily PTH(1-34) (teriparatide) or full-length PTH(1-84) injections, the prodrug release kinetics produce a sustained, lower-peak exposure profile (terminal half-life of the active peptide is approximately 133-186 hours across dose groups), supporting once-weekly subcutaneous dosing. Pharmacologically, canvuparatide is designed to mimic physiologic PTH replacement rather than the pulsatile anabolic dosing used for osteoporosis.",
+      "benefits": [
+        "Once-weekly subcutaneous dosing vs. daily injections of existing PTH replacement",
+        "Sustained calcium normalization out to one year in Phase 2 OLE",
+        "Reduces dependence on high-dose oral calcium and active vitamin D",
+        "Improvements in kidney function and bone turnover markers in OLE",
+        "Orphan drug designation from FDA and EMA for chronic hypoparathyroidism"
+      ],
+      "researchStatus": "Phase 2 Avail trial primary endpoint met (Sept 2025). One-year OLE data announced June 12, 2026. End-of-Phase 2 FDA meeting completed March 2026. Phase 3 confirmatory trial planned for Q3 2026 (~160 patients, 3:1 canvuparatide:placebo).",
+      "aminoAcidSequence": "Modified PTH(1-32) with fatty acylated Lys33 (proprietary prodrug)",
+      "synergisticCompounds": [
+        "Active vitamin D (calcitriol) during titration",
+        "Calcium supplements (transitional)"
+      ],
+      "relatedPeptides": [
+        "Teriparatide (PTH 1-34)",
+        "Abaloparatide",
+        "Palopegteriparatide"
+      ],
+      "sideEffects": [
+        "Hypercalcemia (manageable with dose titration)",
+        "Injection site reactions",
+        "Headache and nausea reported in Phase 2",
+        "Long-term safety still under evaluation; pending Phase 3 data"
+      ],
+      "dosageNotes": "Phase 3 trial design: 600 mcg fixed dose for 4 weeks, then 18-week dose titration, then 4-week maintenance. Dosing regimens for marketing use will be set by the Phase 3 outcome.",
+      "references": [
+        {
+          "title": "MBX Biosciences One-Year Canvuparatide Data (June 12, 2026)",
+          "url": "https://www.biospace.com/press-releases/mbx-biosciences-announces-one-year-data-demonstrating-sustained-benefit-of-once-weekly-canvuparatide-as-a-potential-pth-replacement-therapy-in-chronic-hypoparathyroidism"
+        },
+        {
+          "title": "MBX 2109 Phase 1 in Healthy Volunteers (PubMed 39574220)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39574220/"
+        },
+        {
+          "title": "Canvuparatide discovery and characterization, Mol Metab 2026",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41780637/"
+        },
+        {
+          "title": "MBX 2109 Phase 2 Avail trial (NCT06465108)",
+          "url": "https://clinicaltrials.gov/study/NCT06465108"
+        },
+        {
+          "title": "MBX 8-K End-of-Phase 2 outcome (March 9, 2026)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1776111/000119312526097611/mbx-20260309.htm"
+        }
+      ],
+      "regulatoryStatus": {
+        "lastUpdated": "2026-06",
+        "status": "investigational",
+        "label": "Investigational - Phase 3 Pending",
+        "details": "FDA orphan drug designation granted for chronic hypoparathyroidism. EMA orphan drug designation also granted. Successful End-of-Phase 2 meeting completed March 2026. Phase 3 pivotal trial expected to initiate Q3 2026."
+      }
     }
   ]
 }
