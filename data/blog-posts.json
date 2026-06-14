@@ -1,6 +1,33 @@
 {
   "posts": [
     {
+      "slug": "enicepatide-ct-388-glp1-gip-phase2-ada-2026",
+      "bodyFile": "blog-enicepatide-ct-388-glp1-gip-phase2-ada-2026-body.html",
+      "title": "Enicepatide (CT-388): Roche's biased GLP-1/GIP peptide drops Phase 2 detail at ADA 2026",
+      "subtitle": "48-week placebo-adjusted weight loss of 22.5% at 24 mg with no plateau; two global Phase 3 trials are recruiting and a petrelintide combination study is queued for mid-2026.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-14",
+      "dateModified": "2026-06-14",
+      "image": "/static/images/blog-enicepatide-ct-388-glp1-gip-phase2-ada-2026.png",
+      "category": "Clinical Trials",
+      "tags": [
+        "enicepatide",
+        "CT-388",
+        "RO7795068",
+        "GLP-1/GIP",
+        "biased agonist",
+        "obesity",
+        "Phase 3",
+        "Roche",
+        "petrelintide",
+        "ADA 2026"
+      ],
+      "readTime": "8 min read",
+      "excerpt": "Roche's enicepatide (CT-388) hit 22.5% placebo-adjusted weight loss at 48 weeks in Phase 2 with no plateau; Phase 3 enrolling.",
+      "metaDescription": "Enicepatide (CT-388) Phase 2 ADA 2026 data: 22.5% placebo-adjusted weight loss at 48 weeks. Two Phase 3 trials recruiting; petrelintide combo planned.",
+      "keywords": "enicepatide, CT-388, RO7795068, GLP-1/GIP receptor agonist, biased agonism, obesity peptide, Phase 3 trial, Roche Genentech, petrelintide combination, ADA 2026"
+    },
+    {
       "slug": "canvuparatide-mbx-2109-pth-prodrug-phase3-2026",
       "bodyFile": "blog-canvuparatide-mbx-2109-pth-prodrug-phase3-body.html",
       "title": "Canvuparatide one-year data: once-weekly PTH peptide prodrug stays on track for Phase 3",

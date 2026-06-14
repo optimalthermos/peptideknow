@@ -16871,6 +16871,116 @@
         "label": "Investigational - Phase 3 Pending",
         "details": "FDA orphan drug designation granted for chronic hypoparathyroidism. EMA orphan drug designation also granted. Successful End-of-Phase 2 meeting completed March 2026. Phase 3 pivotal trial expected to initiate Q3 2026."
       }
+    },
+    {
+      "name": "Enicepatide (CT-388 / RO7795068)",
+      "slug": "enicepatide-ct-388-glp1-gip-agonist",
+      "alternativeNames": [
+        "CT-388",
+        "RO7795068",
+        "RG6640"
+      ],
+      "categories": [
+        "weight-loss-metabolic"
+      ],
+      "description": "Enicepatide (development codes CT-388 and RO7795068) is an investigational once-weekly subcutaneous peptide-based dual GLP-1/GIP receptor agonist developed by Roche/Genentech for obesity and type 2 diabetes. The molecule is unusual among incretin therapies in being a 'biased' agonist: it activates GLP-1R and GIPR with cAMP signaling but with minimal beta-arrestin recruitment, a design intended to maximize metabolic signaling while reducing receptor desensitization. The International Nonproprietary Name 'enicepatide' was assigned in 2026 (RG6640). Roche acquired the asset through the 2024 Carmot Therapeutics acquisition. In the 48-week Phase 2 CT388-103 trial (NCT06525935) in 469 adults with obesity or overweight plus a comorbidity, the 24 mg once-weekly dose produced placebo-adjusted weight loss of 22.5% (efficacy estimand; 18.3% treatment-regimen estimand). At week 48, 95.7% of treated participants achieved at least 5% weight loss, 87% at least 10%, 47.8% at least 20%, and 26.1% at least 30%. 54% achieved BMI <30 (resolution of obesity) versus 13% in the placebo arm. No weight-loss plateau was observed at week 48 — the curve was still descending at study end. 73% of participants with baseline prediabetes returned to normoglycemia. Treatment discontinuation due to adverse events was 5.9% in CT-388 arms versus 1.3% in placebo. Two global Phase 3 trials are recruiting as of June 2026: NCT07351045 (obesity without T2D, week-72 primary endpoint) and NCT07351058 (T2D). A Phase 2 combination study with the amylin analog petrelintide is also planned for mid-2026.",
+      "mechanismOfAction": "Enicepatide is a unimolecular peptide-based agonist of both the GLP-1 receptor and the GIP receptor. Unlike tirzepatide, which has a relatively balanced GIP/GLP-1 profile, enicepatide is engineered as a cAMP-signal-biased agonist at both receptors with minimal beta-arrestin recruitment, which in preclinical models corresponds to less receptor internalization and sustained signaling. In humans, this is hypothesized to support both the magnitude of weight loss observed (22.5% placebo-adjusted at week 48) and the absence of a plateau at end-of-study. The molecule is delivered as a once-weekly subcutaneous injection via an integrated drug-device combination product.",
+      "benefits": [
+        "Best-in-class Phase 2 weight loss (22.5% placebo-adjusted at 48 weeks, 24 mg)",
+        "54% of treated participants resolved obesity (BMI <30) vs 13% placebo",
+        "No weight-loss plateau observed at week 48",
+        "73% of baseline-prediabetic patients returned to normoglycemia",
+        "Low treatment discontinuation (5.9%) compared with class norms"
+      ],
+      "researchStatus": "Phase 2 CT388-103 ADA late-breaker presented June 7-8, 2026. Phase 2 CT388-104 in T2D ongoing. Two Phase 3 trials recruiting since March 2026: NCT07351045 (obesity) and NCT07351058 (T2D). Petrelintide combination Phase 2 planned mid-2026.",
+      "aminoAcidSequence": "Proprietary peptide-based dual GLP-1R/GIPR agonist (biased agonist design)",
+      "synergisticCompounds": [
+        "Petrelintide (amylin analog, planned combination study)"
+      ],
+      "relatedPeptides": [
+        "Tirzepatide",
+        "Retatrutide",
+        "Petrelintide",
+        "Semaglutide"
+      ],
+      "sideEffects": [
+        "Mostly mild-to-moderate gastrointestinal: nausea, diarrhea, vomiting",
+        "5.9% discontinuation due to adverse events at 24 mg",
+        "Class-typical signal; no new or unexpected safety signals reported"
+      ],
+      "dosageNotes": "Phase 2 escalation up to 24 mg once weekly subcutaneous. Phase 3 dosing regimens being evaluated via integrated drug-device combination product.",
+      "references": [
+        {
+          "title": "Roche June 1, 2026 ADA 2026 portfolio announcement",
+          "url": "https://www.roche.com/media/releases/med-cor-2026-06-01"
+        },
+        {
+          "title": "Roche January 27, 2026 Phase II topline results",
+          "url": "https://www.roche.com/media/releases/med-cor-2026-01-27"
+        },
+        {
+          "title": "CT-388 Phase 1 pharmacology (Mol Metab 2026)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41319798/"
+        },
+        {
+          "title": "Phase 3 obesity trial NCT07351045",
+          "url": "https://clinicaltrials.gov/study/NCT07351045"
+        },
+        {
+          "title": "Phase 2 CT388-103 NCT06525935",
+          "url": "https://clinicaltrials.gov/study/NCT06525935"
+        }
+      ],
+      "regulatoryStatus": {
+        "lastUpdated": "2026-06",
+        "status": "investigational",
+        "label": "Investigational - Phase 3 Recruiting",
+        "details": "Two Phase 3 trials recruiting (NCT07351045 obesity, NCT07351058 T2D) since March 2026. INN 'enicepatide' assigned 2026."
+      }
+    },
+    {
+      "name": "Petrelintide",
+      "slug": "petrelintide-amylin-analog",
+      "alternativeNames": [
+        "ZP8396"
+      ],
+      "categories": [
+        "weight-loss-metabolic"
+      ],
+      "description": "Petrelintide is an investigational once-weekly amylin analog peptide originally developed by Zealand Pharma and partnered with Roche/Genentech in 2024. Amylin is a natural pancreatic peptide co-secreted with insulin that contributes to satiety, slows gastric emptying, and regulates postprandial glucose. Petrelintide is engineered as a long-acting amylin receptor agonist designed for sustained weekly dosing, with the goal of achieving meaningful weight loss with better gastrointestinal tolerability than GLP-1 receptor agonists. Late-breaking Phase 2 ZUPREME-1 data presented at ADA 2026 in June showed clinically meaningful weight loss with what Roche has described as a 'compelling tolerability profile.' The strategic interest in petrelintide centers on its potential combination with enicepatide (CT-388): pairing an amylin agonist with a dual GLP-1/GIP agonist could deliver additive weight loss while distributing GI side effects across mechanisms. A Phase 2 fixed-dose combination study with enicepatide is targeted to enroll its first patient around mid-2026.",
+      "mechanismOfAction": "Petrelintide is a long-acting amylin analog that activates amylin receptors (AMY1, AMY2, AMY3 receptor complexes formed by the calcitonin receptor in association with receptor activity-modifying proteins). Activation reduces food intake, slows gastric emptying, and suppresses postprandial glucagon secretion. The molecule is designed for once-weekly subcutaneous dosing.",
+      "benefits": [
+        "Once-weekly amylin agonist for weight management",
+        "Tolerability profile distinct from GLP-1-only agonists (less GI burden in early data)",
+        "Combination potential with GLP-1/GIP agonists like enicepatide"
+      ],
+      "researchStatus": "Phase 2 ZUPREME-1 late-breaker presented at ADA 2026 (June 2026). Phase 2 combination study with enicepatide planned mid-2026.",
+      "aminoAcidSequence": "Proprietary long-acting amylin analog",
+      "synergisticCompounds": [
+        "Enicepatide (planned combination)"
+      ],
+      "relatedPeptides": [
+        "Cagrilintide",
+        "Enicepatide",
+        "Tirzepatide"
+      ],
+      "sideEffects": [
+        "Mostly mild-to-moderate GI in early data",
+        "Long-term safety still under evaluation"
+      ],
+      "dosageNotes": "Once-weekly subcutaneous; dose regimens under Phase 2 evaluation.",
+      "references": [
+        {
+          "title": "Roche June 1, 2026 ADA 2026 portfolio announcement",
+          "url": "https://www.roche.com/media/releases/med-cor-2026-06-01"
+        }
+      ],
+      "regulatoryStatus": {
+        "lastUpdated": "2026-06",
+        "status": "investigational",
+        "label": "Investigational - Phase 2",
+        "details": "Phase 2 ZUPREME-1 data presented at ADA 2026; Phase 2 combination study with enicepatide planned for mid-2026."
+      }
     }
   ]
 }
