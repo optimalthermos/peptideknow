@@ -1,6 +1,29 @@
 {
   "posts": [
     {
+      "slug": "fda-unapproved-glp1-compounding-warning-letters",
+      "title": "FDA flags unapproved GLP-1 compounding risks: telehealth claims, cold-chain failures, dosing errors",
+      "subtitle": "A mid-June cluster of FDA statements and warning letters tightens expectations for compounded semaglutide and tirzepatide\u2014and spotlights Import Alert 66-80.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-17",
+      "dateModified": "2026-06-17",
+      "image": "/static/images/blog-fda-unapproved-glp1-compounding-warning-letters.png",
+      "category": "Regulatory",
+      "tags": [
+        "FDA",
+        "compounding",
+        "GLP-1",
+        "semaglutide",
+        "tirzepatide",
+        "telehealth",
+        "pharmacy"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "FDA highlights unapproved GLP-1 risks\u2014fraudulent labels, warm shipments, and dosing errors\u2014while warning telehealth companies against misleading \u2018generic\u2019 claims.",
+      "metaDescription": "FDA warns about unapproved GLP-1 drugs and compounded semaglutide/tirzepatide: misleading telehealth marketing, cold-chain failures, dosing errors, and Import Alert 66-80.",
+      "keywords": "FDA compounded semaglutide, compounded tirzepatide, unapproved GLP-1 drugs, GLP-1 compounding, telehealth warning letters, semaglutide salt forms, Import Alert 66-80, bulk drug substances, dosing errors, cold chain shipping"
+    },
+    {
       "slug": "enicepatide-ct-388-glp1-gip-phase2-ada-2026",
       "bodyFile": "blog-enicepatide-ct-388-glp1-gip-phase2-ada-2026-body.html",
       "title": "Enicepatide (CT-388): Roche's biased GLP-1/GIP peptide drops Phase 2 detail at ADA 2026",
@@ -1466,6 +1489,33 @@
       "excerpt": "AstraZeneca's elecoglipron oral GLP-1 hit 11.8% weight loss at 36 weeks in VISTA and 1.9% HbA1c drop in SOLSTICE Phase 2b at ADA 2026, advancing to Phase 3.",
       "metaDescription": "Elecoglipron Phase 2b VISTA + SOLSTICE results at ADA 2026: 11.8% weight loss at 36 weeks, 1.9% HbA1c reduction, Phase 3 EMBOLD/ELUMINATE program planned.",
       "keywords": "elecoglipron, AZD5004, ECC5004, AstraZeneca, Eccogene, oral GLP-1, small molecule GLP-1, VISTA trial, SOLSTICE trial, ADA 2026, Phase 2b, Phase 3, EMBOLD, ELUMINATE, oral GLP-1 weight loss"
+    },
+    {
+      "slug": "fda-unapproved-glp1-compounding-warning-letters",
+      "title": "FDA's June 15 Safety Alert On Unapproved GLP-1 Drugs: Counterfeits, Warm Shipments, And Dosing Errors",
+      "subtitle": "The FDA's mid-June statement and parallel telehealth-marketing guidance lay out the operational failure modes the agency is seeing in the compounded semaglutide and tirzepatide market",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-17",
+      "dateModified": "2026-06-17",
+      "image": "/static/images/blog-fda-unapproved-glp1-compounding-warning-letters.png",
+      "category": "Regulatory",
+      "tags": [
+        "FDA",
+        "GLP-1",
+        "compounded semaglutide",
+        "compounded tirzepatide",
+        "drug safety communication",
+        "telehealth marketing",
+        "Import Alert 66-80",
+        "compounding regulation",
+        "warning letters",
+        "cold chain"
+      ],
+      "readTime": "10 min read",
+      "bodyFile": "blog-fda-unapproved-glp1-compounding-warning-letters-body.html",
+      "excerpt": "FDA's June 15 statement on unapproved GLP-1 drugs flags counterfeit labels, warm-shipped vials, dosing errors, and salt-form semaglutide as ongoing harm patterns.",
+      "metaDescription": "FDA's June 15 2026 alert on unapproved compounded GLP-1 drugs: counterfeit labels, cold-chain failures, dosing errors, salt forms, and telehealth marketing rules.",
+      "keywords": "FDA GLP-1 safety alert June 2026, compounded semaglutide warning, compounded tirzepatide safety, FDA telehealth marketing guidance, Import Alert 66-80, semaglutide sodium acetate, GLP-1 cold chain, FDA unapproved drugs"
     }
   ]
 }
