@@ -17062,6 +17062,61 @@
           "authors": "ClinicalTrials.gov"
         }
       ]
+    },
+    {
+      "name": "ASC35 (Ascletis once-monthly GLP-1R/GIPR dual peptide agonist)",
+      "slug": "asc35-ascletis-glp1-gip-monthly-peptide-agonist",
+      "alternativeNames": [
+        "ASC35",
+        "Ascletis once-monthly GLP-1/GIP peptide"
+      ],
+      "categories": [
+        "weight-loss-metabolic"
+      ],
+      "description": "ASC35 is an investigational once-monthly subcutaneously administered GLP-1 receptor (GLP-1R) and GIP receptor (GIPR) dual peptide agonist being developed by Ascletis Pharma Inc. (HKEX: 1672) for the treatment of obesity. ASC35 is formulated in the company's proprietary Self-Assembling Lipid Depot (SALD) \u2014 a low-viscosity solution of lipids, biocompatible organic solvents, and the active peptide that can be drawn into an auto-injector pen and injected subcutaneously through a 29-gauge needle. After subcutaneous administration, the solution transforms into a gel-like depot in the tissue. Tissue enzymes slowly degrade the depot, releasing the peptide over a one-month or longer period. The U.S. Food and Drug Administration cleared the Phase 1 Investigational New Drug application for ASC35 on June 23, 2026. The Phase 1 trial is randomized, double-blind, and placebo-controlled in 84 participants with obesity (BMI \u2265 30 kg/m\u00b2) or overweight (BMI \u2265 27 kg/m\u00b2 with weight-related comorbidity). Part A is a single-ascending-dose study; Part B is a multiple-ascending-dose study with a head-to-head comparator arm against the FDA-approved tirzepatide once-weekly formulation. In a head-to-head diet-induced obese (DIO) mouse study, ASC35 demonstrated approximately 71% greater relative body-weight reduction than tirzepatide. In head-to-head non-human primate studies, the average observed half-life of ASC35 was approximately six-fold longer than tirzepatide. ASC35 is one of several once-monthly to once-quarterly peptides Ascletis is advancing through its Ultra-Long-Acting Platform (ULAP). The drug is not approved for any indication and is available only through clinical trials.",
+      "mechanismOfAction": "Dual peptide agonist at the GLP-1 receptor (GLP-1R) and the GIP receptor (GIPR). Activation of GLP-1R drives glucose-dependent insulin secretion, suppression of glucagon, delayed gastric emptying, and central appetite suppression via hypothalamic and brainstem GLP-1 neurons. Co-activation of GIPR is thought to contribute to weight loss and tolerability through complementary effects on adipose tissue and possibly central nervous system pathways. The Self-Assembling Lipid Depot (SALD) formulation enables once-monthly subcutaneous dosing: the low-viscosity injection solution transforms into a tissue depot after administration, and tissue enzymes gradually degrade the depot to release the peptide over a month or longer.",
+      "benefits": [
+        "Once-monthly subcutaneous administration via auto-injector with 29-gauge needle",
+        "Approximately 71% greater body-weight reduction than tirzepatide in head-to-head DIO mouse study (preclinical)",
+        "Approximately 6-fold longer half-life than tirzepatide in head-to-head non-human primate studies (preclinical)",
+        "GLP-1R/GIPR dual mechanism, same receptor profile validated by tirzepatide",
+        "SALD depot platform may improve adherence relative to weekly injectables (52 injections/year \u2192 12)"
+      ],
+      "researchStatus": "FDA IND cleared June 23, 2026. Phase 1 randomized, double-blind, placebo-controlled trial (n=84) cleared to begin. Part A: single ascending dose. Part B: multiple ascending dose with head-to-head comparison against FDA-approved tirzepatide once-weekly. Not FDA approved.",
+      "aminoAcidSequence": "Sequence not publicly disclosed by Ascletis Pharma",
+      "molecularWeight": "Not publicly disclosed",
+      "synergisticCompounds": [],
+      "relatedPeptides": [
+        "tirzepatide",
+        "semaglutide",
+        "enicepatide-ct-388-glp1-gip-agonist",
+        "retatrutide",
+        "orforglipron",
+        "elecoglipron-azd5004-oral-glp1-small-molecule",
+        "liraglutide"
+      ],
+      "sideEffects": [
+        "Human safety profile not yet established \u2014 Phase 1 trial just cleared",
+        "Expected class effects for GLP-1/GIP agonists: nausea, vomiting, diarrhea, constipation, decreased appetite, injection-site reactions",
+        "Long-acting depot peptides may have prolonged onset and longer duration of GI adverse events; Phase 1 will characterize"
+      ],
+      "contraindications": [],
+      "drugInteractions": [],
+      "dosageNotes": "Investigational. Phase 1 evaluates single ascending doses (Part A) and multiple ascending doses (Part B) of ASC35 in the SALD formulation administered subcutaneously once monthly. Specific dose amounts and trial site not publicly disclosed by Ascletis. Not for clinical use \u2014 the drug is investigational and has not been administered to humans as of the IND clearance date.",
+      "references": [
+        {
+          "title": "Ascletis Announces U.S. FDA IND Clearance for Phase I Study of Once-Monthly Subcutaneously Administered GLP-1R/GIPR Dual Peptide Agonist ASC35",
+          "url": "https://www.benzinga.com/pressreleases/26/06/n60036069/ascletis-announces-u-s-fda-ind-clearance-phase-i-study-once-monthly-subcutaneously-administered-glp-",
+          "year": 2026,
+          "authors": "Ascletis Pharma Inc. / PRNewswire"
+        },
+        {
+          "title": "Ascletis raises $107M to advance oral GLP-1 to Phase III trials",
+          "url": "https://www.bioworld.com/articles/729234-ascletis-raises-107m-to-advance-oral-glp-1-to-phase-iii-trials?v=preview",
+          "year": 2026,
+          "authors": "BioWorld"
+        }
+      ]
     }
   ]
 }

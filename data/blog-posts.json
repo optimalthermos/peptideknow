@@ -1491,31 +1491,34 @@
       "keywords": "elecoglipron, AZD5004, ECC5004, AstraZeneca, Eccogene, oral GLP-1, small molecule GLP-1, VISTA trial, SOLSTICE trial, ADA 2026, Phase 2b, Phase 3, EMBOLD, ELUMINATE, oral GLP-1 weight loss"
     },
     {
-      "slug": "fda-unapproved-glp1-compounding-warning-letters",
-      "title": "FDA's June 15 Safety Alert On Unapproved GLP-1 Drugs: Counterfeits, Warm Shipments, And Dosing Errors",
-      "subtitle": "The FDA's mid-June statement and parallel telehealth-marketing guidance lay out the operational failure modes the agency is seeing in the compounded semaglutide and tirzepatide market",
+      "slug": "ascletis-asc35-once-monthly-glp1-gip-dual-agonist-ind-clearance",
+      "title": "Ascletis ASC35 Clears FDA For Phase 1: A Once-Monthly GLP-1/GIP Peptide With A Lipid Depot",
+      "subtitle": "FDA IND clearance positions Ascletis's once-monthly subcutaneous dual agonist in head-to-head Phase 1 against weekly tirzepatide, with preclinical data showing 71% greater weight loss in obese mice and 6x longer half-life in primates",
       "author": "PeptideKnow Editorial",
-      "datePublished": "2026-06-17",
-      "dateModified": "2026-06-17",
-      "image": "/static/images/blog-fda-unapproved-glp1-compounding-warning-letters.png",
-      "category": "Regulatory",
+      "datePublished": "2026-06-23",
+      "dateModified": "2026-06-23",
+      "image": "/static/images/blog-ascletis-asc35-once-monthly-glp1-gip-dual-agonist-ind-clearance.png",
+      "category": "Clinical Trials",
       "tags": [
-        "FDA",
+        "ASC35",
+        "Ascletis Pharma",
         "GLP-1",
-        "compounded semaglutide",
-        "compounded tirzepatide",
-        "drug safety communication",
-        "telehealth marketing",
-        "Import Alert 66-80",
-        "compounding regulation",
-        "warning letters",
-        "cold chain"
+        "GIP",
+        "dual agonist",
+        "SALD",
+        "Self-Assembling Lipid Depot",
+        "Phase 1",
+        "IND clearance",
+        "once-monthly",
+        "obesity",
+        "tirzepatide head-to-head",
+        "ULAP"
       ],
-      "readTime": "10 min read",
-      "bodyFile": "blog-fda-unapproved-glp1-compounding-warning-letters-body.html",
-      "excerpt": "FDA's June 15 statement on unapproved GLP-1 drugs flags counterfeit labels, warm-shipped vials, dosing errors, and salt-form semaglutide as ongoing harm patterns.",
-      "metaDescription": "FDA's June 15 2026 alert on unapproved compounded GLP-1 drugs: counterfeit labels, cold-chain failures, dosing errors, salt forms, and telehealth marketing rules.",
-      "keywords": "FDA GLP-1 safety alert June 2026, compounded semaglutide warning, compounded tirzepatide safety, FDA telehealth marketing guidance, Import Alert 66-80, semaglutide sodium acetate, GLP-1 cold chain, FDA unapproved drugs"
+      "readTime": "11 min read",
+      "bodyFile": "blog-ascletis-asc35-once-monthly-glp1-gip-dual-agonist-ind-clearance-body.html",
+      "excerpt": "Ascletis ASC35, a once-monthly GLP-1/GIP peptide using a self-assembling lipid depot, cleared FDA IND for Phase 1 head-to-head vs weekly tirzepatide June 23.",
+      "metaDescription": "Ascletis ASC35 FDA IND clearance June 23 2026: once-monthly GLP-1/GIP peptide, SALD depot, 84-pt Phase 1 head-to-head vs tirzepatide, 71% better in DIO mice.",
+      "keywords": "Ascletis ASC35, ASC35 IND clearance, once-monthly GLP-1, GLP-1 GIP dual agonist, Self-Assembling Lipid Depot, SALD, Ascletis Pharma, monthly peptide obesity, peptide depot, tirzepatide head-to-head, ULAP, Phase 1 obesity, Import Alert 66-80 Green List"
     }
   ]
 }
