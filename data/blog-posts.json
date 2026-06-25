@@ -1546,6 +1546,33 @@
       "excerpt": "AP and WSJ this week describe a real policy reversal in motion: Kennedy is firing FDA compounding advisers as BPC-157, TB-500, CJC-1295 sales surge online.",
       "metaDescription": "AP and WSJ report a US peptide gray market boom as RFK Jr. reshuffles the FDA panel that restricted BPC-157, TB-500, CJC-1295, Ipamorelin, and GHK-Cu use.",
       "keywords": "peptide gray market, RFK Jr peptides, BPC-157 legal, TB-500 FDA, CJC-1295 compounding, 503A peptides, Pharmacy Compounding Advisory Committee, peptide reclassification, peptide influencers, peptide telehealth"
+    },
+    {
+      "slug": "heterochiral-peptides-class-b1-gpcr-glucagon-pth",
+      "bodyFile": "heterochiral-peptides-class-b1-gpcr-glucagon-pth-body.html",
+      "title": "Wisconsin Group Shows Class B1 GPCR Peptides Can Drop the Helix \u2014 and Pick Their Pathway",
+      "subtitle": "A heterochiral redesign of glucagon and PTH(1\u201334) keeps cAMP potency while dialing down \u03b2-arrestin recruitment and receptor internalization, the Gellman Lab reports in Nature Chemistry.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-25",
+      "dateModified": "2026-06-25",
+      "image": "/static/images/blog-heterochiral-peptides-class-b1-gpcr-glucagon-pth.png",
+      "category": "Research",
+      "tags": [
+        "glucagon",
+        "teriparatide",
+        "PTH",
+        "class B1 GPCR",
+        "biased agonism",
+        "heterochiral",
+        "Gellman Lab",
+        "Nature Chemistry",
+        "D-amino acids",
+        "GLP-1"
+      ],
+      "readTime": "10 min read",
+      "excerpt": "Wisconsin chemists put D-amino acids into glucagon and PTH(1-34), broke the alpha-helix that textbooks demand, and still got biased class B1 GPCR agonists.",
+      "metaDescription": "A new Nature Chemistry paper from the Gellman Lab shows heterochiral glucagon and PTH(1-34) analogs keep cAMP potency while cutting beta-arrestin recruitment.",
+      "keywords": "heterochiral peptide design, class B1 GPCR, glucagon analog, teriparatide analog, biased agonism, Gellman Lab, Nature Chemistry 2026, D-amino acids, GLP-1 receptor, beta-arrestin recruitment"
     }
   ]
 }
