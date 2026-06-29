@@ -1,6 +1,29 @@
 {
   "posts": [
     {
+      "slug": "fda-import-alert-66-80-glp1-api",
+      "title": "FDA Import Alert 66-80 Puts GLP-1 Peptide APIs on DWPE Detention Track",
+      "subtitle": "What the green list means for semaglutide and tirzepatide ingredient supply chains, compounding, and \u201cresearch peptide\u201d sellers",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-29",
+      "dateModified": "2026-06-29",
+      "image": "/static/images/blog-fda-import-alert-66-80-glp1-api.png",
+      "category": "Regulation",
+      "tags": [
+        "FDA",
+        "GLP-1",
+        "compounding",
+        "semaglutide",
+        "tirzepatide",
+        "import alerts",
+        "API quality"
+      ],
+      "readTime": "9 min read",
+      "excerpt": "FDA\u2019s Import Alert 66-80 authorizes DWPE detention of GLP-1 peptide APIs at U.S. ports, creating a green-list \u201ctrusted lane\u201d for compliant manufacturers.",
+      "metaDescription": "FDA Import Alert 66-80 targets GLP-1 peptide APIs for DWPE detention. Learn what the green list means for semaglutide/tirzepatide sourcing and compounding.",
+      "keywords": "FDA Import Alert 66-80, GLP-1 API, detention without physical examination, DWPE, green list, semaglutide API, tirzepatide API, compounded GLP-1, peptide supply chain, bulk drug substances, CGMP, compounding pharmacies"
+    },
+    {
       "slug": "lexaria-dehydratech-oral-semaglutide-pilot-trial",
       "bodyFile": "blog-lexaria-dehydratech-oral-semaglutide-pilot-trial-body.html",
       "title": "Lexaria Begins Dosing GLP-1-H26-7: Oral DehydraTECH-Semaglutide Goes Head-to-Head With Wegovy Tablets",
