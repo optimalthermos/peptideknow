@@ -1,6 +1,31 @@
 {
   "posts": [
     {
+      "slug": "sandoz-generic-tirzepatide-anda-fda-acceptance",
+      "title": "FDA Accepts Sandoz's Two ANDAs for Generic Tirzepatide \u2014 First Generic Path for Mounjaro and Zepbound",
+      "subtitle": "Acceptance opens the standard ten-month review clock for the world's largest generics manufacturer, with potential 2027 launch and material implications for the $30B incretin market",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-06-30",
+      "dateModified": "2026-06-30",
+      "image": "/static/images/blog-sandoz-generic-tirzepatide-anda-fda-acceptance.png",
+      "bodyFile": "blog-sandoz-generic-tirzepatide-anda-fda-acceptance-body.html",
+      "category": "Regulation",
+      "tags": [
+        "FDA",
+        "Sandoz",
+        "tirzepatide",
+        "generic drugs",
+        "ANDA",
+        "Mounjaro",
+        "Zepbound",
+        "GLP-1"
+      ],
+      "readTime": "10 min read",
+      "excerpt": "FDA accepts Sandoz's two abbreviated new drug applications for a generic version of tirzepatide, opening the first U.S. generic path for Mounjaro and Zepbound.",
+      "metaDescription": "FDA accepted Sandoz's two ANDAs for a generic version of tirzepatide on June 29, 2026, opening the first U.S. generic path for Mounjaro and Zepbound today.",
+      "keywords": "Sandoz generic tirzepatide, FDA ANDA acceptance, generic Mounjaro, generic Zepbound, tirzepatide generic, ANDA review, GLP-1 generic, Hatch-Waxman, generic peptide drugs, FDA Orange Book, incretin generics, Sandoz tirzepatide autoinjector"
+    },
+    {
       "slug": "fda-import-alert-66-80-glp1-api",
       "title": "FDA Import Alert 66-80 Puts GLP-1 Peptide APIs on DWPE Detention Track",
       "subtitle": "What the green list means for semaglutide and tirzepatide ingredient supply chains, compounding, and \u201cresearch peptide\u201d sellers",
