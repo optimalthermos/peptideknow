@@ -1,6 +1,30 @@
 {
   "posts": [
     {
+      "slug": "fda-compounding-peptides-briefing-docs-july-2026",
+      "title": "FDA staff urges caution on compounded peptides ahead of July advisory meeting",
+      "subtitle": "New FDA briefing documents argue the evidence is thin for seven popular peptides now under review for compounding.",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-07-01",
+      "dateModified": "2026-07-01",
+      "image": "/static/images/blog-fda-compounding-peptides-briefing-docs.png",
+      "category": "Regulation",
+      "tags": [
+        "FDA",
+        "compounding",
+        "peptides",
+        "PCAC",
+        "BPC-157",
+        "TB-500",
+        "KPV",
+        "MOTS-c"
+      ],
+      "readTime": "10 min read",
+      "excerpt": "Ahead of the July 23\u201324 Pharmacy Compounding Advisory Committee meeting, FDA staff briefings recommend against listing seven popular peptides for compounding.",
+      "metaDescription": "FDA staff briefing documents recommend against compounding seven popular peptides ahead of the July 23\u201324 advisory meeting, citing limited human evidence.",
+      "keywords": "FDA peptides compounding, Pharmacy Compounding Advisory Committee, PCAC July 2026, BPC-157 compounding, TB-500 compounding, KPV peptide, MOTS-c peptide, semax peptide, epitalon peptide, emideltide peptide"
+    },
+    {
       "slug": "sandoz-generic-tirzepatide-anda-fda-acceptance",
       "title": "FDA Accepts Sandoz's Two ANDAs for Generic Tirzepatide \u2014 First Generic Path for Mounjaro and Zepbound",
       "subtitle": "Acceptance opens the standard ten-month review clock for the world's largest generics manufacturer, with potential 2027 launch and material implications for the $30B incretin market",
