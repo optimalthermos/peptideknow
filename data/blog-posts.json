@@ -1,6 +1,31 @@
 {
   "posts": [
     {
+      "slug": "medicare-glp1-bridge-obesity-coverage-launch-july-2026",
+      "title": "Medicare Starts Paying for Obesity Drugs Today \u2014 Bridge Program Opens $50 Access for Millions",
+      "subtitle": "New CMS demonstration covers Wegovy, Zepbound, Foundayo, and oral Wegovy for eligible Part D beneficiaries at a flat $50 monthly copay through 2027, sidestepping the Medicare Modernization Act",
+      "author": "PeptideKnow Editorial",
+      "datePublished": "2026-07-02",
+      "dateModified": "2026-07-02",
+      "image": "/static/images/blog-medicare-glp1-bridge-obesity-coverage-launch-july-2026.png",
+      "bodyFile": "blog-medicare-glp1-bridge-obesity-coverage-launch-july-2026-body.html",
+      "category": "Regulation",
+      "tags": [
+        "Medicare",
+        "CMS",
+        "GLP-1",
+        "obesity",
+        "Wegovy",
+        "Zepbound",
+        "Foundayo",
+        "Bridge program"
+      ],
+      "readTime": "10 min read",
+      "excerpt": "Medicare's new $50 Bridge program covering Wegovy, Zepbound, Foundayo, and oral Wegovy for obesity launched July 1 \u2014 the first Medicare weight-loss benefit.",
+      "metaDescription": "Medicare GLP-1 Bridge launched July 1, 2026 \u2014 $50 monthly copay for Wegovy, Zepbound, Foundayo, oral Wegovy for eligible obesity patients through 2027.",
+      "keywords": "Medicare GLP-1 Bridge, Medicare obesity coverage, Wegovy Medicare, Zepbound Medicare, Foundayo Medicare, CMS Bridge program, GLP-1 $50 copay, Medicare weight loss drugs, Humana Bridge, Part D obesity, Medicare Modernization Act, semaglutide seniors, tirzepatide seniors"
+    },
+    {
       "slug": "fda-compounding-peptides-briefing-docs-july-2026",
       "title": "FDA staff urges caution on compounded peptides ahead of July advisory meeting",
       "subtitle": "New FDA briefing documents argue the evidence is thin for seven popular peptides now under review for compounding.",
